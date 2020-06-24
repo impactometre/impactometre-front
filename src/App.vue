@@ -3,6 +3,7 @@
     <div class="scenarios">
       <Scenario title="Scenario A"></Scenario>
       <Scenario title="Scenario B"></Scenario>
+      <Scenario title="Scenario C"></Scenario>
     </div>
   </div>
 </template>

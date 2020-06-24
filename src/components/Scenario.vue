@@ -1,27 +1,31 @@
 <template>
-  <div class="scenario-full">
-    <div class="scenario-header">
-      <h2>{{ title }}</h2>
-    </div>
-    <div class="scenario-body">
-      <div class="scenario-section">
-        <div class="scenario-section-header">Matériel {{ count }}</div>
-        <div class="scenario-section-body">
-          <div class="scenario-line">
-            <span class="scenario-line-caption">
-              <p>Nombre de choses</p>
-              <Tooltip>Matériel dans une salle de réunion, exactement.</Tooltip>
-            </span>
-            <IncrementButton :value="count"/><br />
-          </div>
-          <div class="scenario-line">
-            <span class="scenario-line-caption">
-              <p>Nombre de choses</p>
-              <Tooltip>Matériel dans une salle de réunion, exactement.</Tooltip>
-            </span>
+  <div class="scenario">
+    <div v-if="active" class="scenario-full">
+      <div class="scenario-header">
+        <a href="#" class="close" @click.prevent="deleteScenario"></a>
+        <h2>{{ title }}</h2>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-section">
+          <div class="scenario-section-header">Matériel</div>
+          <div class="scenario-section-body">
+            <div class="scenario-line">
+              <span class="scenario-line-caption">
+                <p>Nombre de choses  ({{ materiel_no_test }})</p>
+                <Tooltip>Matériel dans une salle de réunion</Tooltip>
+              </span>
+              <IncrementButton :value="materiel_no_test"/><br />
+            </div>
           </div>
         </div>
       </div>
+    </div>
+    <div v-else class="scenario-empty">
+        <div class="scenario-header">
+        </div>
+        <div class="scenario-body">
+            <img src="../assets/img/add_scenario_button.svg" @click.prevent="createScenario">
+        </div>
     </div>
   </div>
 </template>
@@ -39,17 +43,29 @@ export default {
   },
   data() {
     return {
-      count: 25,
+      active: false,
+      materiel_no_test: 25,
     };
   },
+  methods: {
+    createScenario() {
+      this.active = true;
+    },
+    deleteScenario() {
+      this.active = false;
+    }
+  }
 };
 </script>
 
 <style>
 .scenarios {
+  display: flex;
+}
+
+.scenario {
   margin: 0 10px;
   flex-basis: 75%;
-  display: flex;
   flex-shrink: auto;
 }
 
@@ -58,6 +74,7 @@ export default {
  */
 
 .scenario-full {
+  height:600px;
   margin: 45px 10px;
   flex: 1 1 auto;
   border-radius: 15px;
@@ -68,7 +85,6 @@ export default {
   height: 60px;
   background-color: rgba(224, 58, 58, 0.5);
 }
-
 .scenario-full .scenario-header h2 {
   text-align: center;
   font-style: normal;
@@ -77,6 +93,33 @@ export default {
 }
 
 /*
+ * CLOSE LINK
+ */
+
+.scenario-full .scenario-header .close {
+  position: relative;
+  left: 88%;
+  top: 50%;
+  opacity: 0.3;
+}
+.scenario-full .scenario-header .close:hover {
+  opacity: 1;
+}
+.scenario-full .scenario-header .close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 25px;
+  width: 2px;
+  background-color: #333;
+}
+.scenario-full .scenario-header .close:before {
+  transform: rotate(45deg);
+}
+.scenario-full .scenario-header .close:after {
+  transform: rotate(-45deg);
+}
+/*
  *    SCENARIO-SECTIONS AND SCENARIO-LINES
  */
 
@@ -84,7 +127,8 @@ export default {
   font-weight: bold;
   font-size: 20px;
   line-height: 23px;
-  margin: 10px;
+  margin: 15px;
+  margin-left: 20px;
 }
 
 .scenario-section-body {
@@ -92,6 +136,7 @@ export default {
 
 .scenario-line {
   margin: 10px;
+  margin-left: 25px;
 }
 
 .scenario-line-caption p {
@@ -108,6 +153,7 @@ export default {
  */
 
 .scenario-empty {
+  height:600px;
   margin: 45px 10px;
   flex: 1 1 auto;
   border-radius: 15px;
@@ -116,15 +162,17 @@ export default {
 }
 
 .scenario-empty .scenario-body img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:60%;
   transition-timing-function: ease;
   width: 50px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
 }
 .scenario-empty .scenario-body img:hover {
   transition-timing-function: ease;
 
-  transform: scale(1.02);
+  transform: scale(1.05,1.05);
   cursor: pointer;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
 }
 </style>
