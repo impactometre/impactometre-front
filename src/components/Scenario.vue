@@ -2,8 +2,8 @@
   <div class="scenario">
     <div v-if="active" class="scenario-full">
       <div class="scenario-header">
-        <a href="#" class="close" @click.prevent="deleteScenario"></a>
-        <h2>{{ title }}</h2>
+          <h2>{{ title }}</h2>
+          <a href="#" class="close" @click.prevent="deleteScenario"></a>
       </div>
       <div class="scenario-body">
         <div class="scenario-section">
@@ -97,10 +97,12 @@ export default {
  */
 
 .scenario-full .scenario-header .close {
-  position: relative;
-  left: 88%;
-  top: 50%;
   opacity: 0.3;
+  display: inline-block;
+  position:relative;
+  float:right;
+  left:-50px;
+  top:-40px;
 }
 .scenario-full .scenario-header .close:hover {
   opacity: 1;
