@@ -1,5 +1,5 @@
 <template>
-  <span class="scenario-line-button increment-button">
+  <span class="increment-button">
     <button
       type="button"
       class="increment-button-minus"
@@ -9,11 +9,12 @@
       -
     </button>
     <input
-      type="text" name="increment-button-value"
+      type="text"
+      name="increment-button-value"
       v-bind:value="value"
       v-on:input="$event.$emit('input', event.target.value)"
       disabled
-    >
+    />
     <button
       type="button"
       class="increment-button-plus"
@@ -30,60 +31,50 @@ export default {
   props: {
     value: {
       default: 0,
-      type: Number
+      type: Number,
     },
     min: {
       default: 0,
-      type: Number
+      type: Number,
     },
     max: {
       default: undefined,
-      type: Number
-    }
+      type: Number,
+    },
   },
 
-  data () {
+  data() {
     return {
-      newValue: 0
-    }
+      newValue: 0,
+    };
   },
 
   methods: {
     plus: function () {
-      if (this.max === undefined || (this.newValue < this.max)) {
-        this.newValue++
-        this.$emit('input', this.newValue)
+      if (this.max === undefined || this.newValue < this.max) {
+        this.newValue++;
+        this.$emit("input", this.newValue);
       }
     },
     minus: function () {
-      if ((this.newValue) > this.min) {
-        this.newValue--
-        this.$emit('input', this.newValue)
+      if (this.newValue > this.min) {
+        this.newValue--;
+        this.$emit("input", this.newValue);
       }
-    }
+    },
   },
   created: function () {
-    this.newValue = this.parsedValue
+    this.newValue = this.parsedValue;
   },
   computed: {
     parsedValue: function () {
       return parseInt(this.value, 10);
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
-
-
-
 <style>
-.scenario-line-button .increment-button {
-  display: inline;
-  text-align: center;
-  font-size: 14px;
-  line-height: 20px;
-}
-
 .increment-button input {
   width: 20px;
   text-align: center;

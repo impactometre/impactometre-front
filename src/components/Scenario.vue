@@ -2,30 +2,118 @@
   <div class="scenario">
     <div v-if="active" class="scenario-full">
       <div class="scenario-header">
-          <h2>{{ title }}</h2>
-          <a href="#" class="close" @click.prevent="deleteScenario"></a>
+        <h2>{{ title }}</h2>
+        <a href="#" class="close" @click.prevent="deleteScenario"></a>
       </div>
       <div class="scenario-body">
         <div class="scenario-section">
-          <div class="scenario-section-header">Matériel</div>
           <div class="scenario-section-body">
             <div class="scenario-line">
               <span class="scenario-line-caption">
-                <p>Nombre de choses  ({{ materiel_no_test }})</p>
-                <Tooltip>Matériel dans une salle de réunion</Tooltip>
+                <p>Nombre de participants</p>
               </span>
-              <IncrementButton v-model="materiel_no_test" :max="10"/><br />
+              <IncrementButton
+                v-model="scenario.numberOfParticipants"
+                class="align-right"
+              /><br />
+            </div>
+            <div class="scenario-line">
+              <span class="scenario-line-caption">
+                <p>Durée de la réunion (minutes)</p>
+              </span>
+              <IncrementButton
+                v-model="scenario.meetingDuration"
+                class="align-right"
+              /><br />
+            </div>
+          </div>
+        </div>
+        <div class="scenario-section">
+          <div class="scenario-section-header">Matériel</div>
+          <div class="scenario-section-body">
+            <div
+              class="scenario-line"
+              v-for="h in scenario.hardware"
+              :key="h.name"
+            >
+              <span class="scenario-line-caption">
+                <p>{{ h.french }}</p>
+                <Tooltip v-if="h.helper">{{ h.helper }}</Tooltip>
+              </span>
+              <IncrementButton v-model="h.qty" class="align-right" /><br />
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="scenario-section">
+          <div class="scenario-section-header">Réseau</div>
+          <div class="scenario-section-body">
+            <div class="scenario-line">
+              <span class="scenario-line-caption">
+                <p>Logiciel utilisé</p>
+                <select v-model="scenario.software.name" class="align-right">
+                  <option disabled value="">Choisissez</option>
+                  <option
+                    v-for="software_option in software_options"
+                    :key="software_option.name"
+                    :value="software_option.name"
+                  >
+                    {{ software_option.french }}
+                  </option>
+                </select>
+              </span>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="scenario-section">
+          <div class="scenario-section-header">
+            Trajets véhiculés
+            <button
+              class="add-journey-btn align-right"
+              @click.prevent="addJourney"
+            >
+              Ajouter un trajet
+            </button>
+          </div>
+          <div class="scenario-section-body">
+            <div
+              class="scenario-line journey"
+              v-for="j in scenario.journey"
+              :key="j.length"
+            >
+              <span class="scenario-line-caption">
+                <IncrementButton
+                  v-model="j.distance"
+                  class="scenario-line-button-journey"
+                />
+                <p>kilomètres en</p>
+                <select v-model="j.mean">
+                  <option disabled value="">Choisissez</option>
+                  <option
+                    v-for="journey_option in journey_options"
+                    :key="journey_option.name"
+                    :value="journey_option.name"
+                  >
+                    {{ journey_option.french }}
+                  </option>
+                </select>
+                <a href="#" class="close" @click.prevent="deleteJourney(j)"></a>
+                <br />
+              </span>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div v-else class="scenario-empty">
-        <div class="scenario-header">
-        </div>
-        <div class="scenario-body">
-            <img src="../assets/img/add_scenario_button.svg" @click.prevent="createScenario">
-        </div>
+      <div class="scenario-header"></div>
+      <div class="scenario-body">
+        <img
+          src="../assets/img/add_scenario_button.svg"
+          @click.prevent="createScenario"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -46,7 +134,74 @@ export default {
   data() {
     return {
       active: false,
-      materiel_no_test: 25,
+      software_options: [
+        {
+          name: "RENAVISIO",
+          french: "Renavisio",
+        },
+        {
+          name: "SKYPE",
+          french: "Skype",
+        },
+        {
+          name: "JITSI",
+          french: "Jitsi",
+        },
+        {
+          name: "HANGOUTS",
+          french: "Google Hangouts",
+        },
+        {
+          name: "other",
+          french: "Autre",
+        },
+      ],
+      journey_options: [
+        {
+          name: "PLANE_INTERCONTINENTAL_ONE_PERSON_KM",
+          french: "Avion intercontinental",
+        },
+        {
+          name: "TRAIN_HIGH_SPEED_ONE_PERSON_KM",
+          french: "TGV",
+        },
+      ],
+      scenario: {
+        meetingDuration: 0,
+        numberOfParticipants: 0,
+        hardware: [
+          {
+            name: "LAPTOP",
+            french: "Ordinateurs portables",
+            qty: 0,
+          },
+          {
+            name: "DESKTOP",
+            french: "Ordinateurs fixes",
+            qty: 0,
+          },
+          {
+            name: "LOGITECH_KIT",
+            french: "Kits de vidéo-conférence",
+            helper: "Un kit complet.",
+            qty: 0,
+          },
+          {
+            name: "COMPUTER_SCREEN_LCD",
+            french: "Ecrans supplémentaires",
+            qty: 0,
+          },
+          {
+            name: "PROJECTOR",
+            french: "Vidéo-projecteurs",
+            qty: 0,
+          },
+        ],
+        software: {
+          name: "",
+        },
+        journey: [],
+      },
     };
   },
   methods: {
@@ -55,8 +210,19 @@ export default {
     },
     deleteScenario() {
       this.active = false;
-    }
-  }
+    },
+    addJourney() {
+      //TODO: Add a journey only if last if not empty
+      this.scenario.journey.push({
+        distance: 0,
+        mean: "",
+      });
+    },
+    deleteJourney(journey) {
+      //WIP
+      this.scenario.journey = this.scenario.journey.filter((j) => j == journey);
+    },
+  },
 };
 </script>
 
@@ -76,7 +242,7 @@ export default {
  */
 
 .scenario-full {
-  height:600px;
+  height: 600px;
   margin: 45px 10px;
   flex: 1 1 auto;
   border-radius: 15px;
@@ -98,29 +264,36 @@ export default {
  * CLOSE LINK
  */
 
-.scenario-full .scenario-header .close {
+.close {
   opacity: 0.3;
   display: inline-block;
-  position:relative;
-  float:right;
-  left:-50px;
-  top:-41px;
+  position: relative;
+  float: right;
 }
-.scenario-full .scenario-header .close:hover {
+.scenario-full .scenario-header .close {
+  left: -50px;
+  top: -41px;
+}
+.journey .close {
+  left: -50px;
+  top: -0px;
+}
+.close:hover {
   opacity: 1;
 }
-.scenario-full .scenario-header .close:before, .close:after {
+.close:before,
+.close:after {
   position: absolute;
   left: 15px;
-  content: ' ';
+  content: " ";
   height: 25px;
   width: 2px;
   background-color: #333;
 }
-.scenario-full .scenario-header .close:before {
+.close:before {
   transform: rotate(45deg);
 }
-.scenario-full .scenario-header .close:after {
+.close:after {
   transform: rotate(-45deg);
 }
 /*
@@ -152,12 +325,53 @@ export default {
   color: #363636;
 }
 
+/* .scenario-line-caption .journey {
+  display:inline-flex;
+  align-content: space-between
+} */
+/*
+ *    BUTTONS
+ */
+.scenario-line-button-journey {
+  margin-right: 10px;
+}
+.align-right {
+  float: right;
+  margin-right: 15px;
+}
+.scenario-line select {
+  width: 150px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #bcbcbc;
+  border-radius: 6px;
+  font-size: 14px;
+  background: none;
+  color: black;
+  padding: 2px 2px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.add-journey-btn {
+  border: none;
+  background: #dcdcdc;
+  border-radius: 6px;
+  color: #676767;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.add-journey-btn:hover {
+  background: #b6b6b6;
+}
 /*
  *    SCENARIO-EMPTY
  */
 
 .scenario-empty {
-  height:600px;
+  height: 600px;
   margin: 45px 10px;
   flex: 1 1 auto;
   border-radius: 15px;
@@ -169,14 +383,14 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top:60%;
+  margin-top: 60%;
   transition-timing-function: ease;
   width: 50px;
 }
 .scenario-empty .scenario-body img:hover {
   transition-timing-function: ease;
 
-  transform: scale(1.05,1.05);
+  transform: scale(1.05, 1.05);
   cursor: pointer;
 }
 </style>
