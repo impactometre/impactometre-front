@@ -33,8 +33,10 @@
 <script>
 import IncrementButton from "./IncrementButton";
 import Tooltip from "./Tooltip";
+import store from "../store/ScenarioStore.js";
 
 export default {
+  store: store,
   name: "Scenario",
   props: ["title"],
   components: {
