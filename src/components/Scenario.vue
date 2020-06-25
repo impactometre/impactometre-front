@@ -14,7 +14,7 @@
                 <p>Nombre de choses  ({{ materiel_no_test }})</p>
                 <Tooltip>Matériel dans une salle de réunion</Tooltip>
               </span>
-              <IncrementButton :value="materiel_no_test"/><br />
+              <IncrementButton v-model="materiel_no_test" :max="10"/><br />
             </div>
           </div>
         </div>
@@ -102,7 +102,7 @@ export default {
   position:relative;
   float:right;
   left:-50px;
-  top:-40px;
+  top:-41px;
 }
 .scenario-full .scenario-header .close:hover {
   opacity: 1;

@@ -4,19 +4,21 @@
       type="button"
       class="increment-button-minus"
       name="increment-button-minus"
-      v-on:click="minus()"
+      v-on:click="minus"
     >
       -
     </button>
     <input
       type="text" name="increment-button-value"
-      v-model="newValue"
+      v-bind:value="value"
+      v-on:input="$event.$emit('input', event.target.value)"
+      disabled
     >
     <button
       type="button"
       class="increment-button-plus"
       name="increment-button-plus"
-      v-on:click="plus()"
+      v-on:click="plus"
     >
       +
     </button>
@@ -60,15 +62,13 @@ export default {
       }
     }
   },
-  watch: {
-    newValue: {
-      handler: function (newVal) {
-        this.value = newVal
-      }
-    }
-  },
   created: function () {
-    this.newValue = this.value
+    this.newValue = this.parsedValue
+  },
+  computed: {
+    parsedValue: function () {
+      return parseInt(this.value, 10);
+    }
   }
 }
 </script>
