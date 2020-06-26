@@ -219,8 +219,7 @@ export default {
       });
     },
     deleteJourney(journey) {
-      //WIP
-      this.scenario.journey = this.scenario.journey.filter((j) => j == journey);
+      this.scenario.journey = this.scenario.journey.filter((j) => j != journey);
     },
   },
 };
