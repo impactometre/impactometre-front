@@ -8,7 +8,7 @@ const state = {
 };
 
 let store = new Vuex.Store({
-  state,
+  state
 });
 
 // Variable globale pour les tests

@@ -73,7 +73,7 @@
               class="add-journey-btn align-right"
               @click.prevent="addJourney"
             >
-              Ajouter un trajet
+              +
             </button>
           </div>
           <div class="scenario-section-body">
@@ -87,8 +87,8 @@
                   v-model="j.distance"
                   class="scenario-line-button-journey"
                 />
-                <p>kilomètres en</p>
-                <select v-model="j.mean">
+                <p>km en</p>
+                <select v-model="j.mean" class="select-journey">
                   <option disabled value="">Choisissez</option>
                   <option
                     v-for="journey_option in journey_options"
@@ -324,10 +324,10 @@ export default {
   color: #363636;
 }
 
-/* .scenario-line-caption .journey {
-  display:inline-flex;
-  align-content: space-between
-} */
+.select-journey {
+  margin-left:10px;
+  width: 120px !important;
+}
 /*
  *    BUTTONS
  */
@@ -355,7 +355,7 @@ export default {
 .add-journey-btn {
   border: none;
   background: #dcdcdc;
-  border-radius: 6px;
+  border-radius: 15px;
   color: #676767;
   padding: 5px 10px;
   text-align: center;

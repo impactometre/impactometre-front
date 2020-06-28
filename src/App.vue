@@ -22,4 +22,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.scenarios {
+  display: flex;
+  flex: 1 1 auto;
+}
+</style>
