@@ -4,8 +4,8 @@
       <Scenario title="Scenario A"></Scenario>
       <Scenario title="Scenario B"></Scenario>
       <Scenario title="Scenario C"></Scenario>
-      <Results/>
     </div>
+    <Results/>
   </div>
 </template>
 
@@ -23,6 +23,10 @@ export default {
 </script>
 
 <style>
+#app {
+  display: flex;
+  flex: 1 1 auto;
+}
 .scenarios {
   display: flex;
   flex: 1 1 auto;
