@@ -2,7 +2,8 @@
   <div class="results">
       <div class="results-header">
           Résultats
-          <button class="export-btn">Exporter</button>
+          <button class="results-header-btn-reload" @click.prevent="updateResults">Actualiser</button>
+          <button class="results-header-btn-export">Exporter</button>
       </div>
       <div class="results-content">
       </div>
@@ -11,7 +12,17 @@
 
 <script>
 export default {
-
+  data() {
+    return {
+      scenarios_json: []
+    }
+  },
+  methods : {
+    updateResults() {
+      this.scenarios_json = []
+      this.$root.$emit("getJSON", this.scenarios_json);
+    }
+  }
 }
 </script>
 

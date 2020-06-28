@@ -222,6 +222,14 @@ export default {
       this.scenario.journey = this.scenario.journey.filter((j) => j != journey);
     },
   },
+  mounted() {
+    this.$root.$on("getJSON", (data) => {
+      //TODO: format data (remove useless fields)
+      if (this.active) {
+        data.push(JSON.stringify(this.scenario));
+      }
+    })
+  }
 };
 </script>
 
