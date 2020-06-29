@@ -121,10 +121,8 @@
 <script>
 import IncrementButton from "./IncrementButton";
 import Tooltip from "./Tooltip";
-import store from "../store/ScenarioStore.js";
 
 export default {
-  store: store,
   name: "Scenario",
   props: ["title"],
   components: {
@@ -260,13 +258,13 @@ export default {
   height: 60px;
 }
 #ScenarioA {
-  background-color: rgba(224, 58, 58, 0.5);
+  background-color: #e97272;
 }
 #ScenarioB {
-  background-color: rgba(224, 208, 58, 0.5);
+  background-color: #e7dc73;
 }
 #ScenarioC {
-  background-color: rgba(182, 214, 204, 1);
+  background-color: #83bdec;
 }
 .scenario-full .scenario-header h2 {
   text-align: center;

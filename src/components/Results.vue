@@ -38,7 +38,7 @@
         <h3>{{ section.title }}</h3>
         <div class="results-chart">
           <ResultsChart
-            :chart-data="datacollection"
+            :chart-data="$store.state.impact_on_spheres[section.name]"
             :options="chartOptions"
             :height="100"
           ></ResultsChart>
@@ -62,9 +62,11 @@
 
 <script>
 import ResultsChart from "./ResultsChart.js";
+import store from "../store/MainStore.js";
 
 export default {
   components: { ResultsChart },
+  store: store,
   // TODO: add loaded data to wait for API call to finish.
   data() {
     return {
@@ -114,18 +116,13 @@ export default {
           mode: false,
         },
       },
-      datacollection: {
-        labels: [13, 22],
-        datasets: [
-          { label: "Data One", backgroundColor: "#f87979", data: [38, 39] },
-        ],
-      },
     };
   },
   methods: {
     updateResults() {
-      this.scenarios_json = [];
-      this.$root.$emit("getJSON", this.scenarios_json);
+      const new_scenarios = [];
+      this.$root.$emit("getJSON", new_scenarios);
+      store.commit('updateScenarios', new_scenarios);
     },
     display_results_detailled_view(choice) {
       this.$root.$emit("display_results_detailled_view", choice);
