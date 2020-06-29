@@ -8,14 +8,14 @@
 </template>
 
 <script>
-  export default {
-    props: ["selected_view"],
+export default {
+  props: ["selected_view"],
   methods: {
     hideView() {
-      this.$root.$emit("hide_results_detailled_view")
-    }
-  }
-}
+      this.$root.$emit("hide_results_detailled_view");
+    },
+  },
+};
 </script>
 
 <style>

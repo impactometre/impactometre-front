@@ -228,8 +228,8 @@ export default {
       if (this.active) {
         data.push(JSON.stringify(this.scenario));
       }
-    })
-  }
+    });
+  },
 };
 </script>
 
@@ -333,7 +333,7 @@ export default {
 }
 
 .select-journey {
-  margin-left:10px;
+  margin-left: 10px;
   width: 120px !important;
 }
 /*

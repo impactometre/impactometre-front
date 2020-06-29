@@ -5,8 +5,12 @@
       <Scenario title="Scenario B"></Scenario>
       <Scenario title="Scenario C"></Scenario>
     </div>
-    <ResultsDetailledView :selected_view="display_scenarios_choice" class="scenarios" v-show="!display_scenarios"/>
-    <Results/>
+    <ResultsDetailledView
+      :selected_view="display_scenarios_choice"
+      class="scenarios"
+      v-show="!display_scenarios"
+    />
+    <Results />
   </div>
 </template>
 
@@ -20,16 +24,15 @@ export default {
   components: {
     Scenario,
     Results,
-    ResultsDetailledView
+    ResultsDetailledView,
   },
-  data () {
+  data() {
     return {
       display_scenarios: true,
-      display_scenarios_choice: ""
-    }
+      display_scenarios_choice: "",
+    };
   },
-  methods: {
-  },
+  methods: {},
   mounted() {
     this.$root.$on("display_results_detailled_view", (choice) => {
       this.display_scenarios = false;
@@ -38,7 +41,7 @@ export default {
     this.$root.$on("hide_results_detailled_view", () => {
       this.display_scenarios = true;
     });
-  }
+  },
 };
 </script>
 
