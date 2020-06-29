@@ -1,7 +1,7 @@
 <template>
   <div class="scenario">
     <div v-if="active" class="scenario-full">
-      <div class="scenario-header">
+      <div class="scenario-header" :id="title.replace(/\s/g, '')">
         <h2>{{ title }}</h2>
         <a href="#" class="close" @click.prevent="deleteScenario"></a>
       </div>
@@ -258,7 +258,15 @@ export default {
 .scenario-full .scenario-header {
   border-radius: 15px 15px 0 0;
   height: 60px;
+}
+#ScenarioA {
   background-color: rgba(224, 58, 58, 0.5);
+}
+#ScenarioB {
+  background-color: rgba(224, 208, 58, 0.5);
+}
+#ScenarioC {
+  background-color: rgba(182, 214, 204, 1);
 }
 .scenario-full .scenario-header h2 {
   text-align: center;
@@ -369,6 +377,7 @@ export default {
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  cursor: pointer;
 }
 .add-journey-btn:hover {
   background: #b6b6b6;
