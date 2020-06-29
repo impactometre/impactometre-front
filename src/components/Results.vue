@@ -6,19 +6,19 @@
           <button class="results-header-btn-export">Exporter</button>
       </div>
       <div class="results-content">
-        <div class="results-section">
+        <div class="results-section" @click="display_results_detailled_view('sante_humaine')">
           <h3>Santé Humaine</h3>
           <p>Texte</p>
         </div>
-        <div class="results-section">
+        <div class="results-section" @click="display_results_detailled_view('qualite_ecosysteme')">
           <h3>Qualité de l'écosystème</h3>
           <p>Texte</p>
         </div>
-        <div class="results-section">
+        <div class="results-section" @click="display_results_detailled_view('changement_climatique')">
           <h3>Changement climatique</h3>
           <p>Texte</p>
         </div>
-        <div class="results-section">
+        <div class="results-section" @click="display_results_detailled_view('ressources')">
           <h3>Ressources</h3>
           <p>Texte</p>
         </div>
@@ -39,6 +39,9 @@ export default {
     updateResults() {
       this.scenarios_json = []
       this.$root.$emit("getJSON", this.scenarios_json);
+    },
+    display_results_detailled_view(choice) {
+      this.$root.$emit("display_results_detailled_view", choice);
     }
   }
 }
