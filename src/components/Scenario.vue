@@ -248,7 +248,7 @@ export default {
 
 .scenario-full {
   height: 600px;
-  margin: 45px 10px;
+  margin: 30px 10px;
   flex: 1 1 auto;
   border-radius: 15px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
@@ -386,7 +386,7 @@ export default {
 
 .scenario-empty {
   height: 600px;
-  margin: 45px 10px;
+  margin: 30px 10px;
   flex: 1 1 auto;
   border-radius: 15px;
   box-sizing: border-box;

@@ -122,7 +122,7 @@ export default {
     updateResults() {
       const new_scenarios = [];
       this.$root.$emit("getJSON", new_scenarios);
-      store.commit('updateScenarios', new_scenarios);
+      store.commit("updateScenarios", new_scenarios);
     },
     display_results_detailled_view(choice) {
       this.$root.$emit("display_results_detailled_view", choice);
@@ -149,7 +149,7 @@ export default {
   font-size: 30px;
   line-height: 35px;
   color: #3b3b3b;
-  padding-top: 55px;
+  padding-top: 20px;
   padding-left: 40px;
   /* ! This padding-right should be removed */
 }
