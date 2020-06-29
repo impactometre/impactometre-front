@@ -31,53 +31,28 @@
     <div class="results-content" v-show="displayed_view == 'comparatif'">
       <div
         class="results-section"
-        @click="display_results_detailled_view('sante_humaine')"
+        @click="display_results_detailled_view(section.name)"
+        v-for="section in sections_comparatif"
+        :key="section.name"
       >
-        <h3>Santé Humaine</h3>
-        <p>Texte</p>
-      </div>
-      <div
-        class="results-section"
-        @click="display_results_detailled_view('qualite_ecosysteme')"
-      >
-        <h3>Qualité de l'écosystème</h3>
-        <p>Texte</p>
-      </div>
-      <div
-        class="results-section"
-        @click="display_results_detailled_view('changement_climatique')"
-      >
-        <h3>Changement climatique</h3>
-        <p>Texte</p>
-      </div>
-      <div
-        class="results-section"
-        @click="display_results_detailled_view('ressources')"
-      >
-        <h3>Ressources</h3>
-        <p>Texte</p>
+        <h3>{{ section.title }}</h3>
+        <div class="results-chart">
+          <ResultsChart
+            :chart-data="datacollection"
+            :options="chartOptions"
+            :height="100"
+          ></ResultsChart>
+        </div>
       </div>
     </div>
     <div class="results-content" v-show="displayed_view == 'equivalents'">
       <div
         class="results-section"
-        @click="display_results_detailled_view('douches')"
+        @click="display_results_detailled_view(section.name)"
+        v-for="section in sections_equivalents"
+        :key="section.name"
       >
-        <h3>Douches</h3>
-        <p>Texte</p>
-      </div>
-      <div
-        class="results-section"
-        @click="display_results_detailled_view('chauffage')"
-      >
-        <h3>Chauffage d'une maison</h3>
-        <p>Texte</p>
-      </div>
-      <div
-        class="results-section"
-        @click="display_results_detailled_view('trajets_voiture')"
-      >
-        <h3>Trajets en voiture</h3>
+        <h3>{{ section.title }}</h3>
         <p>Texte</p>
       </div>
     </div>
@@ -86,11 +61,65 @@
 </template>
 
 <script>
+import ResultsChart from "./ResultsChart.js";
+
 export default {
+  components: { ResultsChart },
+  // TODO: add loaded data to wait for API call to finish.
   data() {
     return {
       scenarios_json: [],
       displayed_view: "comparatif",
+      sections_comparatif: [
+        {
+          name: "sante_humaine",
+          title: "Santé Humaine",
+        },
+        {
+          name: "qualite_ecosysteme",
+          title: "Qualité de l'écosystème",
+        },
+        {
+          name: "changement_climatique",
+          title: "Changement Climatique",
+        },
+        {
+          name: "ressources",
+          title: "Ressources",
+        },
+      ],
+      sections_equivalents: [
+        {
+          name: "douches",
+          title: "Douches",
+        },
+        {
+          name: "chauffage",
+          title: "Chauffage",
+        },
+        {
+          name: "trajets_voiture",
+          title: "Trajets en voiture",
+        },
+      ],
+      chartOptions: {
+        maintainAspectRatio: true,
+        legend: {
+          display: false,
+        },
+        tooltips: {
+          enabled: false,
+        },
+        hover: {
+          mode: false,
+        },
+      },
+      datacollection: {
+        labels: [13, 22],
+        datasets: [
+          { label: "Data One", backgroundColor: "#f87979", data: [38, 39] },
+        ],
+      },
     };
   },
   methods: {
@@ -126,7 +155,6 @@ export default {
   padding-top: 55px;
   padding-left: 40px;
   /* ! This padding-right should be removed */
-  padding-right: 160px;
 }
 .results-header-btn-actions button {
   border: none;
@@ -202,5 +230,14 @@ export default {
 
 .results-section h3 {
   color: #3b3b3b;
+}
+
+/*
+ * CHARTS
+ */
+
+.results-chart {
+  height: 25%;
+  padding-right: 25px;
 }
 </style>
