@@ -9,7 +9,7 @@
         <ResultsChart
           :chart-data="$store.state.impact_on_spheres_detailled[selected_view]"
           :options="chartOptions"
-          :height="50"
+          :height="80"
         ></ResultsChart>
       </div>
       <p>
@@ -43,8 +43,8 @@ export default {
         },
         scales: {
           xAxes: [{ stacked: true }],
-          yAxes: [{ stacked: true }]
-        }
+          yAxes: [{ stacked: true }],
+        },
       },
     };
   },
@@ -57,12 +57,12 @@ export default {
   flex-direction: column;
   padding: 30px;
   background: repeating-linear-gradient(
-      -45deg,
-      rgba(0,0,0,0),
-      rgba(0,0,0,0) 10px,
-      rgba(0,0,0,0.02) 10px,
-      rgba(0,0,0,0.02) 20px
-    );
+    -45deg,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0) 10px,
+    rgba(0, 0, 0, 0.02) 10px,
+    rgba(0, 0, 0, 0.02) 20px
+  );
 }
 
 /*
@@ -84,7 +84,6 @@ export default {
 .results-detailled-view-content {
   display: block;
   position: relative;
-  height: 200px;
 }
 .results-detailled-view-content p {
   /* font-style: italic; */

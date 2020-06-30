@@ -3,7 +3,9 @@
     <div v-if="active" class="scenario-full">
       <div class="scenario-header" :id="title.replace(/\s/g, '')">
         <h2>{{ title }}</h2>
-        <button class="close-btn" @click.prevent="deleteScenario">&#10006;</button>
+        <button class="close-btn" @click.prevent="deleteScenario">
+          &#10006;
+        </button>
       </div>
       <div class="scenario-body">
         <div class="scenario-section">
@@ -98,7 +100,12 @@
                     {{ journey_option.french }}
                   </option>
                 </select>
-                <button class="delete-journey-btn" @click.prevent="deleteJourney(j)">-</button>
+                <button
+                  class="delete-journey-btn"
+                  @click.prevent="deleteJourney(j)"
+                >
+                  -
+                </button>
                 <br />
               </span>
             </div>
@@ -282,7 +289,7 @@ export default {
 .close-btn {
   display: inline;
   position: relative;
-  float:right;
+  float: right;
   top: -46px;
   left: -12px;
   border: none;
@@ -296,13 +303,13 @@ export default {
   font-size: 20px;
 }
 .close-btn:hover {
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .delete-journey-btn {
   display: inline;
   position: relative;
-  float:right;
+  float: right;
   top: -46px;
   left: -12px;
   border: none;
@@ -320,7 +327,7 @@ export default {
 }
 
 .delete-journey-btn:hover {
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 /*

@@ -6,7 +6,11 @@ Vue.use(Vuex);
 let labels = ["A", "B", "C"];
 let labels_detailled = ["Scenario A", "Scenario B", "Scenario C"];
 let backgroundColor = ["#e97272", "#e7dc73", "#83bdec"];
-let hoverBackgroundColor = ["rgba(0,0,0,0.8)", "rgba(0,0,0,0.6)", "rgba(0,0,0,0.3)"];
+let hoverBackgroundColor = [
+  "rgba(0,0,0,0.8)",
+  "rgba(0,0,0,0.6)",
+  "rgba(0,0,0,0.3)",
+];
 
 const state = {
   scenarios_json: [],
@@ -141,7 +145,7 @@ const state = {
         },
       ],
     },
-  }
+  },
 };
 
 let store = new Vuex.Store({
