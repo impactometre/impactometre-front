@@ -6,7 +6,7 @@
       <Scenario title="Scenario C"></Scenario>
     </div>
     <ResultsDetailledView
-      :selected_view="display_scenarios_choice"
+      :selected_view="results_detailled_view_choice"
       class="scenarios"
       v-show="!display_scenarios"
     />
@@ -29,14 +29,14 @@ export default {
   data() {
     return {
       display_scenarios: true,
-      display_scenarios_choice: "",
+      results_detailled_view_choice: "",
     };
   },
   methods: {},
   mounted() {
     this.$root.$on("display_results_detailled_view", (choice) => {
       this.display_scenarios = false;
-      this.display_scenarios_choice = choice;
+      this.results_detailled_view_choice = choice;
     });
     this.$root.$on("hide_results_detailled_view", () => {
       this.display_scenarios = true;
@@ -48,10 +48,10 @@ export default {
 <style>
 #app {
   display: flex;
-  flex: 1 1 auto;
+  height:100%;
 }
 .scenarios {
   display: flex;
-  flex: 1 1 auto;
+  flex-basis: 75%;
 }
 </style>

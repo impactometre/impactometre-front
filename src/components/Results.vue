@@ -28,7 +28,7 @@
         />
       </div>
     </div>
-    <div class="results-content" v-show="displayed_view == 'comparatif'">
+    <div class="results-content" v-if="displayed_view == 'comparatif'">
       <div
         class="results-section"
         @click="display_results_detailled_view(section.name)"
@@ -40,12 +40,13 @@
           <ResultsChart
             :chart-data="$store.state.impact_on_spheres[section.name]"
             :options="chartOptions"
-            :height="100"
+            :width="50"
+            :height="90"
           ></ResultsChart>
         </div>
       </div>
     </div>
-    <div class="results-content" v-show="displayed_view == 'equivalents'">
+    <div class="results-content" v-if="displayed_view == 'equivalents'">
       <div
         class="results-section"
         @click="display_results_detailled_view(section.name)"
@@ -105,7 +106,7 @@ export default {
         },
       ],
       chartOptions: {
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         legend: {
           display: false,
         },
@@ -136,8 +137,8 @@ export default {
 
 <style>
 .results {
+  display: block;
   background-color: #f1f1f1;
-  height: auto;
 }
 
 /*
@@ -151,7 +152,6 @@ export default {
   color: #3b3b3b;
   padding-top: 20px;
   padding-left: 40px;
-  /* ! This padding-right should be removed */
 }
 .results-header-btn-actions button {
   border: none;
@@ -182,8 +182,14 @@ export default {
   background: rgba(85, 235, 52, 0.8);
 }
 
+.results-header-btn-displayed-view {
+  margin-bottom:10px;
+  margin-left: 4px;
+}
+
 .results-header-btn-displayed-view input {
   background-color: #3b3b3b;
+  max-width: 50%;
   border: none;
   color: white;
   padding: 5px 15px;
@@ -215,7 +221,6 @@ export default {
   border-top-style: solid;
   border-color: #bcbcbc;
   border-width: 3px;
-  padding-bottom: 10px;
   padding-top: 10px;
   padding-left: 40px;
 }

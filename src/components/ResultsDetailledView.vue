@@ -2,14 +2,14 @@
   <div class="results-detailled-view">
     <div class="results-detailled-view-header">
       <h1>Titre : {{ selected_view }}</h1>
-      <a href="#" class="close" @click.prevent="hideView"></a>
+      <button class="close-btn" @click.prevent="hideView">&#10006;</button>
     </div>
     <div class="results-detailled-view-content">
       <div class="results-chart-detailled">
         <ResultsChart
           :chart-data="$store.state.impact_on_spheres_detailled[selected_view]"
           :options="chartOptions"
-          :height="100"
+          :height="50"
         ></ResultsChart>
       </div>
       <p>
@@ -56,6 +56,13 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 30px;
+  background: repeating-linear-gradient(
+      -45deg,
+      rgba(0,0,0,0),
+      rgba(0,0,0,0) 10px,
+      rgba(0,0,0,0.02) 10px,
+      rgba(0,0,0,0.02) 20px
+    );
 }
 
 /*
@@ -87,6 +94,7 @@ export default {
  * CHARTS
  */
 .results-chart-detailled {
-  margin-bottom: 10px;
+  margin-bottom: 25px;
+  width: 100%;
 }
 </style>

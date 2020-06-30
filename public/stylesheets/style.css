@@ -8,6 +8,9 @@
     margin: 0;
     font-family: Roboto;
 }
+html {
+  height: 100%
+}
 body {
     height: 100%;
     display: flex;
@@ -37,7 +40,7 @@ header .header-logo p {
 }
 
 main {
-    position: relative;
+  height:100%
 }
 
 

@@ -3,7 +3,7 @@
     <div v-if="active" class="scenario-full">
       <div class="scenario-header" :id="title.replace(/\s/g, '')">
         <h2>{{ title }}</h2>
-        <a href="#" class="close" @click.prevent="deleteScenario"></a>
+        <button class="close-btn" @click.prevent="deleteScenario">&#10006;</button>
       </div>
       <div class="scenario-body">
         <div class="scenario-section">
@@ -66,7 +66,7 @@
           </div>
         </div>
         <br />
-        <div class="scenario-section">
+        <div class="scenario-section journey">
           <div class="scenario-section-header">
             Trajets véhiculés
             <button
@@ -78,7 +78,7 @@
           </div>
           <div class="scenario-section-body">
             <div
-              class="scenario-line journey"
+              class="scenario-line"
               v-for="j in scenario.journey"
               :key="j.length"
             >
@@ -98,7 +98,7 @@
                     {{ journey_option.french }}
                   </option>
                 </select>
-                <a href="#" class="close" @click.prevent="deleteJourney(j)"></a>
+                <button class="delete-journey-btn" @click.prevent="deleteJourney(j)">-</button>
                 <br />
               </span>
             </div>
@@ -247,11 +247,13 @@ export default {
  */
 
 .scenario-full {
-  height: 600px;
+  height: auto;
+  min-height: 80%;
   margin: 30px 10px;
   flex: 1 1 auto;
   border-radius: 15px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+  /* padding-bottom:25px; */
 }
 .scenario-full .scenario-header {
   border-radius: 15px 15px 0 0;
@@ -277,38 +279,50 @@ export default {
  * CLOSE LINK
  */
 
-.close {
-  opacity: 0.3;
-  display: inline-block;
+.close-btn {
+  display: inline;
   position: relative;
-  float: right;
+  float:right;
+  top: -46px;
+  left: -12px;
+  border: none;
+  color: black;
+  padding: 5px 8px;
+  border-radius: 7px;
+  background-color: transparent;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
 }
-.scenario-full .scenario-header .close {
-  left: -50px;
-  top: -41px;
+.close-btn:hover {
+  background-color: rgba(0,0,0,0.1);
 }
-.journey .close {
-  left: -50px;
-  top: -0px;
+
+.delete-journey-btn {
+  display: inline;
+  position: relative;
+  float:right;
+  top: -46px;
+  left: -12px;
+  border: none;
+  color: black;
+  padding: 3px 12px;
+  border-radius: 15px;
+  background-color: transparent;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  left: -19.5px;
+  top: 0px;
+  font-weight: 400;
 }
-.close:hover {
-  opacity: 1;
+
+.delete-journey-btn:hover {
+  background-color: rgba(0,0,0,0.1);
 }
-.close:before,
-.close:after {
-  position: absolute;
-  left: 15px;
-  content: " ";
-  height: 25px;
-  width: 2px;
-  background-color: #333;
-}
-.close:before {
-  transform: rotate(45deg);
-}
-.close:after {
-  transform: rotate(-45deg);
-}
+
 /*
  *    SCENARIO-SECTIONS AND SCENARIO-LINES
  */
@@ -321,7 +335,8 @@ export default {
   margin-left: 20px;
 }
 
-.scenario-section-body {
+.scenario-section.journey {
+  padding-bottom: 20px;
 }
 
 .scenario-line {
@@ -385,7 +400,8 @@ export default {
  */
 
 .scenario-empty {
-  height: 600px;
+  /* height: 80%; */
+  min-height: 80%;
   margin: 30px 10px;
   flex: 1 1 auto;
   border-radius: 15px;
