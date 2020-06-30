@@ -39,7 +39,7 @@ export default {
       chartOptions: {
         maintainAspectRatio: true,
         legend: {
-          display: true,
+          display: false,
         },
         scales: {
           xAxes: [{ stacked: true }],
