@@ -31,14 +31,15 @@ export default {
     return {
       display_scenarios: true,
       results_detailled_view_choice: "",
-      re_render_results_detailled_view: false
+      re_render_results_detailled_view: false,
     };
   },
   methods: {},
   mounted() {
     this.$root.$on("display_results_detailled_view", (choice) => {
-      // We re-render the component as a workaround to force chart to update 
-      this.re_render_results_detailled_view = !this.re_render_results_detailled_view;
+      // We re-render the component as a workaround to force chart to update
+      this.re_render_results_detailled_view = !this
+        .re_render_results_detailled_view;
       this.display_scenarios = false;
       this.results_detailled_view_choice = choice;
     });

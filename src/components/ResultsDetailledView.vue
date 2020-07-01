@@ -49,10 +49,10 @@ export default {
     };
   },
   computed: {
-    chartData: function() {
-      return store.state.impact_on_spheres_detailled[this.selectedView]
-    }
-  }
+    chartData: function () {
+      return store.state.impact_on_spheres_detailled[this.selectedView];
+    },
+  },
 };
 </script>
 
