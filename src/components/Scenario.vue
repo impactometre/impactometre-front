@@ -129,48 +129,26 @@
 import IncrementButton from "./IncrementButton";
 import Tooltip from "./Tooltip";
 
+import { software_options, journey_options } from "../options/options.js";
+
 export default {
   name: "Scenario",
-  props: ["title"],
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+  },
   components: {
     IncrementButton,
     Tooltip,
   },
   data() {
     return {
+      id: null,
       active: false,
-      software_options: [
-        {
-          name: "RENAVISIO",
-          french: "Renavisio",
-        },
-        {
-          name: "SKYPE",
-          french: "Skype",
-        },
-        {
-          name: "JITSI",
-          french: "Jitsi",
-        },
-        {
-          name: "HANGOUTS",
-          french: "Google Hangouts",
-        },
-        {
-          name: "other",
-          french: "Autre",
-        },
-      ],
-      journey_options: [
-        {
-          name: "PLANE_INTERCONTINENTAL_ONE_PERSON_KM",
-          french: "Avion intercontinental",
-        },
-        {
-          name: "TRAIN_HIGH_SPEED_ONE_PERSON_KM",
-          french: "TGV",
-        },
-      ],
+      software_options,
+      journey_options,
       scenario: {
         meetingDuration: 0,
         numberOfParticipants: 0,
