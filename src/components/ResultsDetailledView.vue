@@ -1,13 +1,13 @@
 <template>
   <div class="results-detailled-view">
     <div class="results-detailled-view-header">
-      <h1>Titre : {{ selected_view }}</h1>
+      <h1>Titre : {{ selectedView }}</h1>
       <button class="close-btn" @click.prevent="hideView">&#10006;</button>
     </div>
     <div class="results-detailled-view-content">
-      <div class="results-chart-detailled">
+      <div class="results-chart-detailled" v-if="selectedView">
         <ResultsChart
-          :chart-data="$store.state.impact_on_spheres_detailled[selected_view]"
+          :chart-data="chartData"
           :options="chartOptions"
           :height="80"
         ></ResultsChart>
@@ -26,7 +26,7 @@ import ResultsChart from "./ResultsChart.js";
 import store from "../store/MainStore.js";
 
 export default {
-  props: ["selected_view"],
+  props: ["selectedView"],
   store,
   components: { ResultsChart },
   methods: {
@@ -48,6 +48,11 @@ export default {
       },
     };
   },
+  computed: {
+    chartData: function() {
+      return store.state.impact_on_spheres_detailled[this.selectedView]
+    }
+  }
 };
 </script>
 

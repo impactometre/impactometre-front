@@ -7,7 +7,7 @@
           class="results-header-btn-reload"
           @click.prevent="updateResults"
         >
-          Actualiser
+          Calculer
         </button>
         <button class="results-header-btn-export">Exporter</button>
       </div>

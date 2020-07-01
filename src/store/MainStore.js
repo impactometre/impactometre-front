@@ -81,19 +81,19 @@ const state = {
       datasets: [
         {
           label: "Matériel",
-          data: [50, 10, 50],
+          data: [5, 10, 5],
           backgroundColor,
           hoverBackgroundColor: hoverBackgroundColor[0],
         },
         {
           label: "Réseau",
-          data: [35, 15, 10],
+          data: [5, 5, 5],
           backgroundColor,
           hoverBackgroundColor: hoverBackgroundColor[1],
         },
         {
           label: "Trajets",
-          data: [20, 12, 21],
+          data: [0, 0, 0],
           backgroundColor,
           hoverBackgroundColor: hoverBackgroundColor[2],
         },

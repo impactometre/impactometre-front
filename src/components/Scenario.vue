@@ -362,7 +362,7 @@ export default {
 
 .select-journey {
   margin-left: 10px;
-  width: 120px !important;
+  max-width: 40%;
 }
 /*
  *    BUTTONS
@@ -375,7 +375,7 @@ export default {
   margin-right: 15px;
 }
 .scenario-line select {
-  width: 150px;
+  max-width: 35%;
   border-width: 1px;
   border-style: solid;
   border-color: #bcbcbc;
@@ -405,7 +405,9 @@ export default {
 /*
  *    SCENARIO-EMPTY
  */
-
+.scenario-body {
+  margin-top: 20px;
+}
 .scenario-empty {
   /* height: 80%; */
   min-height: 80%;
