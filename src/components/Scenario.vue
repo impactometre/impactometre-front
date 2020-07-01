@@ -145,11 +145,11 @@ export default {
   },
   data() {
     return {
-      id: null,
       active: false,
       software_options,
       journey_options,
       scenario: {
+        meetingScenario: this.title,
         meetingDuration: 0,
         numberOfParticipants: 0,
         hardware: [
@@ -206,10 +206,10 @@ export default {
     },
   },
   mounted() {
-    this.$root.$on("getJSON", (data) => {
+    this.$root.$on("retrieveScenarios", (data) => {
       //TODO: format data (remove useless fields)
       if (this.active) {
-        data.push(JSON.stringify(this.scenario));
+        data.push(this.scenario);
       }
     });
   },

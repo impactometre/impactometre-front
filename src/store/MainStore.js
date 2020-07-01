@@ -154,6 +154,23 @@ let store = new Vuex.Store({
     updateScenarios(state, scenarios) {
       state.scenarios_json = scenarios;
     },
+    updateImpacts(state, impacts) {
+      state.impact_on_spheres = impacts;
+    },
+    updateDetailledImpacts(state, impacts) {
+      state.impact_on_spheres_detailled = impacts;
+    },
+  },
+  actions: {
+    callAPI(context) {
+      if (state.scenarios_json.length) {
+        console.log(JSON.stringify(state.scenarios_json));
+        Vue.http.post("meeting", state.scenarios_json).then(
+          (response) => console.log(response),
+          (response) => console.log(response)
+        );
+      }
+    },
   },
 });
 

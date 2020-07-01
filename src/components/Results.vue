@@ -122,8 +122,9 @@ export default {
   methods: {
     updateResults() {
       const new_scenarios = [];
-      this.$root.$emit("getJSON", new_scenarios);
+      this.$root.$emit("retrieveScenarios", new_scenarios);
       store.commit("updateScenarios", new_scenarios);
+      store.dispatch("callAPI");
     },
     display_results_detailled_view(choice) {
       this.$root.$emit("display_results_detailled_view", choice);
