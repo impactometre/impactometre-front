@@ -7,7 +7,7 @@ Vue.use(Vuex);
 Vue.use(VueResource);
 
 Vue.config.productionTip = false;
-Vue.http.options.root = "localhost:3000/API";
+Vue.http.options.root = "http://localhost:3000/api";
 
 new Vue({
   render: (h) => h(App),
