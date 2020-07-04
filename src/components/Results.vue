@@ -116,6 +116,14 @@ export default {
         hover: {
           mode: false,
         },
+        scales: {
+          xAxes: [{
+            ticks: {
+              max: 100,
+              min: 0,
+            }
+          }]
+        }
       },
     };
   },
