@@ -157,7 +157,7 @@ let store = new Vuex.Store({
     updateImpacts(state, impacts) {
       state.impact_on_spheres = impacts;
     },
-    updateImpact(state, { sphere, data }) {
+    async updateImpact(state, { sphere, data }) {
       state.impact_on_spheres[sphere].datasets[0].data = data;
     },
     updateDetailledImpacts(state, impacts) {
@@ -168,16 +168,16 @@ let store = new Vuex.Store({
     },
   },
   actions: {
-    callAPI(context) {
+    async callAPI(context) {
       if (state.scenarios_json.length) {
-        Vue.http.post("meeting", state.scenarios_json).then(
+        return Vue.http.post("meeting", state.scenarios_json).then(
           (response) => context.dispatch("processComparisonResponse", { comparison: response.body.comparison }),
           (response) => context.dispatch("processEquivalentResponse", { comparison: response.body.equivalents }),
           (error) => console.log(error)
         );
       }
     },
-    processComparisonResponse(context, { comparison }) {
+    processComparisonResponse: function(context, { comparison }) {
       for (const sphereName in comparison) {
         const a = comparison[sphereName]["Scenario A"] ? comparison[sphereName]["Scenario A"].value : 0;
         const b = comparison[sphereName]["Scenario B"] ? comparison[sphereName]["Scenario B"].value : 0;

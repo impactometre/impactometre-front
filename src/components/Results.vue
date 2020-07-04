@@ -38,7 +38,8 @@
         <h3>{{ section.title }}</h3>
         <div class="results-chart">
           <ResultsChart
-            :chart-data="$store.state.impact_on_spheres[section.name]"
+            :key="re_render_results"
+            :chart-data="chartData(section.name)"
             :options="chartOptions"
             :width="50"
             :height="90"
@@ -71,6 +72,7 @@ export default {
   // TODO: add loaded data to wait for API call to finish.
   data() {
     return {
+      re_render_results: false,
       scenarios_json: [],
       displayed_view: "comparatif",
       sections_comparatif: [
@@ -80,7 +82,7 @@ export default {
         },
         {
           name: "qualite_ecosysteme",
-          title: "Qualité de l'écosystème",
+          title: "Qualité des Écosystèmes",
         },
         {
           name: "changement_climatique",
@@ -132,7 +134,9 @@ export default {
       const new_scenarios = [];
       this.$root.$emit("retrieveScenarios", new_scenarios);
       store.commit("updateScenarios", new_scenarios);
-      store.dispatch("callAPI");
+      store.dispatch("callAPI").then(() => {
+        this.re_render_results = !this.re_render_results
+      });
     },
     display_results_detailled_view(choice) {
       this.$root.$emit("display_results_detailled_view", choice);
@@ -141,6 +145,16 @@ export default {
       this.displayed_view = choice;
     },
   },
+  computed: {
+    chartData: function () {
+      return sphere => store.state.impact_on_spheres[sphere];
+    },
+  },
+  mounted() {
+    this.$root.$on("renderResults", () => {
+      this.re_render_results = !this.re_render_results;
+    });
+  }
 };
 </script>
 
