@@ -150,8 +150,8 @@ export default {
       journey_options,
       scenario: {
         meetingScenario: this.title,
-        meetingDuration: 0,
-        numberOfParticipants: 0,
+        meetingDuration: 1,
+        numberOfParticipants: 1,
         hardware: [
           {
             name: "LAPTOP",
