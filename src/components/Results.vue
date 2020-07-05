@@ -17,18 +17,18 @@
           value="Comparatif"
           id="btn-comparatif"
           @click.prevent="change_displayed_view('comparatif')"
-          :class="{ active: displayed_view === 'comparatif' }"
+          :class="{ active: displayed_view == 'comparatif' }"
         />
         <input
           type="button"
           value="Equivalents"
           id="btn-equivalents"
           @click.prevent="change_displayed_view('equivalents')"
-          :class="{ active: displayed_view === 'equivalents' }"
+          :class="{ active: displayed_view == 'equivalents' }"
         />
       </div>
     </div>
-    <div class="results-content" v-if="displayed_view === 'comparatif'">
+    <div class="results-content" v-if="displayed_view == 'comparatif'">
       <div
         class="results-section"
         @click="display_results_detailled_view(section.name)"
@@ -47,7 +47,7 @@
         </div>
       </div>
     </div>
-    <div class="results-content" v-if="displayed_view === 'equivalents'">
+    <div class="results-content" v-if="displayed_view == 'equivalents'">
       <div
         class="results-section"
         @click="display_results_detailled_view(section.name)"
@@ -78,15 +78,15 @@ export default {
       sections_comparatif: [
         {
           name: "sante_humaine",
-          title: "Santé humaine",
+          title: "Santé Humaine",
         },
         {
           name: "qualite_ecosysteme",
-          title: "Qualité des écosystèmes",
+          title: "Qualité des Écosystèmes",
         },
         {
           name: "changement_climatique",
-          title: "Changement climatique",
+          title: "Changement Climatique",
         },
         {
           name: "ressources",
@@ -138,7 +138,7 @@ export default {
       store.commit("updateScenarios", new_scenarios);
       store.dispatch("callAPI").then(() => {
         this.re_render_results = !this.re_render_results;
-        setTimeout( () => this.$root.$emit("re_render_results_detailled"), 500);
+        this.$root.$emit("re_render_results_detailled");
       });
     },
     display_results_detailled_view(choice) {
@@ -153,6 +153,12 @@ export default {
     chartData: function () {
       return (sphere) => store.state.impact_on_spheres[sphere];
     },
+  },
+  mounted() {
+    this.updateResults();
+    this.$root.$on("renderResults", () => {
+      this.re_render_results = !this.re_render_results;
+    });
   },
 };
 </script>
