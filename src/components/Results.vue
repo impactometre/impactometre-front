@@ -17,18 +17,18 @@
           value="Comparatif"
           id="btn-comparatif"
           @click.prevent="change_displayed_view('comparatif')"
-          :class="{ active: displayed_view == 'comparatif' }"
+          :class="{ active: displayed_view === 'comparatif' }"
         />
         <input
           type="button"
           value="Equivalents"
           id="btn-equivalents"
           @click.prevent="change_displayed_view('equivalents')"
-          :class="{ active: displayed_view == 'equivalents' }"
+          :class="{ active: displayed_view === 'equivalents' }"
         />
       </div>
     </div>
-    <div class="results-content" v-if="displayed_view == 'comparatif'">
+    <div class="results-content" v-if="displayed_view === 'comparatif'">
       <div
         class="results-section"
         @click="display_results_detailled_view(section.name)"
@@ -47,7 +47,7 @@
         </div>
       </div>
     </div>
-    <div class="results-content" v-if="displayed_view == 'equivalents'">
+    <div class="results-content" v-if="displayed_view === 'equivalents'">
       <div
         class="results-section"
         @click="display_results_detailled_view(section.name)"
