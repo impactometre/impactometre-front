@@ -78,15 +78,15 @@ export default {
       sections_comparatif: [
         {
           name: "sante_humaine",
-          title: "Santé Humaine",
+          title: "Santé humaine",
         },
         {
           name: "qualite_ecosysteme",
-          title: "Qualité des Écosystèmes",
+          title: "Qualité des écosystèmes",
         },
         {
           name: "changement_climatique",
-          title: "Changement Climatique",
+          title: "Changement climatique",
         },
         {
           name: "ressources",
@@ -138,7 +138,7 @@ export default {
       store.commit("updateScenarios", new_scenarios);
       store.dispatch("callAPI").then(() => {
         this.re_render_results = !this.re_render_results;
-        this.$root.$emit("re_render_results_detailled");
+        setTimeout( () => this.$root.$emit("re_render_results_detailled"), 500);
       });
     },
     display_results_detailled_view(choice) {
@@ -153,11 +153,6 @@ export default {
     chartData: function () {
       return (sphere) => store.state.impact_on_spheres[sphere];
     },
-  },
-  mounted() {
-    this.$root.$on("renderResults", () => {
-      this.re_render_results = !this.re_render_results;
-    });
   },
 };
 </script>
