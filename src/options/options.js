@@ -23,11 +23,35 @@ export const software_options = [
 
 export const journey_options = [
   {
-    name: "PLANE_INTERCONTINENTAL_ONE_PERSON_KM",
-    french: "Avion intercontinental",
+    name: 'BIKE_ONE_PERSON_ONE_KM',
+    french: 'vélo',
+  },
+  {
+    name: 'CAR_HEAT_ENGINE_ONE_KM',
+    french: 'Voiture thermique',
+  },
+  {
+    name: 'CAR_ELECTRIC_ONE_KM',
+    french: 'Voiture électrique',
+  },
+  {
+    name: 'BUS_CITY_ONE_PERSON_KM',
+    french: 'Bus',
+  },
+  {
+    name: 'TRAMWAY_ONE_PERSON_KM',
+    french: 'Tramway',
+  },
+  {
+    name: 'TRAIN_REGIONAL_ONE_PERSON_KM',
+    french: 'TER',
   },
   {
     name: "TRAIN_HIGH_SPEED_ONE_PERSON_KM",
     french: "TGV",
+  },
+  {
+    name: "PLANE_INTERCONTINENTAL_ONE_PERSON_KM",
+    french: "Avion intercontinental",
   },
 ];
