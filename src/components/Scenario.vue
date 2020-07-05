@@ -16,6 +16,7 @@
               </span>
               <IncrementButton
                 v-model="scenario.numberOfParticipants"
+                :max=30
                 class="align-right"
               /><br />
             </div>
@@ -25,6 +26,7 @@
               </span>
               <IncrementButton
                 v-model="scenario.meetingDuration"
+                :max=999
                 class="align-right"
               /><br />
             </div>
@@ -42,7 +44,7 @@
                 <p>{{ h.french }}</p>
                 <Tooltip v-if="h.helper">{{ h.helper }}</Tooltip>
               </span>
-              <IncrementButton v-model="h.qty" class="align-right" /><br />
+              <IncrementButton v-model="h.qty" :max=99 class="align-right" /><br />
             </div>
           </div>
         </div>
@@ -87,6 +89,7 @@
               <span class="scenario-line-caption">
                 <IncrementButton
                   v-model="j.distance"
+                  :max=99
                   class="scenario-line-button-journey"
                 />
                 <p>km en</p>

@@ -4,7 +4,10 @@
       type="button"
       class="increment-button-minus"
       name="increment-button-minus"
-      v-on:click="minus"
+      @click="minus"
+      @mousedown="longMinus"
+      @mouseleave="stopLongClick"
+      @mouseup="stopLongClick"
     >
       -
     </button>
@@ -12,14 +15,16 @@
       type="text"
       name="increment-button-value"
       v-bind:value="value"
-      v-on:input="$event.$emit('input', event.target.value)"
-      disabled
+      @input="input"
     />
     <button
       type="button"
       class="increment-button-plus"
       name="increment-button-plus"
-      v-on:click="plus"
+      @click="plus"
+      @mousedown="longPlus"
+      @mouseleave="stopLongClick"
+       @mouseup="stopLongClick"
     >
       +
     </button>
@@ -45,6 +50,7 @@ export default {
 
   data() {
     return {
+      interval: false,
       newValue: 0,
     };
   },
@@ -62,6 +68,34 @@ export default {
         this.$emit("input", this.newValue);
       }
     },
+    longPlus: function() {
+      if(!this.interval){
+        this.interval = setInterval(() => this.plus(), 100)
+      }
+    },
+    longMinus: function() {
+      if(!this.interval){
+        this.interval = setInterval(() => this.minus(), 100)
+      }
+    },
+    stopLongClick: function() {
+      clearInterval(this.interval)
+      this.interval = false
+    },
+    input: function(event) {
+      if (parseInt(event.target.value) > this.min) {
+        this.$emit('input', parseInt(event.target.value))
+      } else {
+        this.$emit('input', this.min)
+        event.target.value = this.min
+      }
+      if (parseInt(event.target.value) < this.max) {
+        this.$emit('input', parseInt(event.target.value))
+      } else {
+        this.$emit('input', this.max)
+        event.target.value = this.max
+      }
+    }
   },
   created: function () {
     this.newValue = this.parsedValue;
@@ -76,7 +110,7 @@ export default {
 
 <style>
 .increment-button input {
-  width: 20px;
+  width: 30px;
   text-align: center;
   border-width: 1px 0;
   border-style: solid;
