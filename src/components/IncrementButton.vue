@@ -24,7 +24,7 @@
       @click="plus"
       @mousedown="longPlus"
       @mouseleave="stopLongClick"
-       @mouseup="stopLongClick"
+      @mouseup="stopLongClick"
     >
       +
     </button>
@@ -68,34 +68,34 @@ export default {
         this.$emit("input", this.newValue);
       }
     },
-    longPlus: function() {
-      if(!this.interval){
-        this.interval = setInterval(() => this.plus(), 100)
+    longPlus: function () {
+      if (!this.interval) {
+        this.interval = setInterval(() => this.plus(), 100);
       }
     },
-    longMinus: function() {
-      if(!this.interval){
-        this.interval = setInterval(() => this.minus(), 100)
+    longMinus: function () {
+      if (!this.interval) {
+        this.interval = setInterval(() => this.minus(), 100);
       }
     },
-    stopLongClick: function() {
-      clearInterval(this.interval)
-      this.interval = false
+    stopLongClick: function () {
+      clearInterval(this.interval);
+      this.interval = false;
     },
-    input: function(event) {
+    input: function (event) {
       if (parseInt(event.target.value) > this.min) {
-        this.$emit('input', parseInt(event.target.value))
+        this.$emit("input", parseInt(event.target.value));
       } else {
-        this.$emit('input', this.min)
-        event.target.value = this.min
+        this.$emit("input", this.min);
+        event.target.value = this.min;
       }
       if (parseInt(event.target.value) < this.max) {
-        this.$emit('input', parseInt(event.target.value))
+        this.$emit("input", parseInt(event.target.value));
       } else {
-        this.$emit('input', this.max)
-        event.target.value = this.max
+        this.$emit("input", this.max);
+        event.target.value = this.max;
       }
-    }
+    },
   },
   created: function () {
     this.newValue = this.parsedValue;

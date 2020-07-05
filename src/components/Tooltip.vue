@@ -22,7 +22,7 @@ export default {};
   color: #838383;
 }
 .scenario-line-caption-tooltip:hover {
-  cursor:default;
+  cursor: default;
 }
 /* Tooltip text */
 .scenario-line-caption-tooltip .scenario-line-caption-tooltip-text {

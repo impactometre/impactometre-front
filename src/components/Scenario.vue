@@ -16,9 +16,10 @@
               </span>
               <IncrementButton
                 v-model="scenario.numberOfParticipants"
-                :max=30
+                :max="30"
                 class="align-right participants-no-btn"
-              /><br /><hr>
+              /><br />
+              <hr />
             </div>
             <div class="scenario-line">
               <span class="scenario-line-caption">
@@ -26,9 +27,10 @@
               </span>
               <IncrementButton
                 v-model="scenario.meetingDuration"
-                :max=999
+                :max="999"
                 class="align-right"
-              /><br /><hr>
+              /><br />
+              <hr />
             </div>
           </div>
         </div>
@@ -41,10 +43,16 @@
               :key="h.name"
             >
               <span class="scenario-line-caption">
-                <p>{{ h.french }}
-                <Tooltip v-if="h.helper" class="helper">{{ h.helper }}</Tooltip></p>
+                <p>
+                  {{ h.french }}
+                </p>
               </span>
-              <IncrementButton v-model="h.qty" :max=99 class="align-right" /><br /><hr>
+              <IncrementButton
+                v-model="h.qty"
+                :max="99"
+                class="align-right"
+              /><br />
+              <hr />
             </div>
           </div>
         </div>
@@ -87,7 +95,7 @@
               <span class="scenario-line-caption">
                 <IncrementButton
                   v-model="j.distance"
-                  :max=99
+                  :max="99"
                   class="scenario-line-button-journey"
                 />
                 <p>km en</p>
@@ -107,7 +115,8 @@
                 >
                   -
                 </button>
-                <br /><hr>
+                <br />
+                <hr />
               </span>
             </div>
           </div>
@@ -150,7 +159,6 @@ function initialScenario() {
       {
         name: "LOGITECH_KIT",
         french: "Kits de vidéo-conférence",
-        helper: "Un kit complet.",
         qty: 0,
       },
       {
@@ -168,7 +176,7 @@ function initialScenario() {
       name: "",
     },
     journey: [],
-  }
+  };
 }
 
 export default {
@@ -216,8 +224,8 @@ export default {
   mounted() {
     var cookie = JSON.parse(localStorage.getItem(this.title));
     if (cookie) {
-        this.active = cookie[0]
-        this.scenario = cookie[1]
+      this.active = cookie[0];
+      this.scenario = cookie[1];
     }
     this.$root.$on("retrieveScenarios", (data) => {
       if (this.active) {
@@ -226,8 +234,11 @@ export default {
     });
   },
   updated() {
-    localStorage.setItem(this.title, JSON.stringify([this.active, this.scenario]));
-  }
+    localStorage.setItem(
+      this.title,
+      JSON.stringify([this.active, this.scenario])
+    );
+  },
 };
 </script>
 
