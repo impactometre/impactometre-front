@@ -22,7 +22,6 @@ header {
     flex-basis: 60px;
     width: 100%;
     box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
-
     background-color: #3C3C3C;
     color: #FFFFFF;
 }
@@ -38,22 +37,24 @@ header .header-logo p {
     font-size: 12px;
     line-height: 20px;
 }
-
+header .header-about a {
+  color: white;
+  position: absolute;
+  top: 20px;
+  left: 92%;
+}
 main {
   height:100%
 }
 
-
-.results {
-    flex-basis: 25%;
-    /* background-color: #BCBCBC; */
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
-}
-
-
 /*
  *    RESULTS
  */
+ .results {
+   flex-basis: 25%;
+   /* background-color: #BCBCBC; */
+   box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
+ }
 .results-header {
 
 }

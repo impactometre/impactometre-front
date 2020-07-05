@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <link rel="stylesheet" href="stylesheets/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
     <title>Impactomètre</title>
   </head>
   <body>
@@ -16,6 +16,7 @@
           <p>Comparaison d'impact environnemental des réunions.</p>
       </div>
       <div class="header-about">
+        <a href="#" onclick="showAbout()">A propos</a>
       </div>
     </header>
     <main>
@@ -24,5 +25,11 @@
       </noscript>
       <div id="app"></div>
     </main>
+
+    <script>
+    function showAbout() {
+      document.getElementById("about").style.display = "block";
+    }
+    </script>
   </body>
 </html>

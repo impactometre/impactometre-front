@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <About></About>
     <div class="scenarios" v-show="display_scenarios">
       <Scenario title="Scenario A"></Scenario>
       <Scenario title="Scenario B"></Scenario>
@@ -16,16 +17,18 @@
 </template>
 
 <script>
-import Scenario from "./components/Scenario.vue";
+import About from "./components/About.vue";
 import Results from "./components/Results.vue";
 import ResultsDetailledView from "./components/ResultsDetailledView.vue";
+import Scenario from "./components/Scenario.vue";
 
 export default {
   name: "App",
   components: {
-    Scenario,
-    Results,
+    About,
     ResultsDetailledView,
+    Results,
+    Scenario,
   },
   data() {
     return {
