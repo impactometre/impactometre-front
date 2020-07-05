@@ -7,7 +7,8 @@
     <div class="results-detailled-view-content">
       <div class="results-chart-detailled" v-if="selectedView">
         <ResultsChart
-          :chart-data="chartData"
+          :key="re_render_results"
+          :chart-data="chartData(selectedView)"
           :options="chartOptions"
           :height="80"
         ></ResultsChart>
@@ -36,13 +37,22 @@ export default {
   },
   data() {
     return {
+      re_render_results: false,
       chartOptions: {
         maintainAspectRatio: true,
         legend: {
           display: false,
         },
         scales: {
-          xAxes: [{ stacked: true }],
+          xAxes: [
+            {
+              stacked: true,
+              ticks: {
+                max: 100,
+                min: 0,
+              },
+            },
+          ],
           yAxes: [{ stacked: true }],
         },
       },
@@ -50,8 +60,14 @@ export default {
   },
   computed: {
     chartData: function () {
-      return store.state.impact_on_spheres_detailled[this.selectedView];
+      return (sphere) => store.state.impact_on_spheres_detailled[sphere];
     },
+  },
+  mounted() {
+    this.$root.$on("re_render_results_detailled", () => {
+      // We re-render the component as a workaround to force chart to update
+      this.re_render_results = !this.re_render_results;
+    });
   },
 };
 </script>

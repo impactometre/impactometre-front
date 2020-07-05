@@ -12,6 +12,6 @@ export default {
   methods: {
     update() {
       this.$data._chart.update();
-    }
-  }
+    },
+  },
 };

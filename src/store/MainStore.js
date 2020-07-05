@@ -154,38 +154,66 @@ let store = new Vuex.Store({
     updateScenarios(state, scenarios) {
       state.scenarios_json = scenarios;
     },
-    updateImpacts(state, impacts) {
-      state.impact_on_spheres = impacts;
+    async updateImpact(state, { sphere, values }) {
+      state.impact_on_spheres[sphere].datasets[0].data = values;
     },
-    async updateImpact(state, { sphere, data }) {
-      state.impact_on_spheres[sphere].datasets[0].data = data;
-    },
-    updateDetailledImpacts(state, impacts) {
-      state.impact_on_spheres_detailled = impacts;
-    },
-    updateDetailledImpact(state, { sphere, data }) {
-      // TODO update detailed impact data
+    async updateDetailledImpacts(
+      state,
+      { sphere, hardware, software, journey }
+    ) {
+      state.impact_on_spheres_detailled[sphere].datasets[0].data = hardware;
+      state.impact_on_spheres_detailled[sphere].datasets[1].data = software;
+      state.impact_on_spheres_detailled[sphere].datasets[2].data = journey;
     },
   },
   actions: {
     async callAPI(context) {
       if (state.scenarios_json.length) {
         return Vue.http.post("meeting", state.scenarios_json).then(
-          (response) => context.dispatch("processComparisonResponse", { comparison: response.body.comparison }),
-          (response) => context.dispatch("processEquivalentResponse", { comparison: response.body.equivalents }),
+          (response) =>
+            context.dispatch("processComparisonResponse", {
+              comparison: response.body.comparison,
+            }),
+          (response) =>
+            context.dispatch("processEquivalentResponse", {
+              comparison: response.body.equivalents,
+            }),
           (error) => console.log(error)
         );
       }
     },
-    processComparisonResponse: function(context, { comparison }) {
+    processComparisonResponse: function (context, { comparison }) {
       for (const sphereName in comparison) {
-        const a = comparison[sphereName]["Scenario A"] ? comparison[sphereName]["Scenario A"].value : 0;
-        const b = comparison[sphereName]["Scenario B"] ? comparison[sphereName]["Scenario B"].value : 0;
-        const c = comparison[sphereName]["Scenario C"] ? comparison[sphereName]["Scenario C"].value : 0;
-        const data = [a, b, c];
+        // Aggregated value, Hardware, Software, Journey
+        const values = [0, 0, 0];
+        const hardware = [0, 0, 0];
+        const software = [0, 0, 0];
+        const journey = [0, 0, 0];
+
+        if (comparison[sphereName]["Scenario A"]) {
+          const scenario_a = comparison[sphereName]["Scenario A"];
+          values[0] = scenario_a.value;
+          hardware[0] = scenario_a.hardware;
+          software[0] = scenario_a.software;
+          journey[0] = scenario_a.journey;
+        }
+        if (comparison[sphereName]["Scenario B"]) {
+          const scenario_b = comparison[sphereName]["Scenario B"];
+          values[1] = scenario_b.value;
+          hardware[1] = scenario_b.hardware;
+          software[1] = scenario_b.software;
+          journey[1] = scenario_b.journey;
+        }
+        if (comparison[sphereName]["Scenario C"]) {
+          const scenario_c = comparison[sphereName]["Scenario C"];
+          values[2] = scenario_c.value;
+          hardware[2] = scenario_c.hardware;
+          software[2] = scenario_c.software;
+          journey[2] = scenario_c.journey;
+        }
 
         let sphere;
-        switch(sphereName) {
+        switch (sphereName) {
           case "HUMAN_HEALTH":
             sphere = "sante_humaine";
             break;
@@ -199,16 +227,23 @@ let store = new Vuex.Store({
             sphere = "ressources";
             break;
           default:
-            throw Error("Received values for unknown impact sphere : " + sphereName);
+            throw Error(
+              "Received values for unknown impact sphere : " + sphereName
+            );
         }
-
-        store.commit("updateImpact", { sphere, data });
+        store.commit("updateImpact", { sphere, values });
+        store.commit("updateDetailledImpacts", {
+          sphere,
+          hardware,
+          software,
+          journey,
+        });
       }
     },
     processEquivalentResponse(response) {
       console.log("todo process equivalent response");
       console.log(response);
-    }
+    },
   },
 });
 

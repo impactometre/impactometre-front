@@ -119,13 +119,15 @@ export default {
           mode: false,
         },
         scales: {
-          xAxes: [{
-            ticks: {
-              max: 100,
-              min: 0,
-            }
-          }]
-        }
+          xAxes: [
+            {
+              ticks: {
+                max: 100,
+                min: 0,
+              },
+            },
+          ],
+        },
       },
     };
   },
@@ -135,11 +137,13 @@ export default {
       this.$root.$emit("retrieveScenarios", new_scenarios);
       store.commit("updateScenarios", new_scenarios);
       store.dispatch("callAPI").then(() => {
-        this.re_render_results = !this.re_render_results
+        this.re_render_results = !this.re_render_results;
+        this.$root.$emit("re_render_results_detailled");
       });
     },
     display_results_detailled_view(choice) {
       this.$root.$emit("display_results_detailled_view", choice);
+      this.$root.$emit("re_render_results_detailled");
     },
     change_displayed_view(choice) {
       this.displayed_view = choice;
@@ -147,14 +151,14 @@ export default {
   },
   computed: {
     chartData: function () {
-      return sphere => store.state.impact_on_spheres[sphere];
+      return (sphere) => store.state.impact_on_spheres[sphere];
     },
   },
   mounted() {
     this.$root.$on("renderResults", () => {
       this.re_render_results = !this.re_render_results;
     });
-  }
+  },
 };
 </script>
 

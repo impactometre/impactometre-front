@@ -8,7 +8,7 @@
     <ResultsDetailledView
       :selectedView="results_detailled_view_choice"
       class="scenarios"
-      v-if="!display_scenarios"
+      v-show="!display_scenarios"
       :key="re_render_results_detailled_view"
     />
     <Results />
@@ -36,10 +36,12 @@ export default {
   },
   methods: {},
   mounted() {
-    this.$root.$on("display_results_detailled_view", (choice) => {
+    this.$root.$on("re_render_results_detailled", () => {
       // We re-render the component as a workaround to force chart to update
       this.re_render_results_detailled_view = !this
         .re_render_results_detailled_view;
+    });
+    this.$root.$on("display_results_detailled_view", (choice) => {
       this.display_scenarios = false;
       this.results_detailled_view_choice = choice;
     });
