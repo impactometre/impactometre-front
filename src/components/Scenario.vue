@@ -131,6 +131,45 @@ import Tooltip from "./Tooltip";
 
 import { software_options, journey_options } from "../options/options.js";
 
+function initialScenario() {
+  return {
+    meetingDuration: 1,
+    numberOfParticipants: 1,
+    hardware: [
+      {
+        name: "LAPTOP",
+        french: "Ordinateurs portables",
+        qty: 0,
+      },
+      {
+        name: "DESKTOP",
+        french: "Ordinateurs fixes",
+        qty: 0,
+      },
+      {
+        name: "LOGITECH_KIT",
+        french: "Kits de vidéo-conférence",
+        helper: "Un kit complet.",
+        qty: 0,
+      },
+      {
+        name: "COMPUTER_SCREEN_LCD",
+        french: "Ecrans supplémentaires",
+        qty: 0,
+      },
+      {
+        name: "PROJECTOR",
+        french: "Vidéo-projecteurs",
+        qty: 0,
+      },
+    ],
+    software: {
+      name: "",
+    },
+    journey: [],
+  }
+}
+
 export default {
   name: "Scenario",
   props: {
@@ -148,50 +187,18 @@ export default {
       active: false,
       software_options,
       journey_options,
-      scenario: {
-        meetingScenario: this.title,
-        meetingDuration: 1,
-        numberOfParticipants: 1,
-        hardware: [
-          {
-            name: "LAPTOP",
-            french: "Ordinateurs portables",
-            qty: 0,
-          },
-          {
-            name: "DESKTOP",
-            french: "Ordinateurs fixes",
-            qty: 0,
-          },
-          {
-            name: "LOGITECH_KIT",
-            french: "Kits de vidéo-conférence",
-            helper: "Un kit complet.",
-            qty: 0,
-          },
-          {
-            name: "COMPUTER_SCREEN_LCD",
-            french: "Ecrans supplémentaires",
-            qty: 0,
-          },
-          {
-            name: "PROJECTOR",
-            french: "Vidéo-projecteurs",
-            qty: 0,
-          },
-        ],
-        software: {
-          name: "",
-        },
-        journey: [],
-      },
+      scenario: {},
     };
   },
   methods: {
     createScenario() {
+      this.scenario = initialScenario();
+      this.scenario.meetingScenario = this.title;
       this.active = true;
     },
     deleteScenario() {
+      this.scenario = initialScenario();
+      this.scenario.meetingScenario = this.title;
       this.active = false;
     },
     addJourney() {
@@ -206,13 +213,20 @@ export default {
     },
   },
   mounted() {
+    var cookie = JSON.parse(localStorage.getItem(this.title));
+    if (cookie) {
+        this.active = cookie[0]
+        this.scenario = cookie[1]
+    }
     this.$root.$on("retrieveScenarios", (data) => {
-      //TODO: format data (remove useless fields)
       if (this.active) {
         data.push(this.scenario);
       }
     });
   },
+  updated() {
+    localStorage.setItem(this.title, JSON.stringify([this.active, this.scenario]));
+  }
 };
 </script>
 

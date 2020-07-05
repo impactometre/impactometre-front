@@ -155,6 +155,7 @@ export default {
     },
   },
   mounted() {
+    this.updateResults();
     this.$root.$on("renderResults", () => {
       this.re_render_results = !this.re_render_results;
     });
