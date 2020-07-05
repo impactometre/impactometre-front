@@ -20,7 +20,7 @@ const state = {
       datasets: [
         {
           backgroundColor,
-          data: [38, 39, 25],
+          data: [0, 0, 0],
         },
       ],
     },
@@ -29,7 +29,7 @@ const state = {
       datasets: [
         {
           backgroundColor,
-          data: [10, 40, 32],
+          data: [0, 0, 0],
         },
       ],
     },
@@ -38,7 +38,7 @@ const state = {
       datasets: [
         {
           backgroundColor,
-          data: [11, 35, 28],
+          data: [0, 0, 0],
         },
       ],
     },
@@ -47,7 +47,7 @@ const state = {
       datasets: [
         {
           backgroundColor,
-          data: [20, 28, 25],
+          data: [0, 0, 0],
         },
       ],
     },
@@ -58,19 +58,19 @@ const state = {
       datasets: [
         {
           label: "Matériel",
-          data: [67.8, 20, 30],
+          data: [0, 0, 0],
           backgroundColor,
           hoverBackgroundColor: hoverBackgroundColor[0],
         },
         {
           label: "Réseau",
-          data: [12, 25, 12],
+          data: [0, 0, 0],
           backgroundColor,
           hoverBackgroundColor: hoverBackgroundColor[1],
         },
         {
           label: "Trajets",
-          data: [8, 20, 23],
+          data: [0, 0, 0],
           backgroundColor,
           hoverBackgroundColor: hoverBackgroundColor[2],
         },
@@ -81,13 +81,13 @@ const state = {
       datasets: [
         {
           label: "Matériel",
-          data: [5, 10, 5],
+          data: [0, 0, 0],
           backgroundColor,
           hoverBackgroundColor: hoverBackgroundColor[0],
         },
         {
           label: "Réseau",
-          data: [5, 5, 5],
+          data: [0, 0, 0],
           backgroundColor,
           hoverBackgroundColor: hoverBackgroundColor[1],
         },
@@ -104,19 +104,19 @@ const state = {
       datasets: [
         {
           label: "Matériel",
-          data: [40, 25, 10],
+          data: [0, 0, 0],
           backgroundColor,
           hoverBackgroundColor: hoverBackgroundColor[0],
         },
         {
           label: "Réseau",
-          data: [25, 36, 30],
+          data: [0, 0, 0],
           backgroundColor,
           hoverBackgroundColor: hoverBackgroundColor[1],
         },
         {
           label: "Trajets",
-          data: [21, 32, 42],
+          data: [0, 0, 0],
           backgroundColor,
           hoverBackgroundColor: hoverBackgroundColor[2],
         },
@@ -127,19 +127,19 @@ const state = {
       datasets: [
         {
           label: "Matériel",
-          data: [15, 22, 36],
+          data: [0, 0, 0],
           backgroundColor,
           hoverBackgroundColor: hoverBackgroundColor[0],
         },
         {
           label: "Réseau",
-          data: [16, 12, 20],
+          data: [0, 0, 0],
           backgroundColor,
           hoverBackgroundColor: hoverBackgroundColor[1],
         },
         {
           label: "Trajets",
-          data: [23, 13, 21],
+          data: [0, 0, 0],
           backgroundColor,
           hoverBackgroundColor: hoverBackgroundColor[2],
         },
