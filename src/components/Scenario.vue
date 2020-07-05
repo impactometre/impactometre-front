@@ -17,8 +17,8 @@
               <IncrementButton
                 v-model="scenario.numberOfParticipants"
                 :max=30
-                class="align-right"
-              /><br />
+                class="align-right participants-no-btn"
+              /><br /><hr>
             </div>
             <div class="scenario-line">
               <span class="scenario-line-caption">
@@ -28,7 +28,7 @@
                 v-model="scenario.meetingDuration"
                 :max=999
                 class="align-right"
-              /><br />
+              /><br /><hr>
             </div>
           </div>
         </div>
@@ -41,14 +41,13 @@
               :key="h.name"
             >
               <span class="scenario-line-caption">
-                <p>{{ h.french }}</p>
-                <Tooltip v-if="h.helper">{{ h.helper }}</Tooltip>
+                <p>{{ h.french }}
+                <Tooltip v-if="h.helper" class="helper">{{ h.helper }}</Tooltip></p>
               </span>
-              <IncrementButton v-model="h.qty" :max=99 class="align-right" /><br />
+              <IncrementButton v-model="h.qty" :max=99 class="align-right" /><br /><hr>
             </div>
           </div>
         </div>
-        <br />
         <div class="scenario-section">
           <div class="scenario-section-header">Réseau</div>
           <div class="scenario-section-body">
@@ -69,7 +68,6 @@
             </div>
           </div>
         </div>
-        <br />
         <div class="scenario-section journey">
           <div class="scenario-section-header">
             Trajets véhiculés
@@ -109,7 +107,7 @@
                 >
                   -
                 </button>
-                <br />
+                <br /><hr>
               </span>
             </div>
           </div>
@@ -276,13 +274,17 @@ export default {
   font-size: 25px;
   line-height: 60px;
 }
-
+.scenario-full hr {
+  margin-top: 10px;
+  border: 2px dashed #e3e3e3;
+  border-style: none none dashed;
+}
 /*
  * CLOSE LINK
  */
 
 .close-btn {
-  display: inline;
+  display: inline-block;
   position: relative;
   float: right;
   top: -46px;
@@ -347,7 +349,8 @@ export default {
 }
 
 .scenario-line-caption p {
-  display: inline;
+  display: inline-block;
+  max-width: 50%;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -355,6 +358,8 @@ export default {
   color: #363636;
 }
 
+.scenario-line-caption .helper {
+}
 .select-journey {
   margin-left: 10px;
   max-width: 40%;
@@ -368,6 +373,9 @@ export default {
 .align-right {
   float: right;
   margin-right: 15px;
+}
+.participants-no-btn {
+  margin-right: -6px;
 }
 .scenario-line select {
   max-width: 35%;

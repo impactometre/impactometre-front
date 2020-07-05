@@ -12,7 +12,6 @@ export default {};
 /* Tooltip container */
 .scenario-line-caption-tooltip {
   position: relative;
-  display: inline-block;
   background: #dcdcdc;
   text-align: center;
   height: 20px;
@@ -22,7 +21,9 @@ export default {};
   margin-right: 10px;
   color: #838383;
 }
-
+.scenario-line-caption-tooltip:hover {
+  cursor:default;
+}
 /* Tooltip text */
 .scenario-line-caption-tooltip .scenario-line-caption-tooltip-text {
   visibility: hidden;
