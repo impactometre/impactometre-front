@@ -16,6 +16,10 @@
       <p>
         {{ detailled_results_text }}
       </p>
+      <br/>
+      <p v-for="eq of equivalents" :key="eq.message">
+        {{ eq.text }}
+      </p>
     </div>
   </div>
 </template>
@@ -63,6 +67,22 @@ export default {
     detailled_results_text: function () {
       return detailled_results_text[this.selectedView];
     },
+    equivalents: function () {
+      if(store.state.equivalents.hasOwnProperty(this.selectedView)){
+        const ret = [];
+        console.log(this.selectedView)
+        const eqs = store.state.equivalents[this.selectedView]["ONE_KM_CAR"]
+        for (const equivalent in eqs) {
+          if (eqs[equivalent] !== null) {
+            ret.push({ text: "Le "+equivalent+" équivaut à "+eqs[equivalent]+"km en voiture thermique."});
+          }
+        }
+        console.log(eqs);
+        console.log(ret);
+        return ret
+      }
+
+    }
   },
   mounted() {
     this.$root.$on("re_render_results_detailled", () => {

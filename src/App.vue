@@ -79,6 +79,11 @@ export default {
 main {
   height: 100%;
 }
+
+#app {
+  height: 93vh;
+}
+
 .results {
   flex-basis: 25%;
   /* background-color: #BCBCBC; */

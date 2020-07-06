@@ -165,20 +165,22 @@ let store = new Vuex.Store({
       state.impact_on_spheres_detailled[sphere].datasets[1].data = software;
       state.impact_on_spheres_detailled[sphere].datasets[2].data = journey;
     },
+    async updateEquivalents(state, { equivalents }) {
+      state.equivalents = equivalents;
+    }
   },
   actions: {
     async callAPI(context) {
       if (state.scenarios_json.length) {
         return Vue.http.post("meeting", state.scenarios_json).then(
-          (response) =>
+          (response) => {
             context.dispatch("processComparisonResponse", {
               comparison: response.body.comparison,
-            }),
-          (response) =>
+            });
             context.dispatch("processEquivalentResponse", {
-              comparison: response.body.equivalents,
-            }),
-          (error) => console.log(error)
+              equivalents: response.body.equivalents,
+            });
+          }
         );
       }
     },
@@ -240,9 +242,11 @@ let store = new Vuex.Store({
         });
       }
     },
-    processEquivalentResponse(response) {
-      console.log("todo process equivalent response");
-      console.log(response);
+    processEquivalentResponse: function(context, { equivalents }) {
+      console.log('b', equivalents);
+      store.commit("updateEquivalents", {
+        equivalents
+      });
     },
   },
 });
