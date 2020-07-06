@@ -14,8 +14,9 @@ let hoverBackgroundColor = [
 
 const state = {
   scenarios_json: [],
+  equivalents: {},
   impact_on_spheres: {
-    sante_humaine: {
+    HUMAN_HEALTH: {
       labels,
       datasets: [
         {
@@ -24,7 +25,7 @@ const state = {
         },
       ],
     },
-    qualite_ecosysteme: {
+    ECOSYSTEM_QUALITY: {
       labels,
       datasets: [
         {
@@ -33,7 +34,7 @@ const state = {
         },
       ],
     },
-    changement_climatique: {
+    CLIMATE_CHANGE: {
       labels,
       datasets: [
         {
@@ -42,7 +43,7 @@ const state = {
         },
       ],
     },
-    ressources: {
+    RESOURCES: {
       labels,
       datasets: [
         {
@@ -53,7 +54,7 @@ const state = {
     },
   },
   impact_on_spheres_detailled: {
-    sante_humaine: {
+    HUMAN_HEALTH: {
       labels: labels_detailled,
       datasets: [
         {
@@ -76,7 +77,7 @@ const state = {
         },
       ],
     },
-    qualite_ecosysteme: {
+    ECOSYSTEM_QUALITY: {
       labels: labels_detailled,
       datasets: [
         {
@@ -99,7 +100,7 @@ const state = {
         },
       ],
     },
-    changement_climatique: {
+    CLIMATE_CHANGE: {
       labels: labels_detailled,
       datasets: [
         {
@@ -122,7 +123,7 @@ const state = {
         },
       ],
     },
-    ressources: {
+    RESOURCES: {
       labels: labels_detailled,
       datasets: [
         {
@@ -217,16 +218,16 @@ let store = new Vuex.Store({
         let sphere;
         switch (sphereName) {
           case "HUMAN_HEALTH":
-            sphere = "sante_humaine";
+            sphere = "HUMAN_HEALTH";
             break;
           case "ECOSYSTEM_QUALITY":
-            sphere = "qualite_ecosysteme";
+            sphere = "ECOSYSTEM_QUALITY";
             break;
           case "CLIMATE_CHANGE":
-            sphere = "changement_climatique";
+            sphere = "CLIMATE_CHANGE";
             break;
           case "RESOURCES":
-            sphere = "ressources";
+            sphere = "RESOURCES";
             break;
           default:
             throw Error(

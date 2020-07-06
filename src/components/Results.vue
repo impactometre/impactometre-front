@@ -11,24 +11,8 @@
         </button>
         <button class="results-header-btn-export">Exporter</button>
       </div>
-      <div class="results-header-btn-displayed-view">
-        <input
-          type="button"
-          value="Comparatif"
-          id="btn-comparatif"
-          @click.prevent="change_displayed_view('comparatif')"
-          :class="{ active: displayed_view == 'comparatif' }"
-        />
-        <input
-          type="button"
-          value="Equivalents"
-          id="btn-equivalents"
-          @click.prevent="change_displayed_view('equivalents')"
-          :class="{ active: displayed_view == 'equivalents' }"
-        />
-      </div>
     </div>
-    <div class="results-content" v-if="displayed_view == 'comparatif'">
+    <div class="results-content">
       <div
         class="results-section"
         @click="display_results_detailled_view(section.name)"
@@ -45,17 +29,6 @@
             :height="90"
           ></ResultsChart>
         </div>
-      </div>
-    </div>
-    <div class="results-content" v-if="displayed_view == 'equivalents'">
-      <div
-        class="results-section"
-        @click="display_results_detailled_view(section.name)"
-        v-for="section in sections_equivalents"
-        :key="section.name"
-      >
-        <h3>{{ section.title }}</h3>
-        <p>Texte</p>
       </div>
     </div>
     <div class="results-detailled"></div>
@@ -75,22 +48,7 @@ export default {
     return {
       re_render_results: false,
       scenarios_json: [],
-      displayed_view: "comparatif",
       sections_comparatif,
-      sections_equivalents: [
-        {
-          name: "douches",
-          title: "Douches",
-        },
-        {
-          name: "chauffage",
-          title: "Chauffage",
-        },
-        {
-          name: "trajets_voiture",
-          title: "Trajets en voiture",
-        },
-      ],
       chartOptions: {
         maintainAspectRatio: false,
         legend: {
@@ -128,9 +86,6 @@ export default {
     display_results_detailled_view(choice) {
       this.$root.$emit("display_results_detailled_view", choice);
       this.$root.$emit("re_render_results_detailled");
-    },
-    change_displayed_view(choice) {
-      this.displayed_view = choice;
     },
   },
   computed: {
@@ -217,12 +172,6 @@ export default {
   float: left;
 }
 
-#btn-equivalents {
-  border-radius: 0 6px 6px 0;
-}
-#btn-comparatif {
-  border-radius: 6px 0 0 6px;
-}
 /*
  * RESULTS
  */

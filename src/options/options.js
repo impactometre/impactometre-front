@@ -58,19 +58,19 @@ export const journey_options = [
 
 export const sections_comparatif = [
   {
-    name: "sante_humaine",
-    title: "Santé Humaine",
+    name: "HUMAN_HEALTH",
+    title: "Impact sur la santé humaine",
   },
   {
-    name: "qualite_ecosysteme",
-    title: "Qualité des Écosystèmes",
+    name: "ECOSYSTEM_QUALITY",
+    title: "Impact sur la qualité des écosystèmes",
   },
   {
-    name: "changement_climatique",
-    title: "Changement Climatique",
+    name: "CLIMATE_CHANGE",
+    title: "Impact sur le changement climatique",
   },
   {
-    name: "ressources",
-    title: "Ressources",
+    name: "RESOURCES",
+    title: "Impact sur les ressources",
   },
 ];

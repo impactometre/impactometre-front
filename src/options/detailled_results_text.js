@@ -1,5 +1,5 @@
 export const detailled_results_text = {
-  sante_humaine: `L’impact sur la santé humaine est mesuré en DALY
+  HUMAN_HEALTH: `L’impact sur la santé humaine est mesuré en DALY
      (Disability Adjusted Life Years). Cette méthode d’évaluation consiste à déterminer
      l’impact en année de vies de la réunion sur une vie humaine.
      Elle prend en compte la toxicité de la réunion sur la santé humaine,

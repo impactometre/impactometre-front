@@ -63,7 +63,7 @@
           <div class="scenario-section-body">
             <div class="scenario-line">
               <span class="scenario-line-caption">
-                <p>Logiciel utilisé</p>
+                <p>Logiciel de visioconférence</p>
                 <select v-model="scenario.software.name" class="align-right">
                   <option value="">Aucun</option>
                   <option
