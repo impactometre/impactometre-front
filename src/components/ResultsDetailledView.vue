@@ -128,7 +128,7 @@ export default {
   position: relative;
 }
 .results-detailled-view-content p {
-  /* font-style: italic; */
+  line-height: 25px;
 }
 
 /*
