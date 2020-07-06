@@ -149,8 +149,9 @@ export default {
 
 <style>
 .results {
-  display: block;
   background-color: #f1f1f1;
+  flex-basis: 25%;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
 }
 
 /*
