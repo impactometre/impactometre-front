@@ -47,15 +47,15 @@ export default {
 
 <style>
 #about {
-  position: fixed;
+  position: absolute;
   display: none;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 2;
+  z-index: 4;
   background-color: rgba(255, 255, 255, 0.6);
 }
 
@@ -66,7 +66,7 @@ export default {
   font-size: 120%;
 }
 .about-text {
-  padding: 4% 2% 4% 2%;
+  padding: 4% 2% 2% 2%;
   background-color: rgba(255, 255, 255, 1);
   box-shadow: 0px 0px 53px -18px rgba(0,0,0,0.75);
   border-radius: 8px;
@@ -75,7 +75,8 @@ export default {
   margin-bottom: 20px;
 }
 .about-text .close-btn {
-  top: -25px;
+  top: -35px;
+  left: 5px;
   margin: 5px;
 }
 </style>
