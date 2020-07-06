@@ -41,7 +41,6 @@
         <div v-if="page == 'howto'" class="howto">
           <h2>Utilisation</h2>
           <br />
-          <p>Cette vidéo présente l'utilisation de l'Impactomètre.</p>
           <div class="video">
             <iframe
               src="https://player.vimeo.com/video/431704870?title=0&byline=0&portrait=0"
@@ -57,14 +56,6 @@
               allowfullscreen
             ></iframe>
           </div>
-          <p>
-            <br />Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-            do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-            enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-            ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.
-          </p>
         </div>
       </div>
     </div>
@@ -95,7 +86,7 @@ export default {
 }
 
 .single-page-body {
-  position: absolute;
+  /* position: absolute; */
   padding: 6%;
   color: black;
   font-size: 16px;
@@ -119,7 +110,7 @@ export default {
  * HOWTO
  */
 .video {
-  padding: 40% 0 0 0;
+  padding: 30% 0 0 0;
   position: relative;
 }
 </style>
