@@ -17,6 +17,7 @@
               <IncrementButton
                 v-model="scenario.numberOfParticipants"
                 :max="30"
+                :min="1"
                 class="align-right participants-no-btn"
               /><br />
               <hr />
@@ -28,6 +29,7 @@
               <IncrementButton
                 v-model="scenario.meetingDuration"
                 :max="999"
+                :min="1"
                 class="align-right"
               /><br />
               <hr />
