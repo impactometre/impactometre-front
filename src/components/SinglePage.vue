@@ -35,7 +35,13 @@
           </p>
           <p>
             Vous pouvez retrouver l'article sur lequel se basent les calculs
-            effectués dans le code <a href="#">à cette adresse</a>
+            effectués dans le code
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="/uploads/article_impact_environnemental_reunions.pdf"
+              >à cette adresse.</a
+            >
           </p>
         </div>
         <div v-if="page == 'howto'" class="howto">
@@ -76,8 +82,6 @@ export default {
 <style>
 #single-page {
   position: absolute;
-  display: block;
-  height: 100vh;
   top: 0;
   left: 0;
   right: 0;
@@ -86,7 +90,6 @@ export default {
 }
 
 .single-page-body {
-  /* position: absolute; */
   padding: 6%;
   color: black;
   font-size: 16px;
@@ -99,6 +102,14 @@ export default {
 }
 .single-page-text p {
   margin-bottom: 20px;
+}
+.single-page-text a {
+  text-decoration: none;
+  color: #262626;
+  font-weight: bold;
+}
+.single-page-text a:hover {
+  color: black;
 }
 .single-page-text .close-btn {
   top: -15px;
