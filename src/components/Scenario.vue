@@ -79,45 +79,38 @@
         <div class="scenario-section journey">
           <div class="scenario-section-header">
             Trajets véhiculés
-            <button
-              class="add-journey-btn align-right"
-              @click.prevent="addJourney"
-            >
+            <button class="add-journey-btn" @click.prevent="addJourney">
               +
             </button>
           </div>
           <div class="scenario-section-body">
             <div
-              class="scenario-line"
+              class="scenario-line journey"
               v-for="j in scenario.journey"
               :key="j.length"
             >
-              <span class="scenario-line-caption">
-                <IncrementButton
-                  v-model="j.distance"
-                  :max="99"
-                  class="scenario-line-button-journey"
-                />
-                <p>km en</p>
-                <select v-model="j.mean" class="select-journey">
-                  <option disabled value="">Choisissez</option>
-                  <option
-                    v-for="journey_option in journey_options"
-                    :key="journey_option.name"
-                    :value="journey_option.name"
-                  >
-                    {{ journey_option.french }}
-                  </option>
-                </select>
-                <button
-                  class="delete-journey-btn"
-                  @click.prevent="deleteJourney(j)"
+              <IncrementButton
+                v-model="j.distance"
+                :max="99"
+                class="flex-item"
+              />
+              <p class="flex-item">km en</p>
+              <select v-model="j.mean" class="select-journey flex-item">
+                <option disabled value="">Choisissez</option>
+                <option
+                  v-for="journey_option in journey_options"
+                  :key="journey_option.name"
+                  :value="journey_option.name"
                 >
-                  -
-                </button>
-                <br />
-                <hr />
-              </span>
+                  {{ journey_option.french }}
+                </option>
+              </select>
+              <button
+                class="delete-journey-btn flex-item"
+                @click.prevent="deleteJourney(j)"
+              >
+                -
+              </button>
             </div>
           </div>
         </div>
@@ -250,7 +243,7 @@ export default {
 .scenario {
   margin: 0 10px;
   flex-basis: 75%;
-  flex-shrink: auto;
+  max-width: 33%;
 }
 
 /*
@@ -316,14 +309,12 @@ export default {
 
 .delete-journey-btn {
   display: inline;
-  position: relative;
-  float: right;
   top: -46px;
   left: -12px;
+  padding-left: 10px;
+  padding-right: 20px;
   border: none;
-  color: black;
-  padding: 3px 12px;
-  border-radius: 15px;
+  color: gray;
   background-color: transparent;
   text-align: center;
   text-decoration: none;
@@ -335,19 +326,21 @@ export default {
 }
 
 .delete-journey-btn:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  color: black;
+  cursor: pointer;
 }
 
 /*
  *    SCENARIO-SECTIONS AND SCENARIO-LINES
  */
-
+.scenario-section {
+  margin-bottom: 20px;
+}
 .scenario-section-header {
   font-weight: bold;
   font-size: 20px;
   line-height: 23px;
-  margin: 15px;
-  margin-left: 20px;
+  margin: 15px 15px 20px 20px;
 }
 
 .scenario-section.journey {
@@ -368,19 +361,23 @@ export default {
   line-height: 16px;
   color: #363636;
 }
+.scenario-section.journey {
+}
 
+.scenario-line.journey {
+  display: flex;
+}
+.flex-item {
+  flex: 1 0.5 auto;
+}
 .scenario-line-caption .helper {
 }
 .select-journey {
-  margin-left: 10px;
   max-width: 40%;
 }
 /*
  *    BUTTONS
  */
-.scenario-line-button-journey {
-  margin-right: 10px;
-}
 .align-right {
   float: right;
   margin-right: 15px;
@@ -408,6 +405,7 @@ export default {
   border-radius: 15px;
   color: #676767;
   padding: 5px 10px;
+  margin-left: 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
