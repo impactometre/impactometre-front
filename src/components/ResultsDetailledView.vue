@@ -1,7 +1,7 @@
 <template>
   <div class="results-detailled-view">
     <div class="results-detailled-view-header">
-      <h1>Titre : {{ selectedView }}</h1>
+      <h1>{{ title }}</h1>
       <button class="close-btn" @click.prevent="hideView">&#10006;</button>
     </div>
     <div class="results-detailled-view-content">
@@ -28,6 +28,7 @@
 import ResultsChart from "./ResultsChart.js";
 import store from "../store/MainStore.js";
 import { detailled_results_text } from "../options/detailled_results_text.js";
+
 export default {
   props: ["selectedView"],
   store,
@@ -64,24 +65,29 @@ export default {
     chartData: function () {
       return (sphere) => store.state.impact_on_spheres_detailled[sphere];
     },
+    title: function () {
+      //TODO: clean this function (code redundancy)
+      switch(this.selectedView) {
+        case "HUMAN_HEALTH": return "Impact sur la santé humaine"
+        case "ECOSYSTEM_QUALITY": return "Impact sur la qualité des écosystèmes"
+        case "CLIMATE_CHANGE": return "Impact sur le changement climatique"
+        case "RESOURCES": return "Impact sur les ressources"
+      }
+    },
     detailled_results_text: function () {
       return detailled_results_text[this.selectedView];
     },
     equivalents: function () {
       if(store.state.equivalents.hasOwnProperty(this.selectedView)){
         const ret = [];
-        console.log(this.selectedView)
         const eqs = store.state.equivalents[this.selectedView]["ONE_KM_CAR"]
         for (const equivalent in eqs) {
           if (eqs[equivalent] !== null) {
             ret.push({ text: "Le "+equivalent+" équivaut à "+eqs[equivalent]+"km en voiture thermique."});
           }
         }
-        console.log(eqs);
-        console.log(ret);
         return ret
       }
-
     }
   },
   mounted() {
