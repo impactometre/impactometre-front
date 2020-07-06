@@ -65,7 +65,7 @@
               <span class="scenario-line-caption">
                 <p>Logiciel utilisé</p>
                 <select v-model="scenario.software.name" class="align-right">
-                  <option disabled value="">Choisissez</option>
+                  <option value="">Aucun</option>
                   <option
                     v-for="software_option in software_options"
                     :key="software_option.name"
