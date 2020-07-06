@@ -9,8 +9,8 @@
           <h2>A propos</h2>
           <br />
           <p>
-            L’impactomètre est un outil ayant été produit dans le cadre d’un
-            projet de l’UTC encadré par Yacine Baouch. Il est le fruit d’un
+            <b>L’Impactomètre</b> est un outil ayant été produit dans le cadre
+            d’un projet de l’UTC encadré par Yacine Baouch. Il est le fruit d’un
             travail réalisé par plusieurs groupes d’étudiants que sont Jules
             Farjas, William Boffy, Aurélien Béranger, Clément Brizard, Valentin
             Le Gauche, Maria Idrissi, Elouan Le Bars, Matthieu Glorion et Edmond
@@ -18,24 +18,27 @@
           </p>
           <p>
             Cet outil a pour vocation d’évaluer l’impact environnemental d’une
-            réunion afin que l’utilisateur puisse optimiser au mieux sa réunion
-            dans une démarche écologique. Cette évaluation est réalisée selon
-            une méthode inspirée de la méthode ACV (Analyse Cycle de Vie d’un
-            produit).
+            réunion afin que l’utilisateur puisse l’optimiser au mieux, dans une
+            démarche écologique. L’évaluation de cet impact est réalisée selon
+            une méthode fortement inspirée de la méthode ACV (Analyse Cycle de
+            Vie d’un produit). L’impact environnemental d’une réunion est en
+            effet calculé comme la somme des impacts environnementaux des
+            matériels utilisés, des transports réalisés et du logiciel de
+            visioconférence.
           </p>
           <p>
-            L’impact environnemental d’une réunion est calculé comme étant la
-            somme des impacts environnementaux dues aux matériels utilisés,
-            transports engendrés et le logiciel de visioconférence.
-            L’utilisateur doit donc juste renseigner les informations de ces
-            différents critères pour que l’Impactomètre puisse évaluer l’impact
-            environnemental de la réunion selon 4 catégories : l’impact sur la
-            santé humaine, l’impact sur la qualité de l’écosystème, l’impact sur
-            le changement climatique et l’impact sur les ressources.
+            L’utilisateur doit renseigner ces différents critères pour que
+            l’application puisse évaluer l’impact environnemental de la réunion,
+            selon quatre catégories : l’impact sur la santé humaine, sur la
+            qualité de l’écosystème, sur le changement climatique et sur les
+            ressources. Le résultat est calculé dans une unité adaptée pour
+            chacune de ces catégories et affiché en pourcentages. Il est
+            normalisé sur le scénario ayant le plus d’impact, celui-ci étant à
+            100%.
           </p>
           <p>
             Vous pouvez retrouver l'article sur lequel se basent les calculs
-            effectués dans le code
+            réalisés dans le code
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -43,7 +46,14 @@
               >à cette adresse.</a
             >
           </p>
+          <p id="licence">
+            Licence libre GNU GPL V3 -
+            <a href="https://gitlab.utc.fr/tx-techno-num/impactometre"
+              >Dépôt gitlab</a
+            >
+          </p>
         </div>
+
         <div v-if="page == 'howto'" class="howto">
           <h2>Utilisation</h2>
           <br />
@@ -116,7 +126,10 @@ export default {
   left: 5px;
   margin: 5px;
 }
-
+#licence {
+  color: gray;
+  text-align: right;
+}
 /*
  * HOWTO
  */
