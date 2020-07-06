@@ -14,9 +14,7 @@
         ></ResultsChart>
       </div>
       <p>
-        The disability-adjusted life year (DALY) is a measure of overall disease
-        burden, expressed as the number of years lost due to ill-health,
-        disability or early death.
+        {{ detailled_results_text }}
       </p>
     </div>
   </div>
@@ -25,7 +23,7 @@
 <script>
 import ResultsChart from "./ResultsChart.js";
 import store from "../store/MainStore.js";
-
+import { detailled_results_text } from "../options/detailled_results_text.js";
 export default {
   props: ["selectedView"],
   store,
@@ -62,6 +60,9 @@ export default {
     chartData: function () {
       return (sphere) => store.state.impact_on_spheres_detailled[sphere];
     },
+    detailled_results_text: function () {
+      return detailled_results_text[this.selectedView];
+    },
   },
   mounted() {
     this.$root.$on("re_render_results_detailled", () => {
@@ -76,7 +77,7 @@ export default {
 .results-detailled-view {
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: 60px;
   background: repeating-linear-gradient(
     -45deg,
     rgba(0, 0, 0, 0),

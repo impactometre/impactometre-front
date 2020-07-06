@@ -65,6 +65,7 @@
 <script>
 import ResultsChart from "./ResultsChart.js";
 import store from "../store/MainStore.js";
+import { sections_comparatif } from "../options/options.js";
 
 export default {
   components: { ResultsChart },
@@ -75,24 +76,7 @@ export default {
       re_render_results: false,
       scenarios_json: [],
       displayed_view: "comparatif",
-      sections_comparatif: [
-        {
-          name: "sante_humaine",
-          title: "Santé Humaine",
-        },
-        {
-          name: "qualite_ecosysteme",
-          title: "Qualité des Écosystèmes",
-        },
-        {
-          name: "changement_climatique",
-          title: "Changement Climatique",
-        },
-        {
-          name: "ressources",
-          title: "Ressources",
-        },
-      ],
+      sections_comparatif,
       sections_equivalents: [
         {
           name: "douches",

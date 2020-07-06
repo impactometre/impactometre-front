@@ -10,26 +10,11 @@
     <title>Impactomètre</title>
   </head>
   <body>
-    <header>
-      <div class="header-logo">
-          <h1>Impactomètre</h1>
-          <b>Comparaison d'impact environnemental des réunions.</b>
-      </div>
-      <div class="header-about">
-        <a href="#" onclick="showAbout()">A propos</a>
-      </div>
-    </header>
-    <main>
       <noscript>
         <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
       </noscript>
       <div id="app"></div>
-    </main>
-
-    <script>
-    function showAbout() {
-      document.getElementById("about").style.display = "block";
-    }
-    </script>
   </body>
 </html>
+
+<script src="https://player.vimeo.com/api/player.js"></script>
