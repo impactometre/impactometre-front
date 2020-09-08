@@ -53,6 +53,9 @@ export default {
               ticks: {
                 max: 100,
                 min: 0,
+                callback: function(value, index, values) {
+                    return (value + ' %');
+                }
               },
             },
           ],
