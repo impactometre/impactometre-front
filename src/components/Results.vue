@@ -9,7 +9,12 @@
         >
           Calculer
         </button>
-        <button class="results-header-btn-export">Exporter</button>
+        <button
+          class="results-header-btn-export"
+          @click.prevent="exportResults"
+        >
+          Exporter
+        </button>
       </div>
     </div>
     <div class="results-content">
@@ -36,14 +41,15 @@
 </template>
 
 <script>
+import jsPDF from "jspdf";
+
 import ResultsChart from "./ResultsChart.js";
 import store from "../store/MainStore.js";
-import { sections_comparatif } from "../options/options.js";
+import { sections_comparatif, journey_options } from "../options/options.js";
 
 export default {
   components: { ResultsChart },
   store: store,
-  // TODO: add loaded data to wait for API call to finish.
   data() {
     return {
       re_render_results: false,
@@ -82,6 +88,74 @@ export default {
         this.re_render_results = !this.re_render_results;
         this.$root.$emit("re_render_results_detailled");
       });
+    },
+    exportResults() {
+      let pdfName = "impactometre-results";
+      var doc = new jsPDF();
+      var line = 20;
+      var left_space = 20;
+      doc.text("Impactomètre - Comparatif", left_space, line);
+
+      store.state.scenarios_json.forEach((scenario) => {
+        if (scenario.meetingDuration > 1) {
+          line += 10;
+          doc.setFontSize(12);
+          doc.text("Scenario", left_space, line);
+          doc.setFontSize(7);
+
+          line += 6;
+          doc.text(
+            "Nombre de participants : " + String(scenario.numberOfParticipants),
+            left_space,
+            line
+          );
+
+          line += 4;
+          doc.text(
+            "Durée de la réunion (min) : " + String(scenario.meetingDuration),
+            left_space,
+            line
+          );
+
+          line += 6;
+          doc.text("Logiciel : " + scenario.software.name, left_space, line);
+          line += 6;
+          doc.text("Matériel", left_space, line);
+          scenario.hardware.forEach((hardware) => {
+            if (hardware.qty != 0) {
+              line += 4;
+              doc.text(
+                " - " + String(hardware.qty) + " " + hardware.french,
+                left_space,
+                line
+              );
+            }
+          });
+
+          line += 6;
+          doc.text("Trajets", left_space, line);
+          scenario.journey.forEach((journey) => {
+            line += 4;
+            var journey_fr = journey_options.find(
+              (option) => option.name === journey.mean
+            );
+            if (journey_fr) {
+              doc.text(
+                "- " +
+                  String(journey.distance) +
+                  " km parcourus en " +
+                  journey_fr.french,
+                left_space,
+                line
+              );
+            }
+          });
+
+          left_space = left_space + 60;
+          line = 20;
+        }
+      });
+      doc.save(pdfName + ".pdf");
     },
     display_results_detailled_view(choice) {
       this.$root.$emit("display_results_detailled_view", choice);

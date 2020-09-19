@@ -244,7 +244,6 @@ let store = new Vuex.Store({
       }
     },
     processEquivalentResponse: function(context, { equivalents }) {
-      console.log('b', equivalents);
       store.commit("updateEquivalents", {
         equivalents
       });
