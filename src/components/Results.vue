@@ -92,17 +92,21 @@ export default {
     exportResults() {
       let pdfName = "impactometre-results";
       var doc = new jsPDF();
+      doc.setFont("Helvetica", "Bold");
       var line = 20;
       var left_space = 20;
+
       doc.text("Impactomètre - Comparatif", left_space, line);
 
       store.state.scenarios_json.forEach((scenario) => {
         if (scenario.meetingDuration > 1) {
-          line += 10;
+          line = 34;
           doc.setFontSize(12);
+          doc.setFont("Helvetica", "Bold");
           doc.text("Scenario", left_space, line);
-          doc.setFontSize(7);
 
+          doc.setFont("Helvetica", "");
+          doc.setFontSize(7);
           line += 6;
           doc.text(
             "Nombre de participants : " + String(scenario.numberOfParticipants),
@@ -151,10 +155,39 @@ export default {
             }
           });
 
-          left_space = left_space + 60;
-          line = 20;
+          left_space = left_space + 65;
         }
       });
+      // Canvas
+      line = line + 40;
+      doc.setFontSize(12);
+      doc.setFont("Helvetica", "Bold");
+      doc.text("Résultats", 20, line);
+      line = line + 10;
+
+      var all_canvas = document.querySelectorAll(
+        ".results-chart canvas#horizontalbar-chart"
+      );
+      all_canvas.forEach((canvas) => {
+        doc.setFontSize(10);
+        doc.setFont("Helvetica", "Bold");
+        doc.text("Résultats", 20, line);
+        line = line + 4;
+
+        var canvasImg = canvas.toDataURL("image/png");
+        doc.addImage(canvasImg, "PNG", 15, line, 54, 18);
+
+        doc.setFont("Helvetica", "");
+        doc.setFontSize(7);
+        var splitText = doc.splitTextToSize(
+          "L'impact sur le changement climatique est mesuré en Kg eqCO2 et exprimé en pourcentage par rapport au scénario ayant le plus d’impact. L'équivalent CO₂ étant, pour un gaz à effet de serre, la quantité de dioxyde de carbone qui aurait la même capacité à retenir le rayonnement solaire.",
+          90
+        );
+        doc.text(splitText, 84, line + 4);
+
+        line = line + 40;
+      });
+
       doc.save(pdfName + ".pdf");
     },
     display_results_detailled_view(choice) {
