@@ -46,6 +46,7 @@ import jsPDF from "jspdf";
 import ResultsChart from "./ResultsChart.js";
 import store from "../store/MainStore.js";
 import { sections_comparatif, journey_options } from "../options/options.js";
+import { detailled_results_text } from "../options/detailled_results_text.js";
 
 export default {
   components: { ResultsChart },
@@ -98,12 +99,15 @@ export default {
 
       doc.text("Impactomètre - Comparatif", left_space, line);
 
-      store.state.scenarios_json.forEach((scenario) => {
+      //TODO: fix this workaround by setting a "name" variable inside Scenario component
+      var headers = document.querySelectorAll(".scenario-header h2");
+
+      store.state.scenarios_json.forEach((scenario, index) => {
         if (scenario.meetingDuration > 1) {
           line = 34;
           doc.setFontSize(12);
           doc.setFont("Helvetica", "Bold");
-          doc.text("Scenario", left_space, line);
+          doc.text(headers[index].textContent, left_space, line);
 
           doc.setFont("Helvetica", "");
           doc.setFontSize(7);
@@ -124,7 +128,9 @@ export default {
           line += 6;
           doc.text("Logiciel : " + scenario.software.name, left_space, line);
           line += 6;
+          doc.setFont("Helvetica", "Bold");
           doc.text("Matériel", left_space, line);
+          doc.setFont("Helvetica", "");
           scenario.hardware.forEach((hardware) => {
             if (hardware.qty != 0) {
               line += 4;
@@ -137,7 +143,9 @@ export default {
           });
 
           line += 6;
+          doc.setFont("Helvetica", "Bold");
           doc.text("Trajets", left_space, line);
+          doc.setFont("Helvetica", "");
           scenario.journey.forEach((journey) => {
             line += 4;
             var journey_fr = journey_options.find(
@@ -168,10 +176,11 @@ export default {
       var all_canvas = document.querySelectorAll(
         ".results-chart canvas#horizontalbar-chart"
       );
-      all_canvas.forEach((canvas) => {
+
+      all_canvas.forEach((canvas, index) => {
         doc.setFontSize(10);
         doc.setFont("Helvetica", "Bold");
-        doc.text("Résultats", 20, line);
+        doc.text(sections_comparatif[index].title, 20, line);
         line = line + 4;
 
         var canvasImg = canvas.toDataURL("image/png");
@@ -179,10 +188,8 @@ export default {
 
         doc.setFont("Helvetica", "");
         doc.setFontSize(7);
-        var splitText = doc.splitTextToSize(
-          "L'impact sur le changement climatique est mesuré en Kg eqCO2 et exprimé en pourcentage par rapport au scénario ayant le plus d’impact. L'équivalent CO₂ étant, pour un gaz à effet de serre, la quantité de dioxyde de carbone qui aurait la même capacité à retenir le rayonnement solaire.",
-          90
-        );
+        var sectionText = detailled_results_text[sections_comparatif[index].name];
+        var splitText = doc.splitTextToSize(sectionText,100);
         doc.text(splitText, 84, line + 4);
 
         line = line + 40;
