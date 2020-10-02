@@ -189,8 +189,8 @@ export default {
         doc.setFont("Helvetica", "");
         doc.setFontSize(7);
         var sectionText = detailled_results_text[sections_comparatif[index].name];
-        var splitText = doc.splitTextToSize(sectionText,100);
-        doc.text(splitText, 84, line + 4);
+        // var splitText = doc.splitTextToSize(sectionText,100);
+        doc.text(sectionText, 84, line + 4);
 
         line = line + 40;
       });
