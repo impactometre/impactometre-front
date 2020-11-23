@@ -46,6 +46,13 @@ export default {
         legend: {
           display: false,
         },
+        hover: {
+           mode: 'nearest',
+           intersect: true
+         },
+         tooltips: {
+          mode: 'point',
+        },
         scales: {
           xAxes: [
             {
