@@ -7,9 +7,9 @@
         v-show="display_single_page"
       ></SinglePage>
       <div class="scenarios" v-show="display_scenarios">
-        <Scenario title="Scenario A"></Scenario>
-        <Scenario title="Scenario B"></Scenario>
-        <Scenario title="Scenario C"></Scenario>
+        <Scenario ref="scenario0" id=0 title="Scenario A"></Scenario>
+        <Scenario ref="scenario1" id=1 title="Scenario B"></Scenario>
+        <Scenario ref="scenario2" id=2 title="Scenario C"></Scenario>
       </div>
       <ResultsDetailledView
         :selectedView="results_detailled_view_choice"
@@ -45,10 +45,21 @@ export default {
       re_render_results_detailled_view: false,
       display_single_page: false,
       displayed_single_page: null,
+      activeScenarios: [],
     };
   },
-  methods: {},
   mounted() {
+    this.$root.$on("scenario-status-update", ([scenario, value]) =>{
+      this.activeScenarios[scenario] = value;
+
+      this.$refs.scenario0.updateActiveScenarios(this.activeScenarios);
+      this.$refs.scenario1.updateActiveScenarios(this.activeScenarios);
+      this.$refs.scenario2.updateActiveScenarios(this.activeScenarios);
+
+      this.$refs.scenario0.reRenderCopyButtons();
+      this.$refs.scenario1.reRenderCopyButtons();
+      this.$refs.scenario2.reRenderCopyButtons();
+    });
     this.$root.$on("show_single_page", (page) => {
       this.display_single_page = true;
       this.displayed_single_page = page;

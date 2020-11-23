@@ -122,9 +122,23 @@
       <div class="scenario-header"></div>
       <div class="scenario-body">
         <img
-          src="../assets/img/add_scenario_button.svg"
-          @click.prevent="createScenario"
+            src="../assets/img/add_scenario_button.svg"
+            @click.prevent="createScenario(-1)"
         />
+        <div :key="componentKey">
+          <img v-if="activeScenarios[0]"
+            src="../assets/img/add_scenario_rouge.svg"
+            @click.prevent="createScenario(0)"
+          />
+          <img v-if="activeScenarios[1]"
+              src="../assets/img/add_scenario_jaune.svg"
+              @click.prevent="createScenario(1)"
+          />
+          <img v-if="activeScenarios[2]"
+              src="../assets/img/add_scenario_bleu.svg"
+              @click.prevent="createScenario(2)"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -177,6 +191,10 @@ function initialScenario() {
 export default {
   name: "Scenario",
   props: {
+    id: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,
@@ -192,18 +210,47 @@ export default {
       software_options,
       journey_options,
       scenario: {},
+      activeScenarios: [false, false, false],
+      componentKey: 0,
     };
   },
+  computed: {
+    getScenarioData: function() {
+      return this.scenario
+    }
+  },
   methods: {
-    createScenario() {
-      this.scenario = initialScenario();
-      this.scenario.meetingScenario = this.title;
-      this.active = true;
+    createScenario(id) {
+      let newScenario;
+      if (id >= 0) {
+        const new_scenarios = [];
+        this.$root.$emit("retrieveScenariosInOrder", new_scenarios);
+        newScenario = JSON.parse(JSON.stringify(new_scenarios[id]));
+        this.scenario = newScenario;
+        this.scenario.meetingScenario = this.title;
+        this.active = true;
+        this.$root.$emit('scenario-status-update', [this.id, true]);
+      }
+      else {
+        newScenario = initialScenario();
+        this.scenario = newScenario;
+        this.scenario.meetingScenario = this.title;
+        this.active = true;
+        this.$root.$emit('scenario-status-update', [this.id, true]);
+      }
     },
     deleteScenario() {
       this.scenario = initialScenario();
       this.scenario.meetingScenario = this.title;
       this.active = false;
+      this.$root.$emit('scenario-status-update', [this.id, false])
+      this.componentKey += 1;
+    },
+    updateActiveScenarios(updatedActiveScenarios) {
+      this.activeScenarios = updatedActiveScenarios;
+    },
+    emitUpdate(active){
+      this.$root.$emit('scenario-status-update', [this.id, active])
     },
     addJourney() {
       //TODO: Add a journey only if last if not empty
@@ -215,16 +262,28 @@ export default {
     deleteJourney(journey) {
       this.scenario.journey = this.scenario.journey.filter((j) => j != journey);
     },
+    reRenderCopyButtons() {
+      this.componentKey += 1;
+    },
+
   },
   mounted() {
     var cookie = JSON.parse(localStorage.getItem(this.title));
     if (cookie) {
       this.active = cookie[0];
       this.scenario = cookie[1];
+      this.$nextTick(function() {
+        this.$root.$emit('scenario-status-update', [this.id, this.active]);
+      });
     }
     this.$root.$on("retrieveScenarios", (data) => {
       if (this.active) {
         data.push(this.scenario);
+      }
+    });
+    this.$root.$on("retrieveScenariosInOrder", (data) => {
+      if (this.active) {
+        data[this.id] = this.scenario;
       }
     });
   },
@@ -437,6 +496,15 @@ export default {
   margin-left: auto;
   margin-right: auto;
   margin-top: 60%;
+  transition-timing-function: ease;
+  width: 50px;
+}
+
+.scenario-empty .scenario-body div img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
   transition-timing-function: ease;
   width: 50px;
 }
