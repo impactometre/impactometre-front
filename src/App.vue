@@ -1,25 +1,23 @@
 <template>
-  <div id="app">
-    <Header></Header>
-    <main id="main-flexbox">
-      <SinglePage
-        :page="displayed_single_page"
-        v-show="display_single_page"
-      ></SinglePage>
-      <div class="scenarios" v-show="display_scenarios">
-        <Scenario ref="scenario0" id=0 title="Scenario A"></Scenario>
-        <Scenario ref="scenario1" id=1 title="Scenario B"></Scenario>
-        <Scenario ref="scenario2" id=2 title="Scenario C"></Scenario>
-      </div>
-      <ResultsDetailledView
-        :selectedView="results_detailled_view_choice"
-        class="scenarios"
-        v-show="!display_scenarios"
-        :key="re_render_results_detailled_view"
-      />
-      <Results />
-    </main>
+<div id="app">
+  <div v-show="!hide_warning" id="mobile-warning">
+    <p>Cette application n'est pas destinée aux supports mobiles.
+      Nous vous recommandons d'utiliser un ordinateur.<br>
+      <a href="#" @click.prevent="hide_warning = true">Continuer</a>
+    </p>
   </div>
+  <Header></Header>
+  <main id="main-flexbox">
+    <SinglePage :page="displayed_single_page" v-show="display_single_page"></SinglePage>
+    <div class="scenarios" v-show="display_scenarios">
+      <Scenario ref="scenario0" id=0 title="Scenario A"></Scenario>
+      <Scenario ref="scenario1" id=1 title="Scenario B"></Scenario>
+      <Scenario ref="scenario2" id=2 title="Scenario C"></Scenario>
+    </div>
+    <ResultsDetailledView :selectedView="results_detailled_view_choice" class="scenarios" v-show="!display_scenarios" :key="re_render_results_detailled_view" />
+    <Results />
+  </main>
+</div>
 </template>
 
 <script>
@@ -46,8 +44,10 @@ export default {
       display_single_page: false,
       displayed_single_page: null,
       activeScenarios: [],
+      hide_warning: false,
     };
   },
+  methods: {},
   mounted() {
     this.$root.$on("scenario-status-update", ([scenario, value]) =>{
       this.activeScenarios[scenario] = value;
@@ -86,18 +86,46 @@ export default {
 <style>
 #app {
   height: 100%;
-  display: flex;
   flex-direction: column;
 }
 
+@media only screen and (min-width: 800px) {
+  #mobile-warning {
+    display: none;
+  }
+}
+
+#mobile-warning {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1;
+}
+
+#mobile-warning p {
+  text-align: center;
+  margin-left: 25%;
+  width: 50%;
+  margin-top: 20%;
+  color: white;
+}
+
+#mobile-warning a {
+  color: white;
+  font-weight: bold;
+}
+
 #main-flexbox {
-  flex-basis:90%;
+  flex-basis: 90%;
   display: flex;
   width: 100%;
 }
+
 main {
   /* height: 100%; */
 }
+
 .scenarios {
   display: flex;
   flex-basis: 75%;

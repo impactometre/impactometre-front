@@ -6,11 +6,6 @@ Vue.use(Vuex);
 let labels = ["A", "B", "C"];
 let labels_detailled = ["Scenario A", "Scenario B", "Scenario C"];
 let backgroundColor = ["#e97272", "#e7dc73", "#83bdec"];
-let hoverBackgroundColor = [
-  "rgba(0,0,0,0.8)",
-  "rgba(0,0,0,0.6)",
-  "rgba(0,0,0,0.3)",
-];
 
 const state = {
   scenarios_json: [],
@@ -61,19 +56,16 @@ const state = {
           label: "Matériel",
           data: [0, 0, 0],
           backgroundColor,
-          hoverBackgroundColor: hoverBackgroundColor[0],
         },
         {
           label: "Réseau",
           data: [0, 0, 0],
           backgroundColor,
-          hoverBackgroundColor: hoverBackgroundColor[1],
         },
         {
           label: "Trajets",
           data: [0, 0, 0],
           backgroundColor,
-          hoverBackgroundColor: hoverBackgroundColor[2],
         },
       ],
     },
@@ -84,19 +76,16 @@ const state = {
           label: "Matériel",
           data: [0, 0, 0],
           backgroundColor,
-          hoverBackgroundColor: hoverBackgroundColor[0],
         },
         {
           label: "Réseau",
           data: [0, 0, 0],
           backgroundColor,
-          hoverBackgroundColor: hoverBackgroundColor[1],
         },
         {
           label: "Trajets",
           data: [0, 0, 0],
           backgroundColor,
-          hoverBackgroundColor: hoverBackgroundColor[2],
         },
       ],
     },
@@ -107,19 +96,16 @@ const state = {
           label: "Matériel",
           data: [0, 0, 0],
           backgroundColor,
-          hoverBackgroundColor: hoverBackgroundColor[0],
         },
         {
           label: "Réseau",
           data: [0, 0, 0],
           backgroundColor,
-          hoverBackgroundColor: hoverBackgroundColor[1],
         },
         {
           label: "Trajets",
           data: [0, 0, 0],
           backgroundColor,
-          hoverBackgroundColor: hoverBackgroundColor[2],
         },
       ],
     },
@@ -130,19 +116,16 @@ const state = {
           label: "Matériel",
           data: [0, 0, 0],
           backgroundColor,
-          hoverBackgroundColor: hoverBackgroundColor[0],
         },
         {
           label: "Réseau",
           data: [0, 0, 0],
           backgroundColor,
-          hoverBackgroundColor: hoverBackgroundColor[1],
         },
         {
           label: "Trajets",
           data: [0, 0, 0],
           backgroundColor,
-          hoverBackgroundColor: hoverBackgroundColor[2],
         },
       ],
     },
