@@ -111,8 +111,6 @@ export default {
 
 <style>
 .results-detailled-view {
-  display: flex;
-  flex-direction: column;
   padding: 60px;
   background: repeating-linear-gradient(
     -45deg,
@@ -121,6 +119,7 @@ export default {
     rgba(0, 0, 0, 0.02) 10px,
     rgba(0, 0, 0, 0.02) 20px
   );
+  overflow: hidden;
 }
 
 /*
@@ -139,10 +138,6 @@ export default {
  * CONTENT
  */
 
-.results-detailled-view-content {
-  display: block;
-  position: relative;
-}
 .results-detailled-view-content p {
   line-height: 25px;
 }

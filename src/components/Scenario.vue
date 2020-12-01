@@ -94,10 +94,9 @@
               <IncrementButton
                 v-model="j.distance"
                 :max="99"
-                class="flex-item"
               />
-              <p class="flex-item">km en</p>
-              <select v-model="j.mean" class="select-journey flex-item">
+              <p>km en</p>
+              <select v-model="j.mean" class="select-journey">
                 <option disabled value="">Choisissez</option>
                 <option
                   v-for="journey_option in journey_options"
@@ -108,7 +107,7 @@
                 </option>
               </select>
               <button
-                class="delete-journey-btn flex-item"
+                class="delete-journey-btn"
                 @click.prevent="deleteJourney(j)"
               >
                 -
@@ -298,13 +297,11 @@ export default {
 
 <style>
 .scenarios {
-  display: flex;
 }
 
 .scenario {
   margin: 0 10px;
-  flex-basis: 75%;
-  max-width: 33%;
+  min-width: 250px;
 }
 
 /*
@@ -315,7 +312,6 @@ export default {
   height: auto;
   min-height: 80%;
   margin: 30px 10px;
-  flex: 1 1 auto;
   border-radius: 15px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
   /* padding-bottom:25px; */
@@ -409,8 +405,9 @@ export default {
 }
 
 .scenario-line {
-  margin: 10px;
-  margin-left: 25px;
+  padding-left: 25px;
+  padding-right: 10px;
+  padding-bottom: 10px;
 }
 
 .scenario-line-caption p {
@@ -426,15 +423,13 @@ export default {
 }
 
 .scenario-line.journey {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
-.flex-item {
-  flex: 1 0.5 auto;
-}
+
 .scenario-line-caption .helper {
 }
 .select-journey {
-  max-width: 40%;
 }
 /*
  *    BUTTONS
@@ -447,7 +442,7 @@ export default {
   margin-right: -6px;
 }
 .scenario-line select {
-  max-width: 35%;
+  width: 80px;
   border-width: 1px;
   border-style: solid;
   border-color: #bcbcbc;
@@ -483,9 +478,9 @@ export default {
 }
 .scenario-empty {
   /* height: 80%; */
+  min-width: 230px;
   min-height: 80%;
   margin: 30px 10px;
-  flex: 1 1 auto;
   border-radius: 15px;
   box-sizing: border-box;
   border: 1px dashed #000000;

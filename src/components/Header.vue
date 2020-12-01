@@ -27,7 +27,6 @@ header {
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
   background-color: #3c3c3c;
   color: #ffffff;
-  flex-basis:10%;
 }
 header .header-logo {
   display: inline-block;

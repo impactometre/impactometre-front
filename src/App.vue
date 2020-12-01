@@ -7,14 +7,14 @@
     </p>
   </div>
   <Header></Header>
-  <main id="main-flexbox">
+  <main id="main-container">
     <SinglePage :page="displayed_single_page" v-show="display_single_page"></SinglePage>
     <div class="scenarios" v-show="display_scenarios">
       <Scenario ref="scenario0" id=0 title="Scenario A"></Scenario>
       <Scenario ref="scenario1" id=1 title="Scenario B"></Scenario>
       <Scenario ref="scenario2" id=2 title="Scenario C"></Scenario>
     </div>
-    <ResultsDetailledView :selectedView="results_detailled_view_choice" class="scenarios" v-show="!display_scenarios" :key="re_render_results_detailled_view" />
+    <ResultsDetailledView :selectedView="results_detailled_view_choice" v-show="!display_scenarios" :key="re_render_results_detailled_view" />
     <Results />
   </main>
 </div>
@@ -85,8 +85,6 @@ export default {
 
 <style>
 #app {
-  height: 100%;
-  flex-direction: column;
 }
 
 @media only screen and (min-width: 800px) {
@@ -116,10 +114,9 @@ export default {
   font-weight: bold;
 }
 
-#main-flexbox {
-  flex-basis: 90%;
-  display: flex;
-  width: 100%;
+#main-container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
 }
 
 main {
@@ -127,7 +124,7 @@ main {
 }
 
 .scenarios {
-  display: flex;
-  flex-basis: 75%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 </style>

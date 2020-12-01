@@ -109,6 +109,10 @@ export default {
 </script>
 
 <style>
+.increment-button {
+  min-width: 60px
+}
+
 .increment-button input {
   width: 30px;
   text-align: center;
