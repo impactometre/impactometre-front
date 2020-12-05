@@ -117,10 +117,10 @@ export default {
 #main-container {
   display: grid;
   grid-template-columns: 3fr 1fr;
+  height: 92vh;
 }
 
 main {
-  /* height: 100%; */
 }
 
 .scenarios {

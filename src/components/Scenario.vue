@@ -20,7 +20,6 @@
                 :min="1"
                 class="align-right participants-no-btn"
               /><br />
-              <hr />
             </div>
             <div class="scenario-line">
               <span class="scenario-line-caption">
@@ -64,7 +63,7 @@
             <div class="scenario-line">
               <span class="scenario-line-caption">
                 <p>Logiciel de visioconférence</p>
-                <select v-model="scenario.software.name" class="align-right">
+                <select v-model="scenario.software.name" class="align-right select-software">
                   <option value="">Aucun</option>
                   <option
                     v-for="software_option in software_options"
@@ -97,7 +96,7 @@
               />
               <p>km en</p>
               <select v-model="j.mean" class="select-journey">
-                <option disabled value="">Choisissez</option>
+                <option disabled value="">...</option>
                 <option
                   v-for="journey_option in journey_options"
                   :key="journey_option.name"
@@ -112,6 +111,7 @@
               >
                 -
               </button>
+              <!-- <hr /> -->
             </div>
           </div>
         </div>
@@ -339,6 +339,7 @@ export default {
   margin-top: 10px;
   border: 2px dashed #e3e3e3;
   border-style: none none dashed;
+  width: 100%;
 }
 /*
  * CLOSE LINK
@@ -365,21 +366,14 @@ export default {
 }
 
 .delete-journey-btn {
-  display: inline;
-  top: -46px;
-  left: -12px;
-  padding-left: 10px;
-  padding-right: 20px;
+  height: 20px;
   border: none;
   color: gray;
   background-color: transparent;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 20px;
-  left: -19.5px;
-  top: 0px;
-  font-weight: 400;
+  font-weight: 800;
 }
 
 .delete-journey-btn:hover {
@@ -419,17 +413,26 @@ export default {
   line-height: 16px;
   color: #363636;
 }
-.scenario-section.journey {
+.scenario-section.journey p{
+  font-size: 14px;
+  height: 20px;
+  width: 40px;
+  position: relative;
+  top: 2px;
 }
 
 .scenario-line.journey {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 2fr 1fr 2.5fr 1fr;
+  grid-gap: 10px;
+  margin-top: 12px;
 }
 
 .scenario-line-caption .helper {
 }
 .select-journey {
+  height: 20px;
+  font-size:14px;
 }
 /*
  *    BUTTONS
@@ -441,30 +444,36 @@ export default {
 .participants-no-btn {
   margin-right: -6px;
 }
-.scenario-line select {
-  width: 80px;
+select.scenario-line  {
   border-width: 1px;
   border-style: solid;
   border-color: #bcbcbc;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 14px;
   background: none;
   color: black;
-  padding: 2px 2px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+}
+select.select-software  {
+  width: 80px;
+  height: 20px;
+}
+select.select-journey {
+  width: 6vw;
 }
 .add-journey-btn {
+  display: inline-block;
+  position: relative;
+  top: -2px;
   border: none;
   background: #dcdcdc;
   border-radius: 15px;
   color: #676767;
-  padding: 5px 10px;
-  margin-left: 15px;
+  padding: 5px 9px;
+  margin-left: 2px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   cursor: pointer;
 }
 .add-journey-btn:hover {
@@ -477,7 +486,6 @@ export default {
   margin-top: 20px;
 }
 .scenario-empty {
-  /* height: 80%; */
   min-width: 230px;
   min-height: 80%;
   margin: 30px 10px;

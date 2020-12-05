@@ -27,6 +27,7 @@ header {
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
   background-color: #3c3c3c;
   color: #ffffff;
+  min-height: 8vh;
 }
 header .header-logo {
   display: inline-block;

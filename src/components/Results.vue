@@ -36,7 +36,6 @@
         </div>
       </div>
     </div>
-    <div class="results-detailled"></div>
   </div>
 </template>
 
@@ -220,7 +219,7 @@ export default {
 .results {
   background-color: #f1f1f1;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
-  min-height: 100vh;
+  height: 100%;
 }
 
 /*
@@ -232,7 +231,7 @@ export default {
   font-size: 30px;
   line-height: 35px;
   color: #3b3b3b;
-  padding-top: 20px;
+  padding-top: 16px;
   padding-left: 40px;
 }
 .results-header-btn-actions button {
@@ -291,7 +290,7 @@ export default {
  * RESULTS
  */
 .results-content {
-  padding-top: 40px;
+  padding-top: 10px;
 }
 .results-section {
   border-top-style: solid;
@@ -308,6 +307,7 @@ export default {
 
 .results-section h3 {
   color: #3b3b3b;
+  font-size: 16px;
 }
 
 /*
