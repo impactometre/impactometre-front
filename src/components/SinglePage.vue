@@ -9,42 +9,50 @@
           <h2>A propos</h2>
           <br />
           <p>
-            <b>L’Impactomètre</b> est un outil ayant été produit dans le cadre
-            d’un projet de l’UTC encadré par Yacine Baouch. Il est le fruit d’un
-            travail réalisé par plusieurs groupes d’étudiants que sont Jules
-            Farjas, William Boffy, Aurélien Béranger, Clément Brizard, Valentin
-            Le Gauche, Maria Idrissi, Elouan Le Bars, Matthieu Glorion et Edmond
-            Giraud.
+            <b>Impactometre.fr</b> permet de comparer différents scénarios de
+             réunions selon des critères environnementaux. Son objectif est de
+             vous aider à faire des choix : est-il préférable d’organiser une
+             visio-conférence ou de faire déplacer tous les participants ? etc.
           </p>
           <p>
-            Cet outil a pour vocation d’évaluer l’impact environnemental d’une
-            réunion afin que l’utilisateur puisse l’optimiser au mieux, dans une
-            démarche écologique. L’évaluation de cet impact est réalisée selon
-            une méthode fortement inspirée de la méthode ACV (Analyse Cycle de
-            Vie d’un produit). L’impact environnemental d’une réunion est en
-            effet calculé comme la somme des impacts environnementaux des
-            matériels utilisés, des transports réalisés et du logiciel de
-            visioconférence.
+            Impactometre.fr prend en compte les impacts environnementaux du
+            matériel utilisé (ordinateurs, vidéoprojecteur…), des transports
+            réalisés par les participants à la réunion mais aussi ceux de la
+            visioconférence (transfert de données, logiciel…). L’utilisateur
+            renseigne donc différentes informations pour décrire
+            les scénarios de réunions envisagés.
           </p>
           <p>
-            L’utilisateur doit renseigner ces différents critères pour que
-            l’application puisse évaluer l’impact environnemental de la réunion,
-            selon quatre catégories : l’impact sur la santé humaine, sur la
-            qualité de l’écosystème, sur le changement climatique et sur les
-            ressources. Le résultat est calculé dans une unité adaptée pour
-            chacune de ces catégories et affiché en pourcentages. Il est
-            normalisé sur le scénario ayant le plus d’impact, celui-ci étant à
-            100%.
+            Les résultats sont affichés selon quatre catégories environnementales
+            : l’impact sur la santé humaine, la qualité de l’écosystème,
+            le changement climatique et les ressources. Pour chaque catégorie,
+            le résultat est normalisé par le scénario ayant le plus d’impact,
+            c’est-à-dire qu’il sera affiché à 100%. Un équivalent est aussi
+            donné en kilomètres parcourus en voiture thermique.
           </p>
           <p>
-            Vous pouvez retrouver l'article sur lequel se basent les calculs
-            réalisés dans le code
+            La méthode utilisée par Impactometre.fr est fortement inspirée
+            d’une Analyse de Cycle de Vie. Les données utilisées proviennent
+            de la base de données EcoInvent et l’évaluation est réalisée
+            selon Impact2002+. Vous pouvez retrouver l'article qui décrit
+            la construction de la méthode d’évaluation
             <a
               target="_blank"
               rel="noopener noreferrer"
               href="/uploads/article_impact_environnemental_reunions.pdf"
               >à cette adresse.</a
             >
+          </p>
+          <p>
+            <b>Impactometre.fr</b> est un outil développé dans le cadre
+            d’un projet de l’Université de technologie de Compiègne.
+            Il est le fruit d’un travail réalisé par Aurélien Béranger,
+            William Boffy, Clément Brizard, Jules Farjas, Edmond Giraud,
+            Matthieu Glorion, Maria Idrissi, Elouan Le Bars et Valentin
+            Le Gauche et encadré par Yacine Baouch, enseignant à l’UTC.
+          </p>
+          <p>
+            Impactometre.fr est hébergé par l’association Picasoft.
           </p>
           <p id="licence">
             Licence libre GNU GPL V3 -

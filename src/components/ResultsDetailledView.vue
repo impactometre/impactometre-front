@@ -147,7 +147,9 @@ export default {
 
 .results-detailled-view-content p {
   line-height: 25px;
+    text-align: justify;
 }
+
 
 /*
  * CHARTS

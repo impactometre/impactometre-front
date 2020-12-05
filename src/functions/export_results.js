@@ -4,20 +4,20 @@ import { sections_comparatif, journey_options } from "../options/options.js";
 import { detailled_results_text } from "../options/detailled_results_text.js";
 
 export function exportResults() {
-  let pdfName = "impactometre-results";
+  let pdfName = "impactometre-resultats";
   var doc = new jsPDF();
   doc.setFont("Helvetica", "Bold");
-  var line = 20;
+  var line = 18;
   var left_space = 20;
 
-  doc.text("Impactomètre - Comparatif", left_space, line);
+  doc.text("Impactometre.fr", left_space, line);
 
   //TODO: fix this workaround by setting a "name" variable inside Scenario component
   var headers = document.querySelectorAll(".scenario-header h2");
 
   store.state.scenarios_json.forEach((scenario, index) => {
     if (scenario.meetingDuration > 1) {
-      line = 34;
+      line = 26;
       doc.setFontSize(12);
       doc.setFont("Helvetica", "Bold");
       doc.text(headers[index].textContent, left_space, line);
@@ -80,10 +80,10 @@ export function exportResults() {
     }
   });
   // Canvas
-  line = line + 40;
+  line = line + 34;
   doc.setFontSize(12);
   doc.setFont("Helvetica", "Bold");
-  doc.text("Résultats", 20, line);
+  doc.text("Comparaison des scénarios de réunion", 20, line);
   line = line + 10;
 
   var all_canvas = document.querySelectorAll(
@@ -96,17 +96,35 @@ export function exportResults() {
     doc.text(sections_comparatif[index].title, 20, line);
     line = line + 4;
 
-    var canvasImg = canvas.toDataURL("image/png");
-    doc.addImage(canvasImg, "PNG", 15, line, 54, 18);
+    var canvasImg = canvas.toDataURL("image/png", 1);
+    console.log(canvas.width);
+    doc.addImage(canvasImg, "PNG", 15, line, 70, canvas.height*70/canvas.width);
 
     doc.setFont("Helvetica", "");
-    doc.setFontSize(7);
+    doc.setFontSize(8);
     var sectionText = detailled_results_text[sections_comparatif[index].name];
     // var splitText = doc.splitTextToSize(sectionText,100);
-    doc.text(sectionText, 84, line + 4);
+    doc.text(sectionText, 100, line + 4);
 
-    line = line + 40;
+    line = line + 32;
   });
+
+  doc.setFontSize(12);
+  doc.setFont("Helvetica", "Bold");
+  line = line + 6;
+  doc.text("A propos d'Impactometre.fr", 20, line);
+  line = line + 8;
+  doc.setFont("Helvetica", "");
+  doc.setFontSize(8);
+  var about = `Ces comparaisons sont des estimations des impacts environnementaux potentiels. Elles ne constituent pas des mesures réelles.
+Les données utilisées proviennent de la base de données EcoInvent et l'évaluation environnementale est réalisée selon Impact2002+.
+Vous pouvez retrouver plus d'informations sur la construction de la méthode dans la rubrique « A propos » de Impactometre.fr.
+
+Impactometre.fr a été développé dans le cadre d'un projet de l'Université de technologie de Compiègne et est hébergé par l'association
+Picasoft.
+
+Licence libre GNU GPL V3.`;
+  doc.text(about, 20, line);
 
   doc.save(pdfName + ".pdf");
 }
