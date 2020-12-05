@@ -27,6 +27,7 @@
 <script>
 import ResultsChart from "./ResultsChart.js";
 import store from "../store/MainStore.js";
+import { sections_comparatif } from "../options/options.js";
 import { detailled_results_text } from "../options/detailled_results_text.js";
 
 //register custom tooltip positioner for chart
@@ -86,12 +87,8 @@ export default {
       return (sphere) => store.state.impact_on_spheres_detailled[sphere];
     },
     title: function () {
-      //TODO: clean this function (code redundancy)
-      switch(this.selectedView) {
-        case "HUMAN_HEALTH": return "Impact sur la santé humaine"
-        case "ECOSYSTEM_QUALITY": return "Impact sur la qualité des écosystèmes"
-        case "CLIMATE_CHANGE": return "Impact sur le changement climatique"
-        case "RESOURCES": return "Impact sur les ressources"
+      if (this.selectedView) {
+        return sections_comparatif.find(el => el.name == this.selectedView).title;
       }
     },
     detailled_results_text: function () {
