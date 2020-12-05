@@ -93,7 +93,7 @@
             >
               <IncrementButton
                 v-model="j.distance"
-                :max="99"
+                :max="9999"
               />
               <p>km en</p>
               <select v-model="j.mean" class="select-journey">
