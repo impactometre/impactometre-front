@@ -66,19 +66,11 @@
           <h2>Utilisation</h2>
           <br />
           <div class="video">
-            <iframe
-              src="https://player.vimeo.com/video/436047872"
-              style="
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-              "
-              frameborder="0"
-              allow="autoplay; fullscreen"
-              allowfullscreen
-            ></iframe>
+            <video controls width="80%" >
+              <source src="../../public/videos/impactometre-utilisation-720.mp4"
+                      type="video/mp4">
+                Sorry, your browser doesn't support embedded videos.
+              </video>
           </div>
         </div>
       </div>
@@ -138,11 +130,8 @@ export default {
   color: gray;
   text-align: right;
 }
-/*
- * HOWTO
- */
-.video {
-  padding: 30% 0 0 0;
-  position: relative;
+.video video{
+  margin-left: 10%;
+  margin-right: 10%;
 }
 </style>
