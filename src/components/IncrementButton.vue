@@ -70,12 +70,12 @@ export default {
     },
     longPlus: function () {
       if (!this.interval) {
-        this.interval = setInterval(() => this.plus(), 100);
+        this.interval = setInterval(() => this.plus(), 200);
       }
     },
     longMinus: function () {
       if (!this.interval) {
-        this.interval = setInterval(() => this.minus(), 100);
+        this.interval = setInterval(() => this.minus(), 200);
       }
     },
     stopLongClick: function () {
