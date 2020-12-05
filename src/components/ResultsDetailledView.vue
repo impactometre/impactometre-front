@@ -29,6 +29,15 @@ import ResultsChart from "./ResultsChart.js";
 import store from "../store/MainStore.js";
 import { detailled_results_text } from "../options/detailled_results_text.js";
 
+//register custom tooltip positioner for chart
+Chart.Tooltip.positioners.custom = function(elements, position) {
+  //debugger;
+  return {
+    x: position.x,
+    y: position.y,
+  }
+}
+
 export default {
   props: ["selectedView"],
   store,
@@ -52,6 +61,7 @@ export default {
          },
          tooltips: {
           mode: 'point',
+          position: 'custom',
         },
         scales: {
           xAxes: [
