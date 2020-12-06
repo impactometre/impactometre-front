@@ -16,7 +16,7 @@
       <p>
         {{ detailled_results_text }}
       </p>
-      <br/>
+      <br />
       <p v-for="eq of equivalents" :key="eq.message">
         {{ eq.text }}
       </p>
@@ -31,13 +31,13 @@ import { sections_comparatif } from "../options/options.js";
 import { detailled_results_text } from "../options/detailled_results_text.js";
 
 //register custom tooltip positioner for chart
-Chart.Tooltip.positioners.custom = function(elements, position) {
+Chart.Tooltip.positioners.custom = function (elements, position) {
   //debugger;
   return {
     x: position.x,
     y: position.y,
-  }
-}
+  };
+};
 
 export default {
   props: ["selectedView"],
@@ -57,12 +57,12 @@ export default {
           display: false,
         },
         hover: {
-           mode: 'nearest',
-           intersect: true
-         },
-         tooltips: {
-          mode: 'point',
-          position: 'custom',
+          mode: "nearest",
+          intersect: true,
+        },
+        tooltips: {
+          mode: "point",
+          position: "custom",
         },
         scales: {
           xAxes: [
@@ -71,9 +71,9 @@ export default {
               ticks: {
                 max: 100,
                 min: 0,
-                callback: function(value, index, values) {
-                    return (value + ' %');
-                }
+                callback: function (value, index, values) {
+                  return value + " %";
+                },
               },
             },
           ],
@@ -88,24 +88,32 @@ export default {
     },
     title: function () {
       if (this.selectedView) {
-        return sections_comparatif.find(el => el.name == this.selectedView).title;
+        return sections_comparatif.find((el) => el.name == this.selectedView)
+          .title;
       }
     },
     detailled_results_text: function () {
       return detailled_results_text[this.selectedView];
     },
     equivalents: function () {
-      if(store.state.equivalents.hasOwnProperty(this.selectedView)){
+      if (store.state.equivalents.hasOwnProperty(this.selectedView)) {
         const ret = [];
-        const eqs = store.state.equivalents[this.selectedView]["ONE_KM_CAR"]
+        const eqs = store.state.equivalents[this.selectedView]["ONE_KM_CAR"];
         for (const equivalent in eqs) {
           if (eqs[equivalent] !== null) {
-            ret.push({ text: "Le "+equivalent+" équivaut à "+eqs[equivalent]+"km en voiture thermique."});
+            ret.push({
+              text:
+                "Le " +
+                equivalent +
+                " équivaut à " +
+                eqs[equivalent] +
+                "km en voiture thermique.",
+            });
           }
         }
-        return ret
+        return ret;
       }
-    }
+    },
   },
   mounted() {
     this.$root.$on("re_render_results_detailled", () => {
@@ -147,9 +155,8 @@ export default {
 
 .results-detailled-view-content p {
   line-height: 25px;
-    text-align: justify;
+  text-align: justify;
 }
-
 
 /*
  * CHARTS

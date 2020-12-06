@@ -10,32 +10,32 @@
           <br />
           <p>
             <b>Impactometre.fr</b> permet de comparer différents scénarios de
-             réunions selon des critères environnementaux. Son objectif est de
-             vous aider à faire des choix : est-il préférable d’organiser une
-             visio-conférence ou de faire déplacer tous les participants ? etc.
+            réunions selon des critères environnementaux. Son objectif est de
+            vous aider à faire des choix : est-il préférable d’organiser une
+            visio-conférence ou de faire déplacer tous les participants ? etc.
           </p>
           <p>
             Impactometre.fr prend en compte les impacts environnementaux du
             matériel utilisé (ordinateurs, vidéoprojecteur…), des transports
             réalisés par les participants à la réunion mais aussi ceux de la
             visioconférence (transfert de données, logiciel…). L’utilisateur
-            renseigne donc différentes informations pour décrire
-            les scénarios de réunions envisagés.
+            renseigne donc différentes informations pour décrire les scénarios
+            de réunions envisagés.
           </p>
           <p>
-            Les résultats sont affichés selon quatre catégories environnementales
-            : l’impact sur la santé humaine, la qualité de l’écosystème,
-            le changement climatique et les ressources. Pour chaque catégorie,
-            le résultat est normalisé par le scénario ayant le plus d’impact,
-            c’est-à-dire qu’il sera affiché à 100%. Un équivalent est aussi
-            donné en kilomètres parcourus en voiture thermique.
+            Les résultats sont affichés selon quatre catégories
+            environnementales : l’impact sur la santé humaine, la qualité de
+            l’écosystème, le changement climatique et les ressources. Pour
+            chaque catégorie, le résultat est normalisé par le scénario ayant le
+            plus d’impact, c’est-à-dire qu’il sera affiché à 100%. Un équivalent
+            est aussi donné en kilomètres parcourus en voiture thermique.
           </p>
           <p>
-            La méthode utilisée par Impactometre.fr est fortement inspirée
-            d’une Analyse de Cycle de Vie. Les données utilisées proviennent
-            de la base de données EcoInvent et l’évaluation est réalisée
-            selon Impact2002+. Vous pouvez retrouver l'article qui décrit
-            la construction de la méthode d’évaluation
+            La méthode utilisée par Impactometre.fr est fortement inspirée d’une
+            Analyse de Cycle de Vie. Les données utilisées proviennent de la
+            base de données EcoInvent et l’évaluation est réalisée selon
+            Impact2002+. Vous pouvez retrouver l'article qui décrit la
+            construction de la méthode d’évaluation
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -44,12 +44,12 @@
             >
           </p>
           <p>
-            <b>Impactometre.fr</b> est un outil développé dans le cadre
-            d’un projet de l’Université de technologie de Compiègne.
-            Il est le fruit d’un travail réalisé par Aurélien Béranger,
-            William Boffy, Clément Brizard, Jules Farjas, Edmond Giraud,
-            Matthieu Glorion, Maria Idrissi, Elouan Le Bars et Valentin
-            Le Gauche et encadré par Yacine Baouch, enseignant à l’UTC.
+            <b>Impactometre.fr</b> est un outil développé dans le cadre d’un
+            projet de l’Université de technologie de Compiègne. Il est le fruit
+            d’un travail réalisé par Aurélien Béranger, William Boffy, Clément
+            Brizard, Jules Farjas, Edmond Giraud, Matthieu Glorion, Maria
+            Idrissi, Elouan Le Bars et Valentin Le Gauche et encadré par Yacine
+            Baouch, enseignant à l’UTC.
           </p>
           <p>
             Impactometre.fr est hébergé par l’association Picasoft.
@@ -66,11 +66,13 @@
           <h2>Utilisation</h2>
           <br />
           <div class="video">
-            <video controls width="80%" >
-              <source src="../../public/videos/impactometre-utilisation-720.mp4"
-                      type="video/mp4">
-                Sorry, your browser doesn't support embedded videos.
-              </video>
+            <video controls width="80%">
+              <source
+                src="../../public/videos/impactometre-utilisation-720.mp4"
+                type="video/mp4"
+              />
+              Sorry, your browser doesn't support embedded videos.
+            </video>
           </div>
         </div>
       </div>
@@ -130,7 +132,7 @@ export default {
   color: gray;
   text-align: right;
 }
-.video video{
+.video video {
   margin-left: 10%;
   margin-right: 10%;
 }

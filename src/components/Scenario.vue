@@ -63,7 +63,10 @@
             <div class="scenario-line">
               <span class="scenario-line-caption">
                 <p>Logiciel de visioconférence</p>
-                <select v-model="scenario.software.name" class="align-right select-software">
+                <select
+                  v-model="scenario.software.name"
+                  class="align-right select-software"
+                >
                   <option value="">Aucun</option>
                   <option
                     v-for="software_option in software_options"
@@ -90,10 +93,7 @@
               v-for="j in scenario.journey"
               :key="j.length"
             >
-              <IncrementButton
-                v-model="j.distance"
-                :max="9999"
-              />
+              <IncrementButton v-model="j.distance" :max="9999" />
               <p>km en</p>
               <select v-model="j.mean" class="select-journey">
                 <option disabled value="">...</option>
@@ -121,21 +121,24 @@
       <div class="scenario-header"></div>
       <div class="scenario-body">
         <img
-            src="../assets/img/add_scenario_button.svg"
-            @click.prevent="createScenario(-1)"
+          src="../assets/img/add_scenario_button.svg"
+          @click.prevent="createScenario(-1)"
         />
         <div :key="componentKey">
-          <img v-if="activeScenarios[0]"
+          <img
+            v-if="activeScenarios[0]"
             src="../assets/img/add_scenario_rouge.svg"
             @click.prevent="createScenario(0)"
           />
-          <img v-if="activeScenarios[1]"
-              src="../assets/img/add_scenario_jaune.svg"
-              @click.prevent="createScenario(1)"
+          <img
+            v-if="activeScenarios[1]"
+            src="../assets/img/add_scenario_jaune.svg"
+            @click.prevent="createScenario(1)"
           />
-          <img v-if="activeScenarios[2]"
-              src="../assets/img/add_scenario_bleu.svg"
-              @click.prevent="createScenario(2)"
+          <img
+            v-if="activeScenarios[2]"
+            src="../assets/img/add_scenario_bleu.svg"
+            @click.prevent="createScenario(2)"
           />
         </div>
       </div>
@@ -214,9 +217,9 @@ export default {
     };
   },
   computed: {
-    getScenarioData: function() {
-      return this.scenario
-    }
+    getScenarioData: function () {
+      return this.scenario;
+    },
   },
   methods: {
     createScenario(id) {
@@ -228,28 +231,27 @@ export default {
         this.scenario = newScenario;
         this.scenario.meetingScenario = this.title;
         this.active = true;
-        this.$root.$emit('scenario-status-update', [this.id, true]);
-      }
-      else {
+        this.$root.$emit("scenario-status-update", [this.id, true]);
+      } else {
         newScenario = initialScenario();
         this.scenario = newScenario;
         this.scenario.meetingScenario = this.title;
         this.active = true;
-        this.$root.$emit('scenario-status-update', [this.id, true]);
+        this.$root.$emit("scenario-status-update", [this.id, true]);
       }
     },
     deleteScenario() {
       this.scenario = initialScenario();
       this.scenario.meetingScenario = this.title;
       this.active = false;
-      this.$root.$emit('scenario-status-update', [this.id, false])
+      this.$root.$emit("scenario-status-update", [this.id, false]);
       this.componentKey += 1;
     },
     updateActiveScenarios(updatedActiveScenarios) {
       this.activeScenarios = updatedActiveScenarios;
     },
-    emitUpdate(active){
-      this.$root.$emit('scenario-status-update', [this.id, active])
+    emitUpdate(active) {
+      this.$root.$emit("scenario-status-update", [this.id, active]);
     },
     addJourney() {
       //TODO: Add a journey only if last if not empty
@@ -264,15 +266,14 @@ export default {
     reRenderCopyButtons() {
       this.componentKey += 1;
     },
-
   },
   mounted() {
     var cookie = JSON.parse(localStorage.getItem(this.title));
     if (cookie) {
       this.active = cookie[0];
       this.scenario = cookie[1];
-      this.$nextTick(function() {
-        this.$root.$emit('scenario-status-update', [this.id, this.active]);
+      this.$nextTick(function () {
+        this.$root.$emit("scenario-status-update", [this.id, this.active]);
       });
     }
     this.$root.$on("retrieveScenarios", (data) => {
@@ -413,7 +414,7 @@ export default {
   line-height: 16px;
   color: #363636;
 }
-.scenario-section.journey p{
+.scenario-section.journey p {
   font-size: 14px;
   height: 20px;
   width: 40px;
@@ -432,7 +433,7 @@ export default {
 }
 .select-journey {
   height: 20px;
-  font-size:14px;
+  font-size: 14px;
 }
 /*
  *    BUTTONS
@@ -444,7 +445,7 @@ export default {
 .participants-no-btn {
   margin-right: -6px;
 }
-select.scenario-line  {
+select.scenario-line {
   border-width: 1px;
   border-style: solid;
   border-color: #bcbcbc;
@@ -455,7 +456,7 @@ select.scenario-line  {
   text-align: center;
   text-decoration: none;
 }
-select.select-software  {
+select.select-software {
   width: 80px;
   height: 20px;
 }

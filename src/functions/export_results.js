@@ -98,7 +98,14 @@ export function exportResults() {
 
     var canvasImg = canvas.toDataURL("image/png", 1);
     console.log(canvas.width);
-    doc.addImage(canvasImg, "PNG", 15, line, 70, canvas.height*70/canvas.width);
+    doc.addImage(
+      canvasImg,
+      "PNG",
+      15,
+      line,
+      70,
+      (canvas.height * 70) / canvas.width
+    );
 
     doc.setFont("Helvetica", "");
     doc.setFontSize(8);

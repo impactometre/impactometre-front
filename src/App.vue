@@ -1,23 +1,31 @@
 <template>
-<div id="app">
-  <div v-show="!hide_warning" id="mobile-warning">
-    <p>Cette application n'est pas destinée aux supports mobiles.
-      Nous vous recommandons d'utiliser un ordinateur.<br>
-      <a href="#" @click.prevent="hide_warning = true">Continuer</a>
-    </p>
-  </div>
-  <Header></Header>
-  <main id="main-container">
-    <SinglePage :page="displayed_single_page" v-show="display_single_page"></SinglePage>
-    <div class="scenarios" v-show="display_scenarios">
-      <Scenario ref="scenario0" id=0 title="Scenario A"></Scenario>
-      <Scenario ref="scenario1" id=1 title="Scenario B"></Scenario>
-      <Scenario ref="scenario2" id=2 title="Scenario C"></Scenario>
+  <div id="app">
+    <div v-show="!hide_warning" id="mobile-warning">
+      <p>
+        Cette application n'est pas destinée aux supports mobiles. Nous vous
+        recommandons d'utiliser un ordinateur.<br />
+        <a href="#" @click.prevent="hide_warning = true">Continuer</a>
+      </p>
     </div>
-    <ResultsDetailledView :selectedView="results_detailled_view_choice" v-show="!display_scenarios" :key="re_render_results_detailled_view" />
-    <Results />
-  </main>
-</div>
+    <Header></Header>
+    <main id="main-container">
+      <SinglePage
+        :page="displayed_single_page"
+        v-show="display_single_page"
+      ></SinglePage>
+      <div class="scenarios" v-show="display_scenarios">
+        <Scenario ref="scenario0" id="0" title="Scenario A"></Scenario>
+        <Scenario ref="scenario1" id="1" title="Scenario B"></Scenario>
+        <Scenario ref="scenario2" id="2" title="Scenario C"></Scenario>
+      </div>
+      <ResultsDetailledView
+        :selectedView="results_detailled_view_choice"
+        v-show="!display_scenarios"
+        :key="re_render_results_detailled_view"
+      />
+      <Results />
+    </main>
+  </div>
 </template>
 
 <script>
@@ -49,7 +57,7 @@ export default {
   },
   methods: {},
   mounted() {
-    this.$root.$on("scenario-status-update", ([scenario, value]) =>{
+    this.$root.$on("scenario-status-update", ([scenario, value]) => {
       this.activeScenarios[scenario] = value;
 
       this.$refs.scenario0.updateActiveScenarios(this.activeScenarios);
