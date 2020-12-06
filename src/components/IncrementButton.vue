@@ -12,6 +12,7 @@
       -
     </button>
     <input
+    @focus="$event.target.select()"
       type="text"
       name="increment-button-value"
       v-bind:value="value"
@@ -83,15 +84,20 @@ export default {
       this.interval = false;
     },
     input: function (event) {
-      if (parseInt(event.target.value) > this.min) {
-        this.$emit("input", parseInt(event.target.value));
+      var value = parseInt(event.target.value);
+      if (value > this.min) {
+        this.newValue = value
+        this.$emit("input", value);
       } else {
+        this.newValue = this.min
         this.$emit("input", this.min);
         event.target.value = this.min;
       }
       if (parseInt(event.target.value) < this.max) {
-        this.$emit("input", parseInt(event.target.value));
+        this.newValue = value
+        this.$emit("input", value);
       } else {
+        this.newValue = this.max
         this.$emit("input", this.max);
         event.target.value = this.max;
       }
