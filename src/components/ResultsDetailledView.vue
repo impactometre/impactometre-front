@@ -17,6 +17,9 @@
         {{ detailled_results_text }}
       </p>
       <br/>
+      <p>
+        Sur le plan de l'{{ title }} :
+      </p>
       <p v-for="eq of equivalents" :key="eq.message">
         {{ eq.text }}
       </p>
