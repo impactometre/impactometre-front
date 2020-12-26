@@ -9,6 +9,7 @@
       </div>
       <div class="scenario-body">
         <div class="scenario-section">
+          <div class="scenario-section-header">Paramètres</div>
           <div class="scenario-section-body">
             <div class="scenario-line">
               <span class="scenario-line-caption">
@@ -401,8 +402,6 @@ export default {
   padding-right: 10px;
   padding-bottom: 10px;
 }
-.scenario-line:first-child {
-}
 
 .scenario-line-caption p {
   overflow: hidden;
@@ -444,6 +443,10 @@ export default {
 .align-right {
   float: right;
   margin-right: 10px;
+}
+.align-right:first-child {
+  float: right;
+  margin-right: 50px;
 }
 select.scenario-line  {
   border-width: 1px;
