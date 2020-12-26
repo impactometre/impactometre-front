@@ -1,9 +1,12 @@
 <template>
 <div id="app">
   <div v-show="!hide_warning" id="mobile-warning">
-    <p>Cette application n'est pas destinée aux supports mobiles.
-      Nous vous recommandons d'utiliser un ordinateur.<br>
-      <a href="#" @click.prevent="hide_warning = true">Continuer</a>
+    <p>⚠️ 🖥 ⚠️<br>
+      L'ergonomie de cette application a tout d'abord été pensée pour un usage sur desktop.
+      Pour une meilleure expérience, nous vous recommandons d'utiliser l'impactometre
+      sur un support avec une plus grande surface d'affichage.
+      <br><br>
+      <a href="#" @click.prevent="hide_warning = true">Continuer tout de même ➡️</a>
     </p>
   </div>
   <Header></Header>
