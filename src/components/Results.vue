@@ -288,9 +288,6 @@ button:hover {
   padding-top: 10px;
   padding-left: 40px;
 }
-.results-section:last-child {
-  border-bottom-style: solid;
-}
 .results-section:hover {
   background: rgba(0, 0, 0, 0.1);
   cursor: pointer;
