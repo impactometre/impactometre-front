@@ -289,26 +289,25 @@ export default {
 </script>
 
 <style>
-.scenarios {
-}
-
-.scenario {
-  margin: 0 10px;
-  min-width: 250px;
-}
 
 /*
  *    SCENARIO-FULL
  */
 
+.scenario {
+  margin: 0 20px;
+}
+
 .scenario-full {
   height: auto;
-  min-height: 80%;
-  margin: 30px 10px;
+  min-width: 241px;
+  min-height: 90%;
+  margin: 30px 0;
   border-radius: 15px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
   /* padding-bottom:25px; */
 }
+
 .scenario-full .scenario-header {
   border-radius: 15px 15px 0 0;
   height: 60px;
@@ -377,9 +376,11 @@ export default {
 /*
  *    SCENARIO-SECTIONS AND SCENARIO-LINES
  */
-.scenario-section {
-  margin-bottom: 0;
+
+.scenario-body {
+  margin-top: 20px;
 }
+
 .scenario-section-header {
   margin: 10px;
   font-weight: bold;
@@ -479,13 +480,11 @@ select.select-journey {
 /*
  *    SCENARIO-EMPTY
  */
-.scenario-body {
-  margin-top: 20px;
-}
+
 .scenario-empty {
-  min-width: 230px;
-  min-height: 80%;
-  margin: 30px 10px;
+  min-width: 241px;
+  min-height: 90%;
+  margin: 30px 0;
   border-radius: 15px;
   box-sizing: border-box;
   border: 1px dashed #000000;

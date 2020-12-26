@@ -2,9 +2,9 @@
 <div id="app">
   <div v-show="!hide_warning" id="mobile-warning">
     <p>⚠️ 🖥 ⚠️<br>
-      L'ergonomie de cette application a tout d'abord été pensée pour un usage sur desktop.
+      L'ergonomie de cette application a tout d'abord été pensée pour un usage sur ordinateur.
       Pour une meilleure expérience, nous vous recommandons d'utiliser l'impactometre
-      sur un support avec une plus grande surface d'affichage.
+      sur un support avec une plus grande surface d'affichage :)
       <br><br>
       <a href="#" @click.prevent="hide_warning = true">Continuer tout de même ➡️</a>
     </p>
@@ -121,9 +121,6 @@ export default {
   display: grid;
   grid-template-columns: 3fr 1fr;
   height: 92vh;
-}
-
-main {
 }
 
 .scenarios {
