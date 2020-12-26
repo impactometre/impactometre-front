@@ -12,31 +12,45 @@
           <div class="scenario-section-body">
             <div class="scenario-line">
               <span class="scenario-line-caption">
-                <p>Nombre de participants</p>
+                <p>👤 Participants</p>
               </span>
               <IncrementButton
                 v-model="scenario.numberOfParticipants"
                 :max="30"
                 :min="1"
-                class="align-right participants-no-btn"
+                class="align-right"
               /><br />
             </div>
             <div class="scenario-line">
               <span class="scenario-line-caption">
-                <p>Durée de la réunion (minutes)</p>
+                <p>⏳ Durée (min)</p>
               </span>
               <IncrementButton
-                v-model="scenario.meetingDuration"
-                :max="999"
-                :min="1"
-                class="align-right"
+                  v-model="scenario.meetingDuration"
+                  :max="999"
+                  :min="1"
+                  class="align-right"
               /><br />
-              <hr />
+            </div>
+            <div class="scenario-line">
+              <span class="scenario-line-caption">
+                <p>🌐 Visio</p>
+                <select v-model="scenario.software.name" class="align-right select-software">
+                  <option value="">Aucune</option>
+                  <option
+                      v-for="software_option in software_options"
+                      :key="software_option.name"
+                      :value="software_option.name"
+                  >
+                    {{ software_option.french }}
+                  </option>
+                </select>
+              </span>
             </div>
           </div>
         </div>
         <div class="scenario-section">
-          <div class="scenario-section-header">Matériel</div>
+          <div class="scenario-section-header">Équipement</div>
           <div class="scenario-section-body">
             <div
               class="scenario-line"
@@ -53,27 +67,6 @@
                 :max="99"
                 class="align-right"
               /><br />
-              <hr />
-            </div>
-          </div>
-        </div>
-        <div class="scenario-section">
-          <div class="scenario-section-header">Réseau</div>
-          <div class="scenario-section-body">
-            <div class="scenario-line">
-              <span class="scenario-line-caption">
-                <p>Logiciel de visioconférence</p>
-                <select v-model="scenario.software.name" class="align-right select-software">
-                  <option value="">Aucun</option>
-                  <option
-                    v-for="software_option in software_options"
-                    :key="software_option.name"
-                    :value="software_option.name"
-                  >
-                    {{ software_option.french }}
-                  </option>
-                </select>
-              </span>
             </div>
           </div>
         </div>
@@ -156,27 +149,27 @@ function initialScenario() {
     hardware: [
       {
         name: "LAPTOP",
-        french: "Ordinateurs portables",
+        french: "💻 PC Portables",
         qty: 0,
       },
       {
         name: "DESKTOP",
-        french: "Ordinateurs fixes",
+        french: "🖥 PC Fixes",
         qty: 0,
       },
       {
         name: "LOGITECH_KIT",
-        french: "Kits de vidéo-conférence",
+        french: "📞 Kits visio",
         qty: 0,
       },
       {
         name: "COMPUTER_SCREEN_LCD",
-        french: "Ecrans supplémentaires",
+        french: "🖥 Moniteurs",
         qty: 0,
       },
       {
         name: "PROJECTOR",
-        french: "Vidéo-projecteurs",
+        french: "📽 Projecteur",
         qty: 0,
       },
     ],
@@ -385,9 +378,10 @@ export default {
  *    SCENARIO-SECTIONS AND SCENARIO-LINES
  */
 .scenario-section {
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 .scenario-section-header {
+  margin: 10px;
   font-weight: bold;
   font-size: 20px;
   line-height: 23px;
@@ -399,12 +393,18 @@ export default {
 }
 
 .scenario-line {
-  padding-left: 25px;
+  padding-left: 20px;
   padding-right: 10px;
   padding-bottom: 10px;
 }
+.scenario-line:first-child {
+}
 
 .scenario-line-caption p {
+  overflow: hidden;
+  white-space: nowrap;
+  display: -webkit-box;
+  text-overflow: ellipsis;
   display: inline-block;
   max-width: 50%;
   font-style: normal;
@@ -439,10 +439,7 @@ export default {
  */
 .align-right {
   float: right;
-  margin-right: 15px;
-}
-.participants-no-btn {
-  margin-right: -6px;
+  margin-right: 10px;
 }
 select.scenario-line  {
   border-width: 1px;
