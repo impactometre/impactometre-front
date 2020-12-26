@@ -295,6 +295,9 @@ export default {
  */
 
 .scenario {
+  margin: 0 20px 0 0;
+}
+.scenario:first-child {
   margin: 0 20px;
 }
 
