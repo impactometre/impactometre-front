@@ -9,7 +9,7 @@
       </div>
       <div class="scenario-body">
         <div class="scenario-section">
-          <div class="scenario-section-header">Paramètres</div>
+          <div class="scenario-section-header"></div>
           <div class="scenario-section-body">
             <div class="scenario-line">
               <span class="scenario-line-caption">
@@ -338,14 +338,14 @@ export default {
   width: 100%;
 }
 /*
- * CLOSE LINK
+ * CLOSE LINK BUTTONS
  */
 
 .close-btn {
   display: inline-block;
   position: relative;
   float: right;
-  top: -46px;
+  top: -41px;
   left: -12px;
   border: none;
   color: black;
@@ -356,6 +356,7 @@ export default {
   text-decoration: none;
   display: inline-block;
   font-size: 20px;
+  line-height: 10px;
 }
 .close-btn:hover {
   background-color: rgba(0, 0, 0, 0.1);
