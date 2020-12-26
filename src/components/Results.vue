@@ -1,21 +1,19 @@
 <template>
   <div class="results">
-    <div class="results-header">
-      Résultats
-      <div class="results-header-btn-actions">
-        <button
+    <div class="results-header">Résultats</div>
+    <div class="results-header-btn-actions">
+      <button
           class="results-header-btn-reload"
           @click.prevent="updateResults"
-        >
-          Calculer
-        </button>
-        <button
+      >
+        Calculer 🔄
+      </button>
+      <button
           class="results-header-btn-export"
           @click.prevent="exportResults"
-        >
-          Exporter
-        </button>
-      </div>
+      >
+        Exporter ⬇️
+      </button>
     </div>
     <div class="results-content">
       <div
@@ -220,36 +218,43 @@ export default {
   background-color: #f1f1f1;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /*
- * HEADER
+ * 1 - HEADER
  */
 
 .results-header {
-  font-weight: bold;
-  font-size: 30px;
-  line-height: 35px;
+  flex-basis: 8vh;
   color: #3b3b3b;
-  padding-top: 16px;
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 20px;
   padding-left: 40px;
 }
-.results-header-btn-actions button {
-  border: none;
-  color: black;
-  border-radius: 6px;
-  padding: 2px 8px;
-  margin-left: 5px;
-  position: relative;
-  top: -5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+
+/*
+ * 2 - BUTTONS
+ */
+
+.results-header-btn-actions {
+  flex-basis: 8vh;
+  width: 100%;
+  color: blueviolet;
+  bottom: 0;
+  padding: 0;
+  margin: 0;
 }
-.results-header button:hover {
+.results-header-btn-actions button{
+  height: 100%;
+  width: 50%;
+  border: none;
+}
+button:hover {
   cursor: pointer;
 }
-
 .results-header-btn-export {
   background: rgba(58, 104, 224, 0.5);
 }
@@ -263,48 +268,33 @@ export default {
   background: rgba(85, 235, 52, 0.8);
 }
 
-.results-header-btn-displayed-view {
-  margin-bottom: 10px;
-  margin-left: 4px;
-}
-
-.results-header-btn-displayed-view input {
-  background-color: #3b3b3b;
-  max-width: 50%;
-  border: none;
-  color: white;
-  padding: 5px 15px;
-  float: left;
-  cursor: pointer;
-}
-
-.results-header-btn-displayed-view .active {
-  background-color: rgba(59, 59, 59, 0.5);
-  color: white;
-  font-weight: bold;
-  padding: 5px 15px;
-  float: left;
-}
-
 /*
- * RESULTS
+ * 3 - RESULTS
  */
+
 .results-content {
-  padding-top: 10px;
+  flex-basis: 100%;
+  flex-grow: 4;
+  max-height: 84vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 .results-section {
+  flex-basis: 25%;
   border-top-style: solid;
   border-color: #bcbcbc;
   border-width: 3px;
   padding-top: 10px;
   padding-left: 40px;
 }
-
+.results-section:last-child {
+  border-bottom-style: solid;
+}
 .results-section:hover {
   background: rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
-
 .results-section h3 {
   color: #3b3b3b;
   font-size: 16px;
