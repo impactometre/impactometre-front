@@ -1,4 +1,4 @@
-export const detailled_results_text = {
+export const detailed_results_text = {
   HUMAN_HEALTH:
 `L'impact sur la santé humaine est mesuré en DALY (Disability Adjusted Life Years)
 et exprimé en pourcentage par rapport au scénario ayant le plus d'impact.

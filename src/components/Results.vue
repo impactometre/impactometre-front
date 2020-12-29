@@ -43,7 +43,7 @@ import jsPDF from "jspdf";
 import ResultsChart from "./ResultsChart.js";
 import store from "../store/MainStore.js";
 import { sections_comparatif, journey_options } from "../options/options.js";
-import { detailled_results_text } from "../options/detailled_results_text.js";
+import { detailed_results_text } from "../options/detailed_results_text.js";
 
 export default {
   components: { ResultsChart },
@@ -185,7 +185,7 @@ export default {
 
         doc.setFont("Helvetica", "");
         doc.setFontSize(7);
-        var sectionText = detailled_results_text[sections_comparatif[index].name];
+        var sectionText = detailed_results_text[sections_comparatif[index].name];
         // var splitText = doc.splitTextToSize(sectionText,100);
         doc.text(sectionText, 84, line + 4);
 
