@@ -216,7 +216,7 @@ export default {
 <style>
 .results {
   background-color: #f1f1f1;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   height: 100%;
   display: flex;
   flex-direction: column;

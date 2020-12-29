@@ -18,7 +18,7 @@ header {
     z-index: 100;
     flex-basis: 60px;
     width: 100%;
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
 
     background-color: #3C3C3C;
     color: #FFFFFF;
@@ -56,7 +56,7 @@ main {
     margin: 45px 10px;
     flex: 1;
     border-radius: 15px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 }
 .scenario-full .scenario-header {
     border-radius: 15px 15px 0 0;
@@ -154,20 +154,20 @@ main {
 
     transition-timing-function: ease;
     width: 50px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 }
 .scenario-empty .scenario-body img:hover {
     transition-timing-function: ease;
 
     transform: scale(1.02);
     cursor: pointer;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 }
 
 .results {
     flex-basis: 25%;
     /* background-color: #BCBCBC; */
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
 }
 
 

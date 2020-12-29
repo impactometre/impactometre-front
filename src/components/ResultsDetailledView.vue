@@ -1,11 +1,11 @@
 <template>
-  <div class="results-detailled-view">
-    <div class="results-detailled-view-header">
+  <div class="results-detailed-view">
+    <div class="results-detailed-view-header">
       <h1>{{ title }}</h1>
       <button class="close-btn" @click.prevent="hideView">&#10006;</button>
     </div>
-    <div class="results-detailled-view-content">
-      <div class="results-chart-detailled" v-if="selectedView">
+    <div class="results-detailed-view-content">
+      <div class="results-chart-detailed" v-if="selectedView">
         <ResultsChart
           :key="re_render_results"
           :chart-data="chartData(selectedView)"
@@ -14,7 +14,7 @@
         ></ResultsChart>
       </div>
       <p>
-        {{ detailled_results_text }}
+        {{ detailed_results_text }}
       </p>
       <br/>
       <p>
@@ -30,7 +30,7 @@
 <script>
 import ResultsChart from "./ResultsChart.js";
 import store from "../store/MainStore.js";
-import { detailled_results_text } from "../options/detailled_results_text.js";
+import { detailed_results_text } from "../options/detailed_results_text";
 
 //register custom tooltip positioner for chart
 Chart.Tooltip.positioners.custom = function(elements, position) {
@@ -47,7 +47,7 @@ export default {
   components: { ResultsChart },
   methods: {
     hideView() {
-      this.$root.$emit("hide_results_detailled_view");
+      this.$root.$emit("hide_results_detailed_view");
     },
   },
   data() {
@@ -86,7 +86,7 @@ export default {
   },
   computed: {
     chartData: function () {
-      return (sphere) => store.state.impact_on_spheres_detailled[sphere];
+      return (sphere) => store.state.impact_on_spheres_detailed[sphere];
     },
     title: function () {
       //TODO: clean this function (code redundancy)
@@ -97,15 +97,15 @@ export default {
         case "RESOURCES": return "Impact sur les ressources"
       }
     },
-    detailled_results_text: function () {
-      return detailled_results_text[this.selectedView];
+    detailed_results_text: function () {
+      return detailed_results_text[this.selectedView];
     },
     equivalents: function () {
       if(store.state.equivalents.hasOwnProperty(this.selectedView)){
         const ret = [];
         const eqs = store.state.equivalents[this.selectedView]["ONE_KM_CAR"]
         for (const equivalent in eqs) {
-          if (eqs[equivalent] !== null) {
+          if (eqs.hasOwnProperty(equivalent) && eqs[equivalent] !== null) {
             ret.push({ text: "Le "+equivalent+" équivaut à l'impact de "+eqs[equivalent]+" km réalisés dans une voiture thermique."});
           }
         }
@@ -114,7 +114,7 @@ export default {
     }
   },
   mounted() {
-    this.$root.$on("re_render_results_detailled", () => {
+    this.$root.$on("re_render_results_detailed", () => {
       // We re-render the component as a workaround to force chart to update
       this.re_render_results = !this.re_render_results;
     });
@@ -123,7 +123,7 @@ export default {
 </script>
 
 <style>
-.results-detailled-view {
+.results-detailed-view {
   padding: 60px;
   background: repeating-linear-gradient(
     -45deg,
@@ -139,10 +139,10 @@ export default {
  * HEADER
  */
 
-.results-detailled-view-header {
+.results-detailed-view-header {
   width: 100%;
 }
-.results-detailled-view-header .close {
+.results-detailed-view-header .close {
   top: -30px;
   padding-left: 30px;
 }
@@ -151,14 +151,14 @@ export default {
  * CONTENT
  */
 
-.results-detailled-view-content p {
+.results-detailed-view-content p {
   line-height: 25px;
 }
 
 /*
  * CHARTS
  */
-.results-chart-detailled {
+.results-chart-detailed {
   margin-bottom: 25px;
   width: 100%;
 }
