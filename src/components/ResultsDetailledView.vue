@@ -106,7 +106,7 @@ export default {
         const eqs = store.state.equivalents[this.selectedView]["ONE_KM_CAR"]
         for (const equivalent in eqs) {
           if (eqs[equivalent] !== null) {
-            ret.push({ text: "Le "+equivalent+" équivaut à "+eqs[equivalent]+"km en voiture thermique."});
+            ret.push({ text: "Le "+equivalent+" équivaut à l'impact de "+eqs[equivalent]+" km réalisés dans une voiture thermique."});
           }
         }
         return ret
