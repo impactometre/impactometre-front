@@ -44,6 +44,7 @@ import ResultsChart from "./ResultsChart.js";
 import store from "../store/MainStore.js";
 import { sections_comparatif, journey_options } from "../options/options.js";
 import { detailed_results_text } from "../options/detailed_results_text.js";
+import { exportResults } from "../functions/export_results.js"
 
 export default {
   components: { ResultsChart },
