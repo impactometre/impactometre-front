@@ -18,7 +18,7 @@
     <div class="results-content">
       <div
         class="results-section"
-        @click="display_results_detailled_view(section.name)"
+        @click="display_results_detailed_view(section.name)"
         v-for="section in sections_comparatif"
         :key="section.name"
       >
@@ -84,7 +84,7 @@ export default {
       store.commit("updateScenarios", new_scenarios);
       store.dispatch("callAPI").then(() => {
         this.re_render_results = !this.re_render_results;
-        this.$root.$emit("re_render_results_detailled");
+        this.$root.$emit("re_render_results_detailed");
       });
     },
     exportResults() {
@@ -194,9 +194,9 @@ export default {
 
       doc.save(pdfName + ".pdf");
     },
-    display_results_detailled_view(choice) {
-      this.$root.$emit("display_results_detailled_view", choice);
-      this.$root.$emit("re_render_results_detailled");
+    display_results_detailed_view(choice) {
+      this.$root.$emit("display_results_detailed_view", choice);
+      this.$root.$emit("re_render_results_detailed");
     },
   },
   computed: {

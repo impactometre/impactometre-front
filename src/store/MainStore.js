@@ -4,7 +4,7 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 let labels = ["A", "B", "C"];
-let labels_detailled = ["Scenario A", "Scenario B", "Scenario C"];
+let labels_detailed = ["Scenario A", "Scenario B", "Scenario C"];
 let backgroundColor = ["#e97272", "#e7dc73", "#83bdec"];
 
 const state = {
@@ -48,9 +48,9 @@ const state = {
       ],
     },
   },
-  impact_on_spheres_detailled: {
+  impact_on_spheres_detailed: {
     HUMAN_HEALTH: {
-      labels: labels_detailled,
+      labels: labels_detailed,
       datasets: [
         {
           label: "Matériel",
@@ -70,7 +70,7 @@ const state = {
       ],
     },
     ECOSYSTEM_QUALITY: {
-      labels: labels_detailled,
+      labels: labels_detailed,
       datasets: [
         {
           label: "Matériel",
@@ -90,7 +90,7 @@ const state = {
       ],
     },
     CLIMATE_CHANGE: {
-      labels: labels_detailled,
+      labels: labels_detailed,
       datasets: [
         {
           label: "Matériel",
@@ -110,7 +110,7 @@ const state = {
       ],
     },
     RESOURCES: {
-      labels: labels_detailled,
+      labels: labels_detailed,
       datasets: [
         {
           label: "Matériel",
@@ -141,13 +141,13 @@ let store = new Vuex.Store({
     async updateImpact(state, { sphere, values }) {
       state.impact_on_spheres[sphere].datasets[0].data = values;
     },
-    async updateDetailledImpacts(
+    async updateDetailedImpacts(
       state,
       { sphere, hardware, software, journey }
     ) {
-      state.impact_on_spheres_detailled[sphere].datasets[0].data = hardware;
-      state.impact_on_spheres_detailled[sphere].datasets[1].data = software;
-      state.impact_on_spheres_detailled[sphere].datasets[2].data = journey;
+      state.impact_on_spheres_detailed[sphere].datasets[0].data = hardware;
+      state.impact_on_spheres_detailed[sphere].datasets[1].data = software;
+      state.impact_on_spheres_detailed[sphere].datasets[2].data = journey;
     },
     async updateEquivalents(state, { equivalents }) {
       state.equivalents = equivalents;
@@ -218,7 +218,7 @@ let store = new Vuex.Store({
             );
         }
         store.commit("updateImpact", { sphere, values });
-        store.commit("updateDetailledImpacts", {
+        store.commit("updateDetailedImpacts", {
           sphere,
           hardware,
           software,
