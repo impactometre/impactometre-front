@@ -1,7 +1,7 @@
 import jsPDF from "jspdf";
 import store from "../store/MainStore.js";
 import { sections_comparatif, journey_options } from "../options/options.js";
-import { detailled_results_text } from "../options/detailled_results_text.js";
+import { detailed_results_text } from "../options/detailed_results_text.js";
 
 export function exportResults() {
   let pdfName = "impactometre-resultats";
@@ -102,7 +102,7 @@ export function exportResults() {
 
     doc.setFont("Helvetica", "");
     doc.setFontSize(8);
-    var sectionText = detailled_results_text[sections_comparatif[index].name];
+    var sectionText = detailed_results_text[sections_comparatif[index].name];
     // var splitText = doc.splitTextToSize(sectionText,100);
     doc.text(sectionText, 100, line + 4);
 

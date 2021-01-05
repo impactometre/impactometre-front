@@ -89,9 +89,9 @@ export default {
       });
     },
     exportResults,
-    display_results_detailled_view(choice) {
-      this.$root.$emit("display_results_detailled_view", choice);
-      this.$root.$emit("re_render_results_detailled");
+    display_results_detailed_view(choice) {
+      this.$root.$emit("display_results_detailed_view", choice);
+      this.$root.$emit("re_render_results_detailed");
     },
   },
   computed: {

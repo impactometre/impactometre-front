@@ -16,7 +16,7 @@ var datasets = function () {
   ];
 };
 
-var datasets_detailled = function () {
+var datasets_detailed = function () {
   return [
     {
       label: "Matériel",
@@ -59,20 +59,20 @@ const state = {
   },
   impact_on_spheres_detailed: {
     HUMAN_HEALTH: {
-      labels: labels_detailled,
-      datasets: datasets_detailled(),
+      labels: labels_detailed,
+      datasets: datasets_detailed(),
     },
     ECOSYSTEM_QUALITY: {
-      labels: labels_detailled,
-      datasets: datasets_detailled(),
+      labels: labels_detailed,
+      datasets: datasets_detailed(),
     },
     CLIMATE_CHANGE: {
-      labels: labels_detailled,
-      datasets: datasets_detailled(),
+      labels: labels_detailed,
+      datasets: datasets_detailed(),
     },
     RESOURCES: {
-      labels: labels_detailled,
-      datasets: datasets_detailled(),
+      labels: labels_detailed,
+      datasets: datasets_detailed(),
     },
   },
 };
