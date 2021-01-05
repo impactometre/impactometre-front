@@ -7,127 +7,72 @@ let labels = ["A", "B", "C"];
 let labels_detailed = ["Scenario A", "Scenario B", "Scenario C"];
 let backgroundColor = ["#e97272", "#e7dc73", "#83bdec"];
 
+var datasets = function () {
+  return [
+    {
+      backgroundColor,
+      data: [0, 0, 0],
+    },
+  ];
+};
+
+var datasets_detailled = function () {
+  return [
+    {
+      label: "Matériel",
+      data: [0, 0, 0],
+      backgroundColor,
+    },
+    {
+      label: "Réseau",
+      data: [0, 0, 0],
+      backgroundColor,
+    },
+    {
+      label: "Trajets",
+      data: [0, 0, 0],
+      backgroundColor,
+    },
+  ];
+};
+
 const state = {
   scenarios_json: [],
   equivalents: {},
   impact_on_spheres: {
     HUMAN_HEALTH: {
       labels,
-      datasets: [
-        {
-          backgroundColor,
-          data: [0, 0, 0],
-        },
-      ],
+      datasets: datasets(),
     },
     ECOSYSTEM_QUALITY: {
       labels,
-      datasets: [
-        {
-          backgroundColor,
-          data: [0, 0, 0],
-        },
-      ],
+      datasets: datasets(),
     },
     CLIMATE_CHANGE: {
       labels,
-      datasets: [
-        {
-          backgroundColor,
-          data: [0, 0, 0],
-        },
-      ],
+      datasets: datasets(),
     },
     RESOURCES: {
       labels,
-      datasets: [
-        {
-          backgroundColor,
-          data: [0, 0, 0],
-        },
-      ],
+      datasets: datasets(),
     },
   },
   impact_on_spheres_detailed: {
     HUMAN_HEALTH: {
-      labels: labels_detailed,
-      datasets: [
-        {
-          label: "Matériel",
-          data: [0, 0, 0],
-          backgroundColor,
-        },
-        {
-          label: "Réseau",
-          data: [0, 0, 0],
-          backgroundColor,
-        },
-        {
-          label: "Trajets",
-          data: [0, 0, 0],
-          backgroundColor,
-        },
-      ],
+      labels: labels_detailled,
+      datasets: datasets_detailled(),
     },
     ECOSYSTEM_QUALITY: {
-      labels: labels_detailed,
-      datasets: [
-        {
-          label: "Matériel",
-          data: [0, 0, 0],
-          backgroundColor,
-        },
-        {
-          label: "Réseau",
-          data: [0, 0, 0],
-          backgroundColor,
-        },
-        {
-          label: "Trajets",
-          data: [0, 0, 0],
-          backgroundColor,
-        },
-      ],
+      labels: labels_detailled,
+      datasets: datasets_detailled(),
     },
     CLIMATE_CHANGE: {
-      labels: labels_detailed,
-      datasets: [
-        {
-          label: "Matériel",
-          data: [0, 0, 0],
-          backgroundColor,
-        },
-        {
-          label: "Réseau",
-          data: [0, 0, 0],
-          backgroundColor,
-        },
-        {
-          label: "Trajets",
-          data: [0, 0, 0],
-          backgroundColor,
-        },
-      ],
+      labels: labels_detailled,
+      datasets: datasets_detailled(),
     },
     RESOURCES: {
-      labels: labels_detailed,
-      datasets: [
-        {
-          label: "Matériel",
-          data: [0, 0, 0],
-          backgroundColor,
-        },
-        {
-          label: "Réseau",
-          data: [0, 0, 0],
-          backgroundColor,
-        },
-        {
-          label: "Trajets",
-          data: [0, 0, 0],
-          backgroundColor,
-        },
-      ],
+      labels: labels_detailled,
+      datasets: datasets_detailled(),
     },
   },
 };
@@ -151,72 +96,44 @@ let store = new Vuex.Store({
     },
     async updateEquivalents(state, { equivalents }) {
       state.equivalents = equivalents;
-    }
+    },
   },
   actions: {
     async callAPI(context) {
       if (state.scenarios_json.length) {
-        return Vue.http.post("meeting", state.scenarios_json).then(
-          (response) => {
+        return Vue.http
+          .post("meeting", state.scenarios_json)
+          .then((response) => {
             context.dispatch("processComparisonResponse", {
               comparison: response.body.comparison,
             });
             context.dispatch("processEquivalentResponse", {
               equivalents: response.body.equivalents,
             });
-          }
-        );
+          });
       }
     },
     processComparisonResponse: function (context, { comparison }) {
-      for (const sphereName in comparison) {
+      for (const sphere in comparison) {
         // Aggregated value, Hardware, Software, Journey
         const values = [0, 0, 0];
         const hardware = [0, 0, 0];
         const software = [0, 0, 0];
         const journey = [0, 0, 0];
 
-        if (comparison[sphereName]["Scenario A"]) {
-          const scenario_a = comparison[sphereName]["Scenario A"];
-          values[0] = scenario_a.value;
-          hardware[0] = scenario_a.hardware;
-          software[0] = scenario_a.software;
-          journey[0] = scenario_a.journey;
-        }
-        if (comparison[sphereName]["Scenario B"]) {
-          const scenario_b = comparison[sphereName]["Scenario B"];
-          values[1] = scenario_b.value;
-          hardware[1] = scenario_b.hardware;
-          software[1] = scenario_b.software;
-          journey[1] = scenario_b.journey;
-        }
-        if (comparison[sphereName]["Scenario C"]) {
-          const scenario_c = comparison[sphereName]["Scenario C"];
-          values[2] = scenario_c.value;
-          hardware[2] = scenario_c.hardware;
-          software[2] = scenario_c.software;
-          journey[2] = scenario_c.journey;
+        for (const [scenario_name, value] of Object.entries(
+          comparison[sphere]
+        )) {
+          var idx = ["Scenario A", "Scenario B", "Scenario C"].indexOf(
+            scenario_name
+          );
+          const scenario = comparison[sphere][scenario_name];
+          values[idx] = scenario.value;
+          hardware[idx] = scenario.hardware;
+          software[idx] = scenario.software;
+          journey[idx] = scenario.journey;
         }
 
-        let sphere;
-        switch (sphereName) {
-          case "HUMAN_HEALTH":
-            sphere = "HUMAN_HEALTH";
-            break;
-          case "ECOSYSTEM_QUALITY":
-            sphere = "ECOSYSTEM_QUALITY";
-            break;
-          case "CLIMATE_CHANGE":
-            sphere = "CLIMATE_CHANGE";
-            break;
-          case "RESOURCES":
-            sphere = "RESOURCES";
-            break;
-          default:
-            throw Error(
-              "Received values for unknown impact sphere : " + sphereName
-            );
-        }
         store.commit("updateImpact", { sphere, values });
         store.commit("updateDetailedImpacts", {
           sphere,
@@ -226,15 +143,12 @@ let store = new Vuex.Store({
         });
       }
     },
-    processEquivalentResponse: function(context, { equivalents }) {
+    processEquivalentResponse: function (context, { equivalents }) {
       store.commit("updateEquivalents", {
-        equivalents
+        equivalents,
       });
     },
   },
 });
-
-// Variable globale pour les tests
-global.store = store;
 
 export default store;
