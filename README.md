@@ -14,5 +14,5 @@ $ npm run serve
 # Installer les dépendances
 $ npm install
 # Lancer le projet
-$ npm run serve
+$ npm run build
 ```
