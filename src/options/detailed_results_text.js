@@ -1,5 +1,6 @@
-export const detailled_results_text = {
-  HUMAN_HEALTH: `L'impact sur la santé humaine est une catégorie de dommage
+export const detailed_results_text = {
+  HUMAN_HEALTH:
+`L'impact sur la santé humaine est une catégorie de dommage
 environnemental quis'exprime en DALY, Disability Adjusted
 Life Years (années de vie corrigées du facteur d'incapacité).
 Elle prend en compte les indicateurs environnementaux de

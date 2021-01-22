@@ -9,34 +9,49 @@
       </div>
       <div class="scenario-body">
         <div class="scenario-section">
+          <div class="scenario-section-header"></div>
           <div class="scenario-section-body">
             <div class="scenario-line">
               <span class="scenario-line-caption">
-                <p>Nombre de participants</p>
+                <p>👤 Participants</p>
               </span>
               <IncrementButton
                 v-model="scenario.numberOfParticipants"
                 :max="30"
                 :min="1"
-                class="align-right participants-no-btn"
+                class="align-right"
               /><br />
             </div>
             <div class="scenario-line">
               <span class="scenario-line-caption">
-                <p>Durée de la réunion (minutes)</p>
+                <p>⏳ Durée (min)</p>
               </span>
               <IncrementButton
-                v-model="scenario.meetingDuration"
-                :max="999"
-                :min="1"
-                class="align-right"
+                  v-model="scenario.meetingDuration"
+                  :max="999"
+                  :min="1"
+                  class="align-right"
               /><br />
-              <hr />
+            </div>
+            <div class="scenario-line">
+              <span class="scenario-line-caption">
+                <p>🌐 Visio</p>
+                <select v-model="scenario.software.name" class="align-right select-software">
+                  <option value="">Aucune</option>
+                  <option
+                      v-for="software_option in software_options"
+                      :key="software_option.name"
+                      :value="software_option.name"
+                  >
+                    {{ software_option.french }}
+                  </option>
+                </select>
+              </span>
             </div>
           </div>
         </div>
         <div class="scenario-section">
-          <div class="scenario-section-header">Matériel</div>
+          <div class="scenario-section-header">Équipement</div>
           <div class="scenario-section-body">
             <div
               class="scenario-line"
@@ -53,30 +68,6 @@
                 :max="99"
                 class="align-right"
               /><br />
-              <hr />
-            </div>
-          </div>
-        </div>
-        <div class="scenario-section">
-          <div class="scenario-section-header">Réseau</div>
-          <div class="scenario-section-body">
-            <div class="scenario-line">
-              <span class="scenario-line-caption">
-                <p>Logiciel de visioconférence</p>
-                <select
-                  v-model="scenario.software.name"
-                  class="align-right select-software"
-                >
-                  <option value="">Aucun</option>
-                  <option
-                    v-for="software_option in software_options"
-                    :key="software_option.name"
-                    :value="software_option.name"
-                  >
-                    {{ software_option.french }}
-                  </option>
-                </select>
-              </span>
             </div>
           </div>
         </div>
@@ -159,27 +150,27 @@ function initialScenario() {
     hardware: [
       {
         name: "LAPTOP",
-        french: "Ordinateurs portables",
+        french: "💻 PC Portables",
         qty: 0,
       },
       {
         name: "DESKTOP",
-        french: "Ordinateurs fixes",
+        french: "🖥 PC Fixes",
         qty: 0,
       },
       {
         name: "LOGITECH_KIT",
-        french: "Kits de vidéo-conférence",
+        french: "📞 Kits visio",
         qty: 0,
       },
       {
         name: "COMPUTER_SCREEN_LCD",
-        french: "Ecrans supplémentaires",
+        french: "🖥 Moniteurs",
         qty: 0,
       },
       {
         name: "PROJECTOR",
-        french: "Vidéo-projecteurs",
+        french: "📽 Projecteur",
         qty: 0,
       },
     ],
@@ -297,26 +288,28 @@ export default {
 </script>
 
 <style>
-.scenarios {
-}
-
-.scenario {
-  margin: 0 10px;
-  min-width: 250px;
-}
 
 /*
  *    SCENARIO-FULL
  */
 
+.scenario {
+  margin: 0 20px 0 0;
+}
+.scenario:first-child {
+  margin: 0 20px;
+}
+
 .scenario-full {
   height: auto;
-  min-height: 80%;
-  margin: 30px 10px;
+  min-width: 241px;
+  min-height: 90%;
+  margin: 30px 0;
   border-radius: 15px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
   /* padding-bottom:25px; */
 }
+
 .scenario-full .scenario-header {
   border-radius: 15px 15px 0 0;
   height: 60px;
@@ -343,14 +336,14 @@ export default {
   width: 100%;
 }
 /*
- * CLOSE LINK
+ * CLOSE LINK BUTTONS
  */
 
 .close-btn {
   display: inline-block;
   position: relative;
   float: right;
-  top: -46px;
+  top: -41px;
   left: -12px;
   border: none;
   color: black;
@@ -361,6 +354,7 @@ export default {
   text-decoration: none;
   display: inline-block;
   font-size: 20px;
+  line-height: 10px;
 }
 .close-btn:hover {
   background-color: rgba(0, 0, 0, 0.1);
@@ -385,10 +379,13 @@ export default {
 /*
  *    SCENARIO-SECTIONS AND SCENARIO-LINES
  */
-.scenario-section {
-  margin-bottom: 20px;
+
+.scenario-body {
+  margin-top: 20px;
 }
+
 .scenario-section-header {
+  margin: 10px;
   font-weight: bold;
   font-size: 20px;
   line-height: 23px;
@@ -400,12 +397,16 @@ export default {
 }
 
 .scenario-line {
-  padding-left: 25px;
+  padding-left: 20px;
   padding-right: 10px;
   padding-bottom: 10px;
 }
 
 .scenario-line-caption p {
+  overflow: hidden;
+  white-space: nowrap;
+  display: -webkit-box;
+  text-overflow: ellipsis;
   display: inline-block;
   max-width: 50%;
   font-style: normal;
@@ -440,10 +441,11 @@ export default {
  */
 .align-right {
   float: right;
-  margin-right: 15px;
+  margin-right: 10px;
 }
-.participants-no-btn {
-  margin-right: -6px;
+.align-right:first-child {
+  float: right;
+  margin-right: 50px;
 }
 select.scenario-line {
   border-width: 1px;
@@ -483,13 +485,11 @@ select.select-journey {
 /*
  *    SCENARIO-EMPTY
  */
-.scenario-body {
-  margin-top: 20px;
-}
+
 .scenario-empty {
-  min-width: 230px;
-  min-height: 80%;
-  margin: 30px 10px;
+  min-width: 241px;
+  min-height: 90%;
+  margin: 30px 0;
   border-radius: 15px;
   box-sizing: border-box;
   border: 1px dashed #000000;

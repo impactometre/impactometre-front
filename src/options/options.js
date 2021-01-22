@@ -1,11 +1,11 @@
 export const software_options = [
   {
-    name: "RENAVISIO",
-    french: "Renavisio",
-  },
-  {
     name: "SKYPE",
     french: "Skype",
+  },
+  {
+    name: "RENAVISIO",
+    french: "Renavisio",
   },
   {
     name: "JITSI",
@@ -24,35 +24,35 @@ export const software_options = [
 export const journey_options = [
   {
     name: "BIKE_ONE_PERSON_ONE_KM",
-    french: "vélo",
+    french: "🚲 Vélo",
   },
   {
     name: "CAR_HEAT_ENGINE_ONE_KM",
-    french: "Voiture thermique",
+    french: "🚗 Voiture thermique",
   },
   {
     name: "CAR_ELECTRIC_ONE_KM",
-    french: "Voiture électrique",
+    french: "🚙 Voiture électrique",
   },
   {
     name: "BUS_CITY_ONE_PERSON_KM",
-    french: "Bus",
+    french: "🚍 Bus",
   },
   {
     name: "TRAMWAY_ONE_PERSON_KM",
-    french: "Tramway",
+    french: "🚃 Tramway",
   },
   {
     name: "TRAIN_REGIONAL_ONE_PERSON_KM",
-    french: "TER",
+    french: "🚈 TER",
   },
   {
     name: "TRAIN_HIGH_SPEED_ONE_PERSON_KM",
-    french: "TGV",
+    french: "🚄 TGV",
   },
   {
     name: "PLANE_INTERCONTINENTAL_ONE_PERSON_KM",
-    french: "Avion intercontinental",
+    french: "✈️ Avion",
   },
 ];
 

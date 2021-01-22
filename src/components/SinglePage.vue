@@ -109,7 +109,7 @@ export default {
 .single-page-text {
   padding: 2%;
   background-color: rgba(255, 255, 255, 1);
-  box-shadow: 0px 0px 53px -18px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 53px -18px rgba(0, 0, 0, 0.75);
   border-radius: 8px;
 }
 .single-page-text p {
