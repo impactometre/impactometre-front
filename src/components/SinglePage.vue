@@ -56,8 +56,8 @@
           </p>
           <p id="licence">
             Licence libre GNU GPL V3 -
-            <a href="https://gitlab.utc.fr/tx-techno-num/impactometre"
-              >Dépôt gitlab</a
+            <a href="https://github.com/impactometre"
+              >Dépôt github</a
             >
           </p>
         </div>
