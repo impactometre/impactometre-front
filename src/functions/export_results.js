@@ -25,18 +25,10 @@ export function exportResults() {
       doc.setFont("Helvetica", "");
       doc.setFontSize(7);
       line += 6;
-      doc.text(
-        "Nombre de participants : " + String(scenario.numberOfParticipants),
-        left_space,
-        line
-      );
+      doc.text("Nombre de participants : " + String(scenario.numberOfParticipants), left_space, line);
 
       line += 4;
-      doc.text(
-        "Durée de la réunion (min) : " + String(scenario.meetingDuration),
-        left_space,
-        line
-      );
+      doc.text("Durée de la réunion (min) : " + String(scenario.meetingDuration), left_space, line);
 
       line += 6;
       doc.text("Logiciel : " + scenario.software.name, left_space, line);
@@ -48,7 +40,7 @@ export function exportResults() {
         if (hardware.qty != 0) {
           line += 4;
           doc.text(
-            " - " + String(hardware.qty) + " " + hardware.french,
+            String(hardware.qty) + " " + hardware.french.replace(/[^\x00-\x7F]/g, ""),
             left_space,
             line
           );
@@ -61,15 +53,10 @@ export function exportResults() {
       doc.setFont("Helvetica", "");
       scenario.journey.forEach((journey) => {
         line += 4;
-        var journey_fr = journey_options.find(
-          (option) => option.name === journey.mean
-        );
+        var journey_fr = journey_options.find((option) => option.name === journey.mean);
         if (journey_fr) {
           doc.text(
-            "- " +
-              String(journey.distance) +
-              " km parcourus en " +
-              journey_fr.french,
+            String(journey.distance) + " km parcourus en " + journey_fr.french.replace(/[^\x00-\x7F]/g, ""),
             left_space,
             line
           );
@@ -86,9 +73,7 @@ export function exportResults() {
   doc.text("Comparaison des scénarios de réunion", 20, line);
   line = line + 10;
 
-  var all_canvas = document.querySelectorAll(
-    ".results-chart canvas#horizontalbar-chart"
-  );
+  var all_canvas = document.querySelectorAll(".results-chart canvas#horizontalbar-chart");
 
   all_canvas.forEach((canvas, index) => {
     doc.setFontSize(10);
@@ -98,14 +83,7 @@ export function exportResults() {
 
     var canvasImg = canvas.toDataURL("image/png", 1);
     console.log(canvas.width);
-    doc.addImage(
-      canvasImg,
-      "PNG",
-      15,
-      line,
-      70,
-      (canvas.height * 70) / canvas.width
-    );
+    doc.addImage(canvasImg, "PNG", 15, line, 70, (canvas.height * 70) / canvas.width);
 
     doc.setFont("Helvetica", "");
     doc.setFontSize(8);
