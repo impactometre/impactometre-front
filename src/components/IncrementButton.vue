@@ -13,10 +13,10 @@
     </button>
     <input
       @focus="$event.target.select()"
+      @blur="checkInput"
       type="text"
       name="increment-button-value"
       v-bind:value="value"
-      @input="input"
     />
     <button
       type="button"
@@ -83,23 +83,29 @@ export default {
       clearInterval(this.interval);
       this.interval = false;
     },
-    input: function (event) {
+    checkInput: function (event) {
       var value = parseInt(event.target.value);
-      if (value > this.min) {
-        this.newValue = value;
-        this.$emit("input", value);
-      } else {
+      if (isNaN(value)) {
         this.newValue = this.min;
         this.$emit("input", this.min);
         event.target.value = this.min;
-      }
-      if (parseInt(event.target.value) < this.max) {
-        this.newValue = value;
-        this.$emit("input", value);
       } else {
-        this.newValue = this.max;
-        this.$emit("input", this.max);
-        event.target.value = this.max;
+        if (value < this.min) {
+          this.newValue = this.min;
+          this.$emit("input", this.min);
+          event.target.value = this.min;
+        } else {
+          this.newValue = value;
+          this.$emit("input", value);
+        }
+        if (value > this.max) {
+          this.newValue = this.max;
+          this.$emit("input", this.max);
+          event.target.value = this.max;
+        } else {
+          this.newValue = value;
+          this.$emit("input", value);
+        }
       }
     },
   },

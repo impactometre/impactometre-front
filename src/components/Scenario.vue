@@ -17,7 +17,7 @@
               </span>
               <IncrementButton
                 v-model="scenario.numberOfParticipants"
-                :max="30"
+                :max="999"
                 :min="1"
                 class="align-right"
               /><br />
@@ -27,21 +27,24 @@
                 <p>⏳ Durée (min)</p>
               </span>
               <IncrementButton
-                  v-model="scenario.meetingDuration"
-                  :max="999"
-                  :min="1"
-                  class="align-right"
+                v-model="scenario.meetingDuration"
+                :max="999"
+                :min="1"
+                class="align-right"
               /><br />
             </div>
             <div class="scenario-line">
               <span class="scenario-line-caption">
                 <p>🌐 Visio</p>
-                <select v-model="scenario.software.name" class="align-right select-software">
+                <select
+                  v-model="scenario.software.name"
+                  class="align-right select-software"
+                >
                   <option value="">Aucune</option>
                   <option
-                      v-for="software_option in software_options"
-                      :key="software_option.name"
-                      :value="software_option.name"
+                    v-for="software_option in software_options"
+                    :key="software_option.name"
+                    :value="software_option.name"
                   >
                     {{ software_option.french }}
                   </option>
@@ -288,7 +291,6 @@ export default {
 </script>
 
 <style>
-
 /*
  *    SCENARIO-FULL
  */
