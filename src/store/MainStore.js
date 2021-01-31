@@ -6,6 +6,9 @@ Vue.use(Vuex);
 let labels = ["A", "B", "C"];
 let labels_detailed = ["Scenario A", "Scenario B", "Scenario C"];
 let backgroundColor = ["#e97272", "#e7dc73", "#83bdec"];
+let backgroundColorHardware = ["#e76565", "#f7f188", "#bddcf5"];
+let backgroundColorSoftware = ["#e03838", "#f0e529", "#90c4ee"];
+let backgroundColorJourney = ["#c71f1f", "#e3d81b", "#54a8eb"];
 
 var datasets = function () {
   return [
@@ -21,17 +24,18 @@ var datasets_detailed = function () {
     {
       label: "Matériel",
       data: [0, 0, 0],
-      backgroundColor,
+      backgroundColor: backgroundColorHardware,
     },
     {
       label: "Réseau",
       data: [0, 0, 0],
-      backgroundColor,
+      backgroundColor: backgroundColorSoftware,
+
     },
     {
       label: "Trajets",
       data: [0, 0, 0],
-      backgroundColor,
+      backgroundColor: backgroundColorJourney,
     },
   ];
 };
