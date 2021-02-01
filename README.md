@@ -15,15 +15,13 @@ GNU General Public License for more details._
 
 ## Description
 
-_This VueJS-based application allows the user to compare the environmental impact of three different meeting scenarios, for different spheres of damage: impact on human health, on ecosystem quality, on climate change and on resources._
-
-_The results are presented as a percentage, based on the one with the greatest impact._
-
 Cette application basée sur `VueJS` permet de comparer l'impact environnemental de trois différents scénarios de réunions, pour différentes sphères de dommage : impact sur la santé humaine, sur la qualité des écosystèmes, sur le changement climatique et sur les ressources.
 
 Les résultats sont présentés sous forme de pourcentage, par rapport à celui ayant le plus d'impact.
 
 L'application est construite sur l'API [impactometre-back](https://github.com/impactometre/impactometre-back).
+
+_🇬🇧 This VueJS-based application allows to compare the environmental impact of up to three meeting scenarios of your choice, for different spheres of damage: impact on human health, on ecosystem quality, on climate change and on resources. The results are relative: the value of the impact in each sphere is displayed as a percentage of the value for the scenario with the highest impact. The application was built as an interface for the [impactometre-back](https://github.com/impactometre/impactometre-back) API._
 
 ## Captures d'écran
 
@@ -31,32 +29,25 @@ L'application est construite sur l'API [impactometre-back](https://github.com/im
 
 ![](./screenshots/impactometre_screenshot_2.png)
 
-## Pour développer
+## Pour développer ou héberger le projet
 
 ### Installer Node.js et npm
-Avec Linux :
-```bash
-$ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-$ sudo apt-get install -y nodejs
-```
-Avec Windows : [télécharger le .msi](https://nodejs.org/dist/v12.14.0/node-v12.14.0-x86.msi)
+https://nodejs.org/
 
-### Installer Vue CLI
+### Installer les dépendances
 ```bash
-npm install -g @vue/cli
+npm install
 ```
-### Pour lancer le front en mode serve
+
+### 🛠 dev : Lancer le serveur de développement
+Cette commande permet de démarrer un serveur de développement (webpack) avec remplacement des modules à chaud.
 ```bash
-# Installer les dépendances
-$ npm install
-# Lancer le projet
 $ npm run serve
 ```
 
-### Pour lancer le front en mode build (génération de fichiers statique)
+### ✨ prod : Déployer en production
+Cette commande génère l'application sous la forme d'un bundle statique prêt à être déployé, dans le répertoire `/dist`.
+Il suffit ensuite de la déployer en utilisant un serveur web comme [nginx](https://cli.vuejs.org/guide/deployment.html#docker-nginx).
 ```bash
-# Installer les dépendances
-$ npm install
-# Lancer le projet
 $ npm run build
 ```
