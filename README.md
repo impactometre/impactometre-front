@@ -36,7 +36,7 @@ https://nodejs.org/
 
 ### Installer les dépendances
 ```bash
-npm install
+$ npm install
 ```
 
 ### 🛠 dev : Lancer le serveur de développement
