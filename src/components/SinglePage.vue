@@ -38,8 +38,7 @@
             construction de la méthode d’évaluation
             <a
               target="_blank"
-              rel="noopener noreferrer"
-              href="/uploads/article_impact_environnemental_reunions.pdf"
+              href="https://halshs.archives-ouvertes.fr/halshs-03120479"
               >à cette adresse.</a
             >
           </p>
