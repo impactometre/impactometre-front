@@ -38,7 +38,7 @@
             construction de la méthode d’évaluation
             <a
               target="_blank"
-              href="https://halshs.archives-ouvertes.fr/halshs-03120479"
+              href="https://hal.archives-ouvertes.fr/halshs-03120479"
               >à cette adresse.</a
             >
           </p>
