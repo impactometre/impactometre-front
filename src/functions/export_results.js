@@ -17,6 +17,8 @@ export function exportResults() {
 
   store.state.scenarios_json.forEach((scenario, index) => {
     if (scenario.meetingDuration > 1) {
+      const isSoftwareEmpty = scenario.software.name == "";
+
       line = 26;
       doc.setFontSize(12);
       doc.setFont("Helvetica", "Bold");
@@ -26,12 +28,14 @@ export function exportResults() {
       doc.setFontSize(7);
       line += 6;
       doc.text("Nombre de participants : " + String(scenario.numberOfParticipants), left_space, line);
-
       line += 4;
       doc.text("Durée de la réunion (min) : " + String(scenario.meetingDuration), left_space, line);
 
       line += 6;
-      doc.text("Logiciel : " + scenario.software.name, left_space, line);
+      doc.text("Logiciel : " + (isSoftwareEmpty ? "Aucun" : scenario.software.name), left_space, line);
+      line += 4;
+      if (!isSoftwareEmpty) doc.text("Nombre d'instances du logiciel : " + String(scenario.numberOfInstances), left_space, line);
+
       line += 6;
       doc.setFont("Helvetica", "Bold");
       doc.text("Matériel", left_space, line);
