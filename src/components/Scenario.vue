@@ -51,6 +51,22 @@
                 </select>
               </span>
             </div>
+            <div class="scenario-line" v-if="scenario.software.name">
+              <span class="scenario-line-caption">
+                <p>📌 Instances du logiciel</p>
+              </span>
+              <IncrementButton
+                v-model="scenario.numberOfInstances"
+                :max="999"
+                :min="0"
+                class="align-right"
+              /><br />
+            </div>
+            <div class="scenario-line" v-else>
+              <span class="scenario-line-caption">
+                <p><br/></p>
+              </span>
+            </div>
           </div>
         </div>
         <div class="scenario-section">
@@ -150,6 +166,7 @@ function initialScenario() {
   return {
     meetingDuration: 1,
     numberOfParticipants: 1,
+    numberOfInstances: 0,
     hardware: [
       {
         name: "LAPTOP",
