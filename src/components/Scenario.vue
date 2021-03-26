@@ -53,9 +53,9 @@
             </div>
             <div class="scenario-line" v-if="scenario.software.name">
               <span class="scenario-line-caption">
-                <p>📌 Instances du logiciel</p>
+                <p>📌 Instances de {{ getSoftwareOption(scenario.software.name) }}</p>
               </span>
-              <IncrementButton
+              <IncrementButton 
                 v-model="scenario.numberOfInstances"
                 :max="999"
                 :min="0"
@@ -232,6 +232,11 @@ export default {
       return this.scenario;
     },
   },
+  watch: {
+    'scenario.software.name': function (value) {
+      if (!value) this.scenario.numberOfInstances = 0;
+    }
+  },
   methods: {
     createScenario(id) {
       let newScenario;
@@ -276,6 +281,9 @@ export default {
     },
     reRenderCopyButtons() {
       this.componentKey += 1;
+    },
+    getSoftwareOption(key) {
+      return this.$data.software_options.find(software => software.name == key).french;
     },
   },
   mounted() {
