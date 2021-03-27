@@ -55,6 +55,9 @@
               <span class="scenario-line-caption">
                 <p>📌 Instances de {{ getSoftwareOption(scenario.software.name) }}</p>
               </span>
+              <Tooltip>
+                Nombre de points de réunion où est utilisé le logiciel {{ getSoftwareOption(scenario.software.name) }}
+              </Tooltip>
               <IncrementButton 
                 v-model="scenario.software.numberOfInstances"
                 :max="999"

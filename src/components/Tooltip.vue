@@ -11,15 +11,18 @@ export default {};
 <style>
 /* Tooltip container */
 .scenario-line-caption-tooltip {
+  display: inline-block;
   position: relative;
-  background: #dcdcdc;
+  color: grey;
   text-align: center;
-  height: 20px;
-  width: 20px;
+  font-size: 12px;
+  height: 15px;
+  width: 15px;
   border-radius: 50%;
   margin-left: 10px;
   margin-right: 10px;
-  color: #838383;
+  border: 1px solid;
+  top: -3px;
 }
 .scenario-line-caption-tooltip:hover {
   cursor: default;
@@ -28,8 +31,8 @@ export default {};
 .scenario-line-caption-tooltip .scenario-line-caption-tooltip-text {
   visibility: hidden;
   width: 150px;
-  background-color: #b1b1b1;
-  color: #fff;
+  background-color: grey;
+  color: whitesmoke;
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
@@ -56,7 +59,7 @@ export default {};
   margin-left: -20px;
   border-width: 5px;
   border-style: solid;
-  border-color: #b1b1b1 transparent transparent transparent;
+  border-color: grey transparent transparent transparent;
 }
 
 /* Animation */
