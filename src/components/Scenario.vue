@@ -56,7 +56,7 @@
                 <p>📌 Instances de {{ getSoftwareOption(scenario.software.name) }}</p>
               </span>
               <IncrementButton 
-                v-model="scenario.numberOfInstances"
+                v-model="scenario.software.numberOfInstances"
                 :max="999"
                 :min="0"
                 class="align-right"
@@ -166,7 +166,6 @@ function initialScenario() {
   return {
     meetingDuration: 1,
     numberOfParticipants: 1,
-    numberOfInstances: 0,
     hardware: [
       {
         name: "LAPTOP",
@@ -196,6 +195,7 @@ function initialScenario() {
     ],
     software: {
       name: "",
+      numberOfInstances: 2,
     },
     journey: [],
   };
@@ -234,7 +234,7 @@ export default {
   },
   watch: {
     'scenario.software.name': function (value) {
-      if (!value) this.scenario.numberOfInstances = 0;
+      if (!value) this.scenario.software.numberOfInstances = 0;
     }
   },
   methods: {
@@ -435,7 +435,7 @@ export default {
   display: -webkit-box;
   text-overflow: ellipsis;
   display: inline-block;
-  max-width: 50%;
+  max-width: 70%;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
