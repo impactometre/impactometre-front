@@ -234,7 +234,7 @@ export default {
   },
   watch: {
     'scenario.software.name': function (value) {
-      if (!value) this.scenario.software.numberOfInstances = 0;
+      if (!value) this.scenario.software.numberOfInstances = 2;
     }
   },
   methods: {
