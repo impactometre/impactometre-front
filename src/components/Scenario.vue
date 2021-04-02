@@ -160,10 +160,13 @@
 </template>
 
 <script>
+import { SOFTWARE } from "../constants";
 import IncrementButton from "./IncrementButton";
 import Tooltip from "./Tooltip";
 
 import { software_options, journey_options } from "../options/options.js";
+
+const { NB_OF_INSTANCES } = SOFTWARE;
 
 function initialScenario() {
   return {
@@ -198,7 +201,7 @@ function initialScenario() {
     ],
     software: {
       name: "",
-      numberOfInstances: 2,
+      numberOfInstances: NB_OF_INSTANCES.WITHOUT_SOFTWARE,
     },
     journey: [],
   };
@@ -236,8 +239,9 @@ export default {
     },
   },
   watch: {
-    'scenario.software.name': function (value) {
-      if (!value) this.scenario.software.numberOfInstances = 2;
+    'scenario.software.name': function (newSoftware, oldSoftware) {
+      if (!oldSoftware && newSoftware) this.scenario.software.numberOfInstances = NB_OF_INSTANCES.WITH_SOFTWARE;
+      if (oldSoftware && !newSoftware) this.scenario.software.numberOfInstances = NB_OF_INSTANCES.WITHOUT_SOFTWARE;
     }
   },
   methods: {
@@ -489,7 +493,7 @@ select.scenario-line {
   text-decoration: none;
 }
 select.select-software {
-  width: 80px;
+  width: 100px;
   height: 20px;
 }
 select.select-journey {

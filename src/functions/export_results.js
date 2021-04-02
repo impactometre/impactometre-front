@@ -30,7 +30,7 @@ export function exportResults() {
       line += 4;
       doc.text("Durée de la réunion (min) : " + String(scenario.meetingDuration), left_space, line);
 
-      const isSoftwareEmpty = scenario.software.name.length() === 0;
+      const isSoftwareEmpty = scenario.software.name.length === 0;
       line += 6;
       doc.text("Logiciel : " + (isSoftwareEmpty ? "Aucun" : scenario.software.name), left_space, line);
       line += 4;
