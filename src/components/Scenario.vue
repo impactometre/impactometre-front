@@ -51,6 +51,25 @@
                 </select>
               </span>
             </div>
+            <div class="scenario-line" v-if="scenario.software.name">
+              <span class="scenario-line-caption">
+                <p>📌 Instances de {{ getSoftwareOption(scenario.software.name) }}</p>
+              </span>
+              <Tooltip>
+                Nombre de points de réunion où est utilisé le logiciel {{ getSoftwareOption(scenario.software.name) }}
+              </Tooltip>
+              <IncrementButton 
+                v-model="scenario.software.numberOfInstances"
+                :max="999"
+                :min="0"
+                class="align-right"
+              /><br />
+            </div>
+            <div class="scenario-line" v-else>
+              <span class="scenario-line-caption">
+                <p><br/></p>
+              </span>
+            </div>
           </div>
         </div>
         <div class="scenario-section">
@@ -141,10 +160,13 @@
 </template>
 
 <script>
+import { SOFTWARE } from "../constants";
 import IncrementButton from "./IncrementButton";
 import Tooltip from "./Tooltip";
 
 import { software_options, journey_options } from "../options/options.js";
+
+const { NB_OF_INSTANCES } = SOFTWARE;
 
 function initialScenario() {
   return {
@@ -179,6 +201,7 @@ function initialScenario() {
     ],
     software: {
       name: "",
+      numberOfInstances: NB_OF_INSTANCES.WITHOUT_SOFTWARE,
     },
     journey: [],
   };
@@ -214,6 +237,12 @@ export default {
     getScenarioData: function () {
       return this.scenario;
     },
+  },
+  watch: {
+    'scenario.software.name': function (newSoftware, oldSoftware) {
+      if (!oldSoftware && newSoftware) this.scenario.software.numberOfInstances = NB_OF_INSTANCES.WITH_SOFTWARE;
+      if (oldSoftware && !newSoftware) this.scenario.software.numberOfInstances = NB_OF_INSTANCES.WITHOUT_SOFTWARE;
+    }
   },
   methods: {
     createScenario(id) {
@@ -259,6 +288,9 @@ export default {
     },
     reRenderCopyButtons() {
       this.componentKey += 1;
+    },
+    getSoftwareOption(key) {
+      return this.$data.software_options.find(software => software.name == key).french;
     },
   },
   mounted() {
@@ -410,7 +442,7 @@ export default {
   display: -webkit-box;
   text-overflow: ellipsis;
   display: inline-block;
-  max-width: 50%;
+  max-width: 70%;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -461,7 +493,7 @@ select.scenario-line {
   text-decoration: none;
 }
 select.select-software {
-  width: 80px;
+  width: 100px;
   height: 20px;
 }
 select.select-journey {
