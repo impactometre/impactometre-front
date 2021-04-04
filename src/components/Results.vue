@@ -71,6 +71,10 @@ export default {
               ticks: {
                 max: 100,
                 min: 0,
+                callback: function (value, index, values) {
+                  // Show "%" at the first and last axis elements (i.e "0 %" and "100 %")
+                  return (index === 0 || index === values.length - 1) ? value + " %" : value;
+                },
               },
             },
           ],
