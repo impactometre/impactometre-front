@@ -166,8 +166,8 @@ const { NB_OF_INSTANCES } = SOFTWARE;
 
 function initialScenario() {
   return {
-    meetingDuration: 1,
-    numberOfParticipants: 1,
+    meetingDuration: 60,
+    numberOfParticipants: 2,
     hardware: [
       {
         name: "LAPTOP",
