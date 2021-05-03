@@ -16,6 +16,10 @@ export const software_options = [
     french: "Google Hangouts",
   },
   {
+    name: "ZOOM",
+    french: "Zoom",
+  },
+  {
     name: "other",
     french: "Autre",
   },
