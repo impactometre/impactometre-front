@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import { MAX_FIELDS_VALUE } from '../constants';
+
 export default {
   props: {
     value: {
@@ -44,7 +46,7 @@ export default {
       type: Number,
     },
     max: {
-      default: undefined,
+      default: MAX_FIELDS_VALUE,
       type: Number,
     },
   },
@@ -122,11 +124,11 @@ export default {
 
 <style>
 .increment-button {
-  min-width: 60px;
+  min-width: 70px;
 }
 
 .increment-button input {
-  width: 30px;
+  width: 40px;
   text-align: center;
   border-width: 1px 0;
   border-style: solid;

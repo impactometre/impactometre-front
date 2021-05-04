@@ -4,3 +4,5 @@ export const SOFTWARE = {
     WITH_SOFTWARE: 2,
   },
 };
+
+export const MAX_FIELDS_VALUE = 99999;

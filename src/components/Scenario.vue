@@ -17,7 +17,6 @@
               </span>
               <IncrementButton
                 v-model="scenario.numberOfParticipants"
-                :max="999"
                 :min="1"
                 class="align-right"
               /><br />
@@ -28,7 +27,6 @@
               </span>
               <IncrementButton
                 v-model="scenario.meetingDuration"
-                :max="999"
                 :min="1"
                 class="align-right"
               /><br />
@@ -60,7 +58,6 @@
               </Tooltip>
               <IncrementButton 
                 v-model="scenario.software.numberOfInstances"
-                :max="999"
                 :min="0"
                 class="align-right"
               /><br />
@@ -87,7 +84,6 @@
               </span>
               <IncrementButton
                 v-model="h.qty"
-                :max="99"
                 class="align-right"
               /><br />
             </div>
@@ -106,7 +102,7 @@
               v-for="j in scenario.journey"
               :key="j.length"
             >
-              <IncrementButton v-model="j.distance" :max="9999" />
+              <IncrementButton v-model="j.distance"/>
               <p>km en</p>
               <select v-model="j.mean" class="select-journey">
                 <option disabled value="">...</option>
@@ -170,8 +166,8 @@ const { NB_OF_INSTANCES } = SOFTWARE;
 
 function initialScenario() {
   return {
-    meetingDuration: 1,
-    numberOfParticipants: 1,
+    meetingDuration: 60,
+    numberOfParticipants: 2,
     hardware: [
       {
         name: "LAPTOP",
